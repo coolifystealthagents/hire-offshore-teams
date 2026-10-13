@@ -1,0 +1,188 @@
+{
+  "site": "HireOffshoreTeams",
+  "canonicalDomain": "https://hireoffshoreteams.com",
+  "repository": "coolifystealthagents/hire-offshore-teams",
+  "branch": "main",
+  "baseSha": "f4371102fea4a896af27683a0087e18aa0264581",
+  "publicationDate": "2026-10-13",
+  "counts": {
+    "blog": 12,
+    "research": 5,
+    "total": 17
+  },
+  "registryPaths": [
+    "lib/october13BlogPosts.ts",
+    "lib/october13ResearchPosts.ts",
+    "lib/content.ts"
+  ],
+  "routePaths": [
+    "app/blog/[slug]/page.tsx",
+    "app/research/[slug]/page.tsx"
+  ],
+  "indexPaths": [
+    "app/blog/page.tsx",
+    "app/research/page.tsx"
+  ],
+  "sidebarPaths": [
+    "app/blog/[slug]/page.tsx",
+    "components/ResearchSidebar.tsx"
+  ],
+  "sitemapPaths": [
+    "app/sitemap.ts"
+  ],
+  "items": [
+    {
+      "section": "Blog",
+      "slug": "offshore-candidate-identity-provisioning",
+      "title": "Verify Offshore Candidate Identity Before Account Provisioning",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/offshore-candidate-identity-provisioning.svg",
+      "route": "/blog/offshore-candidate-identity-provisioning"
+    },
+    {
+      "section": "Blog",
+      "slug": "new-offshore-queue-acceptance-gates",
+      "title": "Launch a New Offshore Queue With Acceptance Gates",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/new-offshore-queue-acceptance-gates.svg",
+      "route": "/blog/new-offshore-queue-acceptance-gates"
+    },
+    {
+      "section": "Blog",
+      "slug": "cross-border-customer-data-export-control",
+      "title": "Control Cross-Border Customer Data Exports",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/cross-border-customer-data-export-control.svg",
+      "route": "/blog/cross-border-customer-data-export-control"
+    },
+    {
+      "section": "Blog",
+      "slug": "distributed-timesheet-payroll-review",
+      "title": "Reconcile Distributed Timesheets Before Payroll Review",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/distributed-timesheet-payroll-review.svg",
+      "route": "/blog/distributed-timesheet-payroll-review"
+    },
+    {
+      "section": "Blog",
+      "slug": "offshore-queue-ownership-rotation",
+      "title": "Rotate Offshore Queue Ownership Without Lost Work",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/offshore-queue-ownership-rotation.svg",
+      "route": "/blog/offshore-queue-ownership-rotation"
+    },
+    {
+      "section": "Blog",
+      "slug": "customer-message-translation-ambiguity",
+      "title": "Escalate Translation Ambiguity in Customer Messages",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/customer-message-translation-ambiguity.svg",
+      "route": "/blog/customer-message-translation-ambiguity"
+    },
+    {
+      "section": "Blog",
+      "slug": "offshore-vendor-subprocessor-change-review",
+      "title": "Review Offshore Vendor Subprocessor Changes",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/offshore-vendor-subprocessor-change-review.svg",
+      "route": "/blog/offshore-vendor-subprocessor-change-review"
+    },
+    {
+      "section": "Blog",
+      "slug": "departing-offshore-member-access-removal",
+      "title": "Decommission Departing Team Member Access",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/departing-offshore-member-access-removal.svg",
+      "route": "/blog/departing-offshore-member-access-removal"
+    },
+    {
+      "section": "Blog",
+      "slug": "cross-region-crm-merge-evidence",
+      "title": "Preserve CRM Merge Evidence Across Regions",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/cross-region-crm-merge-evidence.svg",
+      "route": "/blog/cross-region-crm-merge-evidence"
+    },
+    {
+      "section": "Blog",
+      "slug": "regional-holiday-coverage-capacity",
+      "title": "Plan Regional Holiday Coverage With Capacity Limits",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/regional-holiday-coverage-capacity.svg",
+      "route": "/blog/regional-holiday-coverage-capacity"
+    },
+    {
+      "section": "Blog",
+      "slug": "remote-vendor-payment-change-verification",
+      "title": "Verify Payment Instruction Changes From Remote Vendors",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/remote-vendor-payment-change-verification.svg",
+      "route": "/blog/remote-vendor-payment-change-verification"
+    },
+    {
+      "section": "Blog",
+      "slug": "distributed-automation-exception-audit",
+      "title": "Audit Automation Exceptions in Distributed Workflows",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/distributed-automation-exception-audit.svg",
+      "route": "/blog/distributed-automation-exception-audit"
+    },
+    {
+      "section": "Research",
+      "slug": "offshore-access-removal-event-completeness",
+      "title": "Offshore Access Removal Event Completeness",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/offshore-access-removal-event-completeness.svg",
+      "route": "/research/offshore-access-removal-event-completeness"
+    },
+    {
+      "section": "Research",
+      "slug": "cross-region-queue-reassignment-reconstruction",
+      "title": "Cross-Region Queue Reassignment Reconstruction",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/cross-region-queue-reassignment-reconstruction.svg",
+      "route": "/research/cross-region-queue-reassignment-reconstruction"
+    },
+    {
+      "section": "Research",
+      "slug": "distributed-timesheet-exception-coding-agreement",
+      "title": "Distributed Timesheet Exception Coding Agreement",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/distributed-timesheet-exception-coding-agreement.svg",
+      "route": "/research/distributed-timesheet-exception-coding-agreement"
+    },
+    {
+      "section": "Research",
+      "slug": "regional-holiday-coverage-forecast-error",
+      "title": "Regional Holiday Coverage Forecast Error",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/regional-holiday-coverage-forecast-error.svg",
+      "route": "/research/regional-holiday-coverage-forecast-error"
+    },
+    {
+      "section": "Research",
+      "slug": "remote-vendor-payment-verification-reliability",
+      "title": "Remote Vendor Payment Change Verification Reliability",
+      "publicationDate": "2026-10-13",
+      "sourcePath": "lib/october13ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-13/remote-vendor-payment-verification-reliability.svg",
+      "route": "/research/remote-vendor-payment-verification-reliability"
+    }
+  ]
+}
