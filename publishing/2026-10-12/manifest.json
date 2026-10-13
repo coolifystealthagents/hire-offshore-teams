@@ -1,0 +1,185 @@
+{
+  "site": "HireOffshoreTeams",
+  "canonicalDomain": "https://hireoffshoreteams.com",
+  "repository": "coolifystealthagents/hire-offshore-teams",
+  "branch": "main",
+  "baseSha": "bce06f4d5b91cd7b7a7be56211e94e62e4c27981",
+  "publicationDate": "2026-10-12",
+  "counts": {
+    "blog": 12,
+    "research": 5,
+    "total": 17
+  },
+  "registryPaths": [
+    "lib/october12BlogPosts.ts",
+    "lib/october12ResearchPosts.ts",
+    "lib/content.ts"
+  ],
+  "routePaths": [
+    "app/blog/[slug]/page.tsx",
+    "app/research/[slug]/page.tsx"
+  ],
+  "indexPaths": [
+    "app/blog/page.tsx",
+    "app/research/page.tsx"
+  ],
+  "sidebarPaths": [
+    "app/blog/[slug]/page.tsx",
+    "components/ResearchSidebar.tsx"
+  ],
+  "items": [
+    {
+      "section": "Blog",
+      "slug": "distributed-role-decision-rights-map",
+      "title": "Map Decision Rights Across a Distributed Team",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/distributed-role-decision-rights-map.svg",
+      "route": "/blog/distributed-role-decision-rights-map"
+    },
+    {
+      "section": "Blog",
+      "slug": "offshore-team-handoff-acceptance-receipt",
+      "title": "Use an Acceptance Receipt for Offshore Team Handoffs",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/offshore-team-handoff-acceptance-receipt.svg",
+      "route": "/blog/offshore-team-handoff-acceptance-receipt"
+    },
+    {
+      "section": "Blog",
+      "slug": "follow-the-sun-shift-change-log",
+      "title": "Build a Follow-the-Sun Shift Change Log",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/follow-the-sun-shift-change-log.svg",
+      "route": "/blog/follow-the-sun-shift-change-log"
+    },
+    {
+      "section": "Blog",
+      "slug": "distributed-customer-escalation-custody",
+      "title": "Keep Customer Escalation Custody Visible",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/distributed-customer-escalation-custody.svg",
+      "route": "/blog/distributed-customer-escalation-custody"
+    },
+    {
+      "section": "Blog",
+      "slug": "offshore-sales-lead-source-lineage",
+      "title": "Preserve Lead Source Lineage in Offshore Sales Support",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/offshore-sales-lead-source-lineage.svg",
+      "route": "/blog/offshore-sales-lead-source-lineage"
+    },
+    {
+      "section": "Blog",
+      "slug": "distributed-calendar-time-zone-control",
+      "title": "Control Time Zones in Distributed Calendar Handoffs",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/distributed-calendar-time-zone-control.svg",
+      "route": "/blog/distributed-calendar-time-zone-control"
+    },
+    {
+      "section": "Blog",
+      "slug": "offshore-invoice-review-packet",
+      "title": "Prepare Offshore Invoice Review Packets Without Approving",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/offshore-invoice-review-packet.svg",
+      "route": "/blog/offshore-invoice-review-packet"
+    },
+    {
+      "section": "Blog",
+      "slug": "distributed-access-change-verification",
+      "title": "Verify Access Changes for Distributed Team Members",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/distributed-access-change-verification.svg",
+      "route": "/blog/distributed-access-change-verification"
+    },
+    {
+      "section": "Blog",
+      "slug": "remote-quality-sample-review",
+      "title": "Run a Bounded Quality Sample Across Remote Teams",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/remote-quality-sample-review.svg",
+      "route": "/blog/remote-quality-sample-review"
+    },
+    {
+      "section": "Blog",
+      "slug": "distributed-sop-version-custody",
+      "title": "Keep Distributed SOP Versions Under Control",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/distributed-sop-version-custody.svg",
+      "route": "/blog/distributed-sop-version-custody"
+    },
+    {
+      "section": "Blog",
+      "slug": "offshore-team-incident-communication-boundary",
+      "title": "Set Communication Boundaries During Team Incidents",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/offshore-team-incident-communication-boundary.svg",
+      "route": "/blog/offshore-team-incident-communication-boundary"
+    },
+    {
+      "section": "Blog",
+      "slug": "distributed-work-queue-outage-reconciliation",
+      "title": "Reconcile Distributed Work Queues After an Outage",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12BlogPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/distributed-work-queue-outage-reconciliation.svg",
+      "route": "/blog/distributed-work-queue-outage-reconciliation"
+    },
+    {
+      "section": "Research",
+      "slug": "distributed-handoff-acceptance-latency-study",
+      "title": "Distributed Handoff Acceptance Latency",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/distributed-handoff-acceptance-latency-study.svg",
+      "route": "/research/distributed-handoff-acceptance-latency-study"
+    },
+    {
+      "section": "Research",
+      "slug": "follow-the-sun-status-agreement-study",
+      "title": "Status Agreement Across Follow-the-Sun Teams",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/follow-the-sun-status-agreement-study.svg",
+      "route": "/research/follow-the-sun-status-agreement-study"
+    },
+    {
+      "section": "Research",
+      "slug": "distributed-access-recertification-completeness-study",
+      "title": "Distributed Access Recertification Completeness",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/distributed-access-recertification-completeness-study.svg",
+      "route": "/research/distributed-access-recertification-completeness-study"
+    },
+    {
+      "section": "Research",
+      "slug": "remote-quality-reviewer-agreement-study",
+      "title": "Reviewer Agreement in Remote Quality Sampling",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/remote-quality-reviewer-agreement-study.svg",
+      "route": "/research/remote-quality-reviewer-agreement-study"
+    },
+    {
+      "section": "Research",
+      "slug": "cross-region-incident-update-lineage-study",
+      "title": "Cross-Region Incident Update Lineage Completeness",
+      "publicationDate": "2026-10-12",
+      "sourcePath": "lib/october12ResearchPosts.ts",
+      "thumbnailPath": "public/thumbnails/october-12/cross-region-incident-update-lineage-study.svg",
+      "route": "/research/cross-region-incident-update-lineage-study"
+    }
+  ]
+}

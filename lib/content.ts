@@ -1,7 +1,9 @@
 import { site } from './site';
 import type { BlogPost, ResearchPost } from './types';
+import { october12BlogPosts } from './october12BlogPosts';
+import { october12ResearchPosts } from './october12ResearchPosts';
 
-export const blogPosts: BlogPost[] = [
+const existingBlogPosts: BlogPost[] = [
   {
     "slug": "fractional-coo-vs-offshore-operations-team",
     "title": "Fractional COO vs offshore operations team",
@@ -468,7 +470,7 @@ export const blogPosts: BlogPost[] = [
     }
   }
 ];
-export const researchPosts: ResearchPost[] = [
+const existingResearchPosts: ResearchPost[] = [
   {
     "slug": "operations-team-workflow-boundary-review-1",
     "title": "Offshore operations team: workflow boundary review",
@@ -910,6 +912,9 @@ export const researchPosts: ResearchPost[] = [
     ]
   }
 ];
+
+export const blogPosts: BlogPost[] = [...october12BlogPosts, ...existingBlogPosts];
+export const researchPosts: ResearchPost[] = [...october12ResearchPosts, ...existingResearchPosts];
 
 export const nav = [
   { href: '/services', label: 'Services' },
