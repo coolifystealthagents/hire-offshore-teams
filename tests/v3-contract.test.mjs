@@ -62,6 +62,9 @@ test('SEO, canonical redirects, security policy, logo identity, and design regis
   const config = source('next.config.mjs', 'middleware.ts');
   for (const header of ['Strict-Transport-Security', 'Content-Security-Policy', 'X-Content-Type-Options', 'Referrer-Policy', 'Permissions-Policy']) assert.match(config, new RegExp(header));
   assert.match(config, /www\./);
+  assert.match(config, /cf-visitor/i);
+  assert.match(config, /x-forwarded-proto/i);
+  assert.ok(config.toLowerCase().indexOf('cf-visitor') < config.toLowerCase().indexOf('x-forwarded-proto'));
   assert.ok(existsSync(join(root, 'app/icon.svg')));
   const registry = JSON.parse(read('design-registry.json'));
   assert.equal(registry.domain, 'hireoffshoreteams.com');
