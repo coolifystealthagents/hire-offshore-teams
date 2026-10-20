@@ -44,7 +44,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   const detail = serviceDetails[slug];
   if (!service || !detail) notFound();
   const related = detail.related.map((item) => site.services.find((serviceItem) => serviceItem.slug === item)).filter(Boolean);
-  return <main id="main-content" className="service-page">
+  return <main id="main-content" tabIndex={-1} className="service-page">
     <header className="service-hero">
       <div><p className="eyebrow">Offshore team service</p><h1>{service.name}</h1><p className="hero-body">{service.short}</p><p>{detail.problem}</p><Link id={`cta-services-${service.slug}-bookcall`} className="button primary" href="/contact-us">Discuss this team</Link></div>
       <ServiceNetworkVisual labels={detail.visual} name={service.name} />

@@ -9,6 +9,7 @@ import { spawnSync } from 'node:child_process';
 const root = new URL('..', import.meta.url).pathname;
 const routeUrl = pathToFileURL(join(root, 'app/api/submit-lead/route.ts')).href;
 const fallbackUrl = pathToFileURL(join(root, 'lib/lead-fallback-mattermost.ts')).href;
+const trackingUrl = pathToFileURL(join(root, 'app/ingest/track/route.ts')).href;
 
 function runTypeScriptModule(script, env = {}, loaderSource) {
   const temporaryDirectory = mkdtempSync(join(tmpdir(), 'lead-route-test-'));
@@ -77,9 +78,9 @@ test('endpoint rejects invalid requests without delivery and confirms primary or
       form.set('last_name', 'Lovelace');
       form.set('email', 'ada@analytical.example');
       form.set('company', 'Analytical Engines');
-      form.set('company_size', '11-50');
-      form.set('positions_to_fill', '2-5');
-      form.set('referral_source', 'Search');
+      form.set('company_size', '11 to 50');
+      form.set('positions_to_fill', '2 to 3');
+      form.set('referral_source', 'Search engine');
       form.set('phone_country', '+44');
       return form;
     }
@@ -178,7 +179,7 @@ test('Mattermost fallback returns a reliable boolean and escapes markdown fields
     };
     const { sendLeadFallbackToMattermost } = await import(process.env.FALLBACK_URL);
     const delivered = await sendLeadFallbackToMattermost({
-      name: 'Ada | *Lead*', email: 'ada@business.example', phone: '+44 123',
+      name: 'Ada | *Lead* @channel', email: 'ada@business.example', phone: '+44 123',
       business: 'Engine \\ Works', message: 'First | line\\nSecond * line',
       pageUrl: 'https://hireoffshoreteams.com/contact-us'
     });
@@ -194,5 +195,24 @@ test('Mattermost fallback returns a reliable boolean and escapes markdown fields
   const webhookPayload = JSON.parse(result.sentBody);
   assert.match(webhookPayload.text, /Ada \\| \\\*Lead\\\*/);
   assert.match(webhookPayload.text, /> First \\| line/);
+  assert.doesNotMatch(webhookPayload.text, /@channel/);
   assert.doesNotMatch(webhookPayload.text, /secret-webhook/);
+});
+
+test('tracking proxy enforces origin, JSON media type, schema, byte limit, rate limit, and timeout-safe upstream behavior', () => {
+  const result = runTypeScriptModule(`
+    let upstreamCalls = 0;
+    globalThis.fetch = async () => { upstreamCalls += 1; return new Response('{"status":"ok"}', { status: 202, headers: { 'content-type': 'application/json' } }); };
+    const { POST } = await import(process.env.TRACKING_URL);
+    const make = (body, headers = {}) => new Request('https://hireoffshoreteams.com/ingest/track', { method: 'POST', body, headers: { origin: 'https://hireoffshoreteams.com', 'content-type': 'application/json', 'x-real-ip': headers.ip || '203.0.113.10', ...headers } });
+    const valid = await POST(make(JSON.stringify({ event: 'page_view', path: '/contact-us', value: 1 })));
+    const hostile = await POST(make('{}', { origin: 'https://hireoffshoreteams.com.evil.invalid', ip: '203.0.113.11' }));
+    const media = await POST(make('{}', { 'content-type': 'text/plain', ip: '203.0.113.12' }));
+    const schema = await POST(make(JSON.stringify({ nested: { unsafe: true } }), { ip: '203.0.113.13' }));
+    const oversized = await POST(make(JSON.stringify({ event: 'x'.repeat(66000) }), { ip: '203.0.113.14' }));
+    const rate = [];
+    for (let i = 0; i < 31; i += 1) rate.push((await POST(make('{}', { ip: '203.0.113.15' }))).status);
+    console.log(JSON.stringify({ valid: valid.status, hostile: hostile.status, media: media.status, schema: schema.status, oversized: oversized.status, lastRate: rate.at(-1), upstreamCalls }));
+  `, { TRACKING_URL: trackingUrl });
+  assert.deepEqual(result, { valid: 202, hostile: 403, media: 415, schema: 400, oversized: 413, lastRate: 429, upstreamCalls: 31 });
 });

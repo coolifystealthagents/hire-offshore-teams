@@ -95,7 +95,7 @@ export const site: SiteConfig = {
     "Role design"
   ],
   "principles": [
-    "Top 1 percent selectivity",
+    "Role-specific candidate review",
     "Clear role boundaries",
     "Reviewable workflows"
   ],

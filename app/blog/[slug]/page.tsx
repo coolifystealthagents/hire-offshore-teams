@@ -15,7 +15,15 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = blogBySlug(slug);
-  return post ? { title: post.title, description: post.description, alternates: { canonical: `/blog/${post.slug}` } } : {};
+  if (!post) return {};
+  const image = editorialImage(post.slug, post.title, post.thumbnail);
+  return {
+    title: post.title,
+    description: post.description,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: { type: 'article', title: post.title, description: post.description, url: `/blog/${post.slug}`, publishedTime: post.publishedAt, images: [{ url: image, alt: `Editorial illustration for ${post.title}` }] },
+    twitter: { card: 'summary_large_image', title: post.title, description: post.description, images: [image] },
+  };
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
@@ -35,8 +43,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     { id: 'put-guidance-into-practice', label: 'Put the guidance into practice', level: 2 },
   ];
   const heroImage = editorialImage(post.slug, post.title, post.thumbnail);
+  const articleSchema = { '@context': 'https://schema.org', '@type': 'Article', headline: post.title, description: post.description, datePublished: post.publishedAt, author: { '@type': 'Organization', name: `${site.name} Editorial Team` }, publisher: { '@type': 'Organization', name: site.name }, mainEntityOfPage: `https://${site.domain}/blog/${post.slug}`, image: `https://${site.domain}${heroImage}` };
 
-  return <main>
+  return <main id="main-content" tabIndex={-1}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c') }} />
     <header className="page-hero editorial-hero">
       <nav className="editorial-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog">Blog</Link><span aria-hidden="true">/</span><span>{post.category}</span></nav>
       <h1>{post.title}</h1>

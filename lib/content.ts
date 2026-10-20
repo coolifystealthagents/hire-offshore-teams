@@ -4,6 +4,7 @@ import { october12BlogPosts } from './october12BlogPosts';
 import { october12ResearchPosts } from './october12ResearchPosts';
 import { october13BlogPosts } from './october13BlogPosts';
 import { october13ResearchPosts } from './october13ResearchPosts';
+import { legacyResearchFinding } from './editorial';
 
 const existingBlogPosts: BlogPost[] = [
   {
@@ -916,7 +917,15 @@ const existingResearchPosts: ResearchPost[] = [
 ];
 
 export const blogPosts: BlogPost[] = [...october13BlogPosts, ...october12BlogPosts, ...existingBlogPosts];
-export const researchPosts: ResearchPost[] = [...october13ResearchPosts, ...october12ResearchPosts, ...existingResearchPosts];
+export const researchPosts: ResearchPost[] = [
+  ...october13ResearchPosts,
+  ...october12ResearchPosts,
+  ...existingResearchPosts.map((post) => ({
+    ...post,
+    summary: `A focused review protocol for ${post.title.toLowerCase()}, including records, test method, decision signals, and evidence limits.`,
+    finding: legacyResearchFinding(post.title),
+  })),
+];
 
 export const nav = [
   { href: '/services', label: 'Services' },

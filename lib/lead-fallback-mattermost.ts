@@ -70,7 +70,12 @@ export async function sendLeadFallbackToMattermost(lead: FallbackLeadPayload): P
 
 function escapeMd(value: string | undefined): string {
   if (!value) return '';
-  return String(value).replace(/[|`*_\\]/g, (character) => `\\${character}`).slice(0, 1_000);
+  return String(value)
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+    .replace(/\r?\n/g, ' ')
+    .replace(/@/g, '@\u200B')
+    .replace(/[|`*_\\>[\]()~#]/g, (character) => `\\${character}`)
+    .slice(0, 1_000);
 }
 
 function looksRandomAlphanumeric(value: string): boolean {

@@ -92,20 +92,50 @@ export function serviceLinksFor(text: string, preferredPath?: string): Service[]
 }
 
 /** Older research records predate structured bodies. Give them an honest, bounded reading structure. */
-export function researchSections(title: string, finding: string, sections?: ContentSection[]): ContentSection[] {
+export function researchSections(title: string, _finding: string, sections?: ContentSection[]): ContentSection[] {
   if (sections?.length) return sections;
+  const lower = title.toLowerCase();
+  const role = lower.includes('customer support')
+    ? { queue: 'customer conversations', records: 'ticket history, approved knowledge, response status, and escalation receipts', owner: 'support lead', risk: 'a sensitive or unresolved customer issue' }
+    : lower.includes('sales support')
+      ? { queue: 'prospect and CRM work', records: 'source links, CRM field history, response status, and meeting handoffs', owner: 'sales leader', risk: 'an unverified claim or buying signal' }
+      : lower.includes('finance administration')
+        ? { queue: 'finance administration', records: 'invoice sources, vendor records, reconciliation notes, and approval receipts', owner: 'qualified finance owner', risk: 'a payment, tax, or accounting decision' }
+        : lower.includes('executive support')
+          ? { queue: 'executive coordination', records: 'calendar requests, briefing sources, action owners, and priority changes', owner: 'executive', risk: 'a confidential or priority-changing decision' }
+          : lower.includes('back office')
+            ? { queue: 'back office processing', records: 'source documents, required fields, queue status, and exception notes', owner: 'operations manager', risk: 'an incomplete record or policy exception' }
+            : { queue: 'operations coordination', records: 'source records, status history, named owners, and escalation receipts', owner: 'operations lead', risk: 'an ambiguous ownership or policy decision' };
+  const method = lower.includes('source quality')
+    ? { question: 'whether every output can be traced to an approved, current source', test: 'sample completed records and compare each field with its cited source', signal: 'the share of fields with a valid source and the age of the source at review' }
+    : lower.includes('exception pattern')
+      ? { question: 'which exceptions repeat and where decision rights become unclear', test: 'group exception notes by trigger, owner, resolution, and elapsed time', signal: 'repeat triggers, unresolved age, and the handoff where escalation stalled' }
+      : lower.includes('handoff reliability')
+        ? { question: 'whether the next owner receives a complete and acknowledged work packet', test: 'trace sampled handoffs from release through acceptance or rejection', signal: 'missing fields, acceptance latency, and unacknowledged transfers' }
+        : lower.includes('review consistency')
+          ? { question: 'whether different reviewers apply the same acceptance criteria', test: 'give two reviewers the same sample and reconcile every disagreement', signal: 'agreement by checklist item and the rules that caused divergent decisions' }
+          : { question: 'where routine preparation ends and accountable judgment begins', test: 'mark each workflow step as preparation, review, approval, or escalation', signal: 'unowned steps, mixed decision rights, and exceptions without a named destination' };
   return [
     {
-      heading: 'Finding in context',
-      paragraphs: [`This brief treats ${title.toLowerCase()} as an operational review question. The key finding should be read with the linked evidence, the workflow definition, and the limits of the available records.`],
+      heading: 'Review question',
+      paragraphs: [`For ${title.toLowerCase()}, ask ${method.question}. The review should follow ${role.queue} from intake through accepted output rather than relying on task counts or self-reported completion.`],
     },
     {
-      heading: 'How to use this brief',
-      paragraphs: ['Use the finding to frame a bounded review, identify the accountable owner, and decide which records must be checked. Keep preparation separate from approval and preserve unresolved evidence as an explicit state.'],
+      heading: 'Records and method',
+      paragraphs: [`Collect ${role.records}. Then ${method.test}. Preserve rejected and unresolved samples so the ${role.owner} can see where the operating definition failed.`],
     },
     {
-      heading: 'Evidence boundaries',
-      paragraphs: ['The sources provide public guidance, not a conclusion about a specific organization. Local policy, contracts, system records, and qualified professional review remain necessary where the workflow involves legal, employment, privacy, finance, or security decisions.'],
+      heading: 'Decision signal',
+      paragraphs: [`Report ${method.signal}. The evidence should make ${role.risk} visible before work crosses the role boundary, while approval remains with the ${role.owner}.`],
+    },
+    {
+      heading: 'Evidence boundary',
+      paragraphs: [`The public sources frame controls relevant to ${role.queue}; they do not prove performance for a specific company. Local policy, contracts, system evidence, and qualified review determine whether this protocol is appropriate.`],
     },
   ];
+}
+
+export function legacyResearchFinding(title: string) {
+  const sections = researchSections(title, '', undefined);
+  return `${sections[0].paragraphs[0]} ${sections[2].paragraphs[0]}`;
 }

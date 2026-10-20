@@ -22,6 +22,7 @@ const allowedFields = new Set([
   'name',
   'email',
   'company',
+  'company_website',
   'company_size',
   'positions_to_fill',
   'referral_source',
@@ -39,6 +40,7 @@ const fieldLimits: Record<string, number> = {
   name: 160,
   email: 254,
   company: 120,
+  company_website: 200,
   company_size: 20,
   positions_to_fill: 20,
   referral_source: 40,
@@ -54,9 +56,9 @@ const personalDomains = new Set([
   'outlook.com', 'live.com', 'msn.com', 'icloud.com', 'me.com', 'mac.com',
   'aol.com', 'proton.me', 'protonmail.com', 'gmx.com', 'mail.com', 'ymail.com',
 ]);
-const companySizes = new Set(['1-10', '11-50', '51-200', '201+']);
-const positionsToFill = new Set(['1', '2-5', '6+']);
-const referralSources = new Set(['Search', 'Referral', 'Social media', 'Other']);
+const companySizes = new Set(['1 to 10', '11 to 50', '51 to 200', '201 to 500', '501+']);
+const positionsToFill = new Set(['1', '2 to 3', '4 to 10', '11+', 'Not sure yet']);
+const referralSources = new Set(['Search engine', 'Referral', 'Business network', 'Social media', 'Stealth Agents', 'Other']);
 const phoneCountries = new Set(['', '+1', '+44', '+61', '+63', 'other']);
 
 type RateEntry = { count: number; expiresAt: number };
@@ -174,10 +176,11 @@ function isBusinessEmail(email: string): boolean {
 
 function validateFields(fields: LeadFields): string | null {
   const source = fields.source || '';
-  const full = source.startsWith('contact-page');
+  const full = source === 'contact-page';
   const email = (fields.email || '').toLowerCase();
 
   if (!isBusinessEmail(email)) return 'Please use your business email address.';
+  if (!full) return 'Please check the submitted fields.';
   if (full) {
     if (!fields.first_name || !fields.last_name || !fields.company
       || !companySizes.has(fields.company_size || '')

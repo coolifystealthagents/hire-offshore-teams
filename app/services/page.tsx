@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  return <main id="main-content" className="services-index">
+  return <main id="main-content" tabIndex={-1} className="services-index">
     <header className="services-hero"><div><p className="eyebrow">Offshore team services</p><h1>Build capacity around the work, not a generic job title.</h1><p>Six focused team models connect recurring queues to a defined role, accepted output, named reviewer, and human decision path.</p><Link className="button primary" href="/contact-us">Map the right team</Link></div><div className="service-system" aria-label="Service operating model"><span>Queue</span><i /><span>Role</span><i /><span>Review</span><i /><span>Decision</span><p>Every team model follows the same accountable operating logic while its scope and controls stay specific to the function.</p></div></header>
 
     <section className="service-directory"><div className="section-heading"><p className="eyebrow">The complete service system</p><h2>Find the queue your leaders need to release.</h2><p>Open any service to review the audience, required inputs, exact scope, workflow, outputs, boundaries, quality controls, common scenarios, and questions.</p></div><div className="directory-list">{site.services.map((service) => <Link href={`/services/${service.slug}`} key={service.slug}><div><h3>{service.name}</h3><p>{service.short}</p></div><span>Review complete scope <ArrowIcon /></span></Link>)}</div></section>

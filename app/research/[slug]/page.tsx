@@ -15,7 +15,15 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = researchBySlug(slug);
-  return post ? { title: post.title, description: post.summary, alternates: { canonical: `/research/${post.slug}` } } : {};
+  if (!post) return {};
+  const image = editorialImage(post.slug, post.title, post.thumbnail);
+  return {
+    title: post.title,
+    description: post.summary,
+    alternates: { canonical: `/research/${post.slug}` },
+    openGraph: { type: 'article', title: post.title, description: post.summary, url: `/research/${post.slug}`, publishedTime: post.publishedAt, images: [{ url: image, alt: `Research illustration for ${post.title}` }] },
+    twitter: { card: 'summary_large_image', title: post.title, description: post.summary, images: [image] },
+  };
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
@@ -34,8 +42,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     { id: 'apply-this-research', label: 'Apply this research', level: 2 },
   ];
   const heroImage = editorialImage(post.slug, post.title, post.thumbnail);
+  const articleSchema = { '@context': 'https://schema.org', '@type': 'Article', headline: post.title, description: post.summary, datePublished: post.publishedAt, author: { '@type': 'Organization', name: `${site.name} Research Desk` }, publisher: { '@type': 'Organization', name: site.name }, mainEntityOfPage: `https://${site.domain}/research/${post.slug}`, image: `https://${site.domain}${heroImage}` };
 
-  return <main id="main-content">
+  return <main id="main-content" tabIndex={-1}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c') }} />
     <header className="page-hero editorial-hero">
       <nav className="editorial-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/research">Research</Link><span aria-hidden="true">/</span><span>{post.cluster}</span></nav>
       <h1>{post.title}</h1>

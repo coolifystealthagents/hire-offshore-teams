@@ -27,7 +27,7 @@ function NetworkMap() {
 }
 
 export function HomePage() {
-  return <main id="main-content" className="home">
+  return <main id="main-content" tabIndex={-1} className="home">
     <section className="hero">
       <div className="hero-copy"><p className="eyebrow">{site.eyebrow}</p><h1>{site.hero} <em>{site.heroAccent}</em></h1><p className="hero-body">{site.heroBody}</p><div className="hero-actions"><CTA id="cta-home-hero-bookcall">Plan your offshore team</CTA><Link className="quiet-link" href="/services">Review all services</Link></div><Principles /></div>
       <NetworkMap />
