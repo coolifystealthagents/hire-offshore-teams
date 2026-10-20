@@ -96,10 +96,10 @@ test('legacy editorial repairs retain distinct truthful metadata and relevant so
     'Create an offshore escalation map with observable triggers',
   ]) assert.match(content, new RegExp(description));
   assert.ok((content.match(/"readTime": "4 min read"/g) || []).length >= 5);
-  assert.match(content, /Small Business Administration — Manage your business/);
-  assert.match(content, /Office of Personnel Management — Position classification/);
-  assert.match(content, /Agency for Healthcare Research and Quality — Handoff/);
-  assert.match(content, /Government Accountability Office — Green Book/);
-  assert.match(content, /National Institute of Standards and Technology — Incident response recommendations/);
+  assert.match(content, /Small Business Administration: Manage your business/);
+  assert.match(content, /Office of Personnel Management: Position classification/);
+  assert.match(content, /Agency for Healthcare Research and Quality: Handoff/);
+  assert.match(content, /Government Accountability Office: Green Book/);
+  assert.match(content, /National Institute of Standards and Technology: Incident response recommendations/);
   assert.doesNotMatch(content, /A practical guide to a practical offshore team review rhythm/);
 });

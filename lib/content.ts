@@ -59,7 +59,7 @@ const existingBlogPosts: BlogPost[] = [
     ],
     "internalService": "/services/operations-team",
     "internalSibling": "/blog/offshore-team-role-charter",
-    "source": { "label": "U.S. Small Business Administration — Manage your business", "url": "https://www.sba.gov/counseling/manage-your-business/" }
+    "source": { "label": "U.S. Small Business Administration: Manage your business", "url": "https://www.sba.gov/counseling/manage-your-business/" }
   },
   {
     "slug": "offshore-team-role-charter",
@@ -113,7 +113,7 @@ const existingBlogPosts: BlogPost[] = [
     ],
     "internalService": "/services/customer-support-team",
     "internalSibling": "/blog/distributed-team-handoff",
-    "source": { "label": "U.S. Office of Personnel Management — Position classification", "url": "https://www.opm.gov/policy-data-oversight/classification-qualifications/classifying-general-schedule-positions/" }
+    "source": { "label": "U.S. Office of Personnel Management: Position classification", "url": "https://www.opm.gov/policy-data-oversight/classification-qualifications/classifying-general-schedule-positions/" }
   },
   {
     "slug": "distributed-team-handoff",
@@ -167,7 +167,7 @@ const existingBlogPosts: BlogPost[] = [
     ],
     "internalService": "/services/sales-support-team",
     "internalSibling": "/blog/offshore-team-review-rhythm",
-    "source": { "label": "Agency for Healthcare Research and Quality — Handoff", "url": "https://www.ahrq.gov/teamstepps-program/curriculum/team/tools/handoff.html" }
+    "source": { "label": "Agency for Healthcare Research and Quality: Handoff", "url": "https://www.ahrq.gov/teamstepps-program/curriculum/team/tools/handoff.html" }
   },
   {
     "slug": "offshore-team-review-rhythm",
@@ -221,7 +221,7 @@ const existingBlogPosts: BlogPost[] = [
     ],
     "internalService": "/services/finance-admin-team",
     "internalSibling": "/blog/offshore-team-escalation-map",
-    "source": { "label": "U.S. Government Accountability Office — Green Book", "url": "https://www.gao.gov/greenbook" }
+    "source": { "label": "U.S. Government Accountability Office: Green Book", "url": "https://www.gao.gov/greenbook" }
   },
   {
     "slug": "offshore-team-escalation-map",
@@ -275,7 +275,7 @@ const existingBlogPosts: BlogPost[] = [
     ],
     "internalService": "/services/executive-support-team",
     "internalSibling": "/blog/fractional-coo-vs-offshore-operations-team",
-    "source": { "label": "National Institute of Standards and Technology — Incident response recommendations", "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final" }
+    "source": { "label": "National Institute of Standards and Technology: Incident response recommendations", "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final" }
   }
 ];
 const existingResearchPosts: ResearchPost[] = [
