@@ -35,7 +35,10 @@ export function LeadForm({ source = 'contact-page-consultation' }: { source?: st
         setBusy(false);
         return;
       }
-      const payload = Object.fromEntries(data.entries());
+      const payload: Record<string, FormDataEntryValue> = {
+        ...Object.fromEntries(data.entries()),
+        name: [data.get('first_name'), data.get('last_name')].map((value) => String(value || '').trim()).filter(Boolean).join(' '),
+      };
       delete payload.website_url;
       try { window.acrTracker?.trackLead({ ...payload, source }); } catch { /* Delivery is already confirmed. */ }
       router.push('/thank-you');

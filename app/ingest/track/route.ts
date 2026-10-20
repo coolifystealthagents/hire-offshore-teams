@@ -18,7 +18,8 @@ function allowedOrigin(value: string | null) {
   if (allowedOrigins.has(value)) return true;
   try {
     const url = new URL(value);
-    return (url.protocol === 'http:' || url.protocol === 'https:')
+    return process.env.NODE_ENV !== 'production'
+      && (url.protocol === 'http:' || url.protocol === 'https:')
       && (url.hostname === 'localhost' || url.hostname === '127.0.0.1')
       && !url.username && !url.password && url.pathname === '/' && !url.search && !url.hash;
   } catch {

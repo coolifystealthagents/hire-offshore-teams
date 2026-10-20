@@ -78,7 +78,8 @@ function isAllowedOrigin(value: string | null): boolean {
   if (allowedOrigins.has(value)) return true;
   try {
     const candidate = new URL(value);
-    return (candidate.protocol === 'http:' || candidate.protocol === 'https:')
+    return process.env.NODE_ENV !== 'production'
+      && (candidate.protocol === 'http:' || candidate.protocol === 'https:')
       && (candidate.hostname === 'localhost' || candidate.hostname === '127.0.0.1')
       && candidate.username === ''
       && candidate.password === ''
