@@ -1,7 +1,9 @@
 import { isIP } from 'node:net';
 
 const TRACKING_API = 'https://acrtracking.stealthagents.us/api/track';
+const SITE_ID = 'hire-offshore-teams';
 const MAX_BODY_BYTES = 64 * 1024;
+const MAX_BATCH_EVENTS = 200;
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX = 30;
 const allowedOrigins = new Set(['https://hireoffshoreteams.com', 'https://www.hireoffshoreteams.com']);
@@ -40,7 +42,7 @@ function limited(key: string, now = Date.now()) {
 }
 
 async function boundedBody(request: Request) {
-  if (!request.body) return null;
+  if (!request.body) return { bytes: null, oversized: false };
   const reader = request.body.getReader();
   const chunks: Uint8Array[] = [];
   let size = 0;
@@ -51,49 +53,66 @@ async function boundedBody(request: Request) {
       size += value.byteLength;
       if (size > MAX_BODY_BYTES) {
         await reader.cancel();
-        return null;
+        return { bytes: null, oversized: true };
       }
       chunks.push(value);
     }
   } catch {
-    return null;
+    return { bytes: null, oversized: false };
   }
-  const body = new Uint8Array(size);
+  const bytes = new Uint8Array(size);
   let offset = 0;
-  for (const chunk of chunks) { body.set(chunk, offset); offset += chunk.byteLength; }
-  return body;
+  for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
+  return { bytes, oversized: false };
 }
 
 function validEvent(value: unknown): value is Record<string, unknown> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
-  const object = value as Record<string, unknown>;
-  if (Object.keys(object).length > 40) return false;
-  return Object.entries(object).every(([key, field]) => key.length <= 80
-    && (typeof field === 'string' ? field.length <= 4_000
+  const event = value as Record<string, unknown>;
+  const entries = Object.entries(event);
+  if (entries.length === 0 || entries.length > 40) return false;
+  if (typeof event.event_type !== 'string' || event.event_type.length === 0 || event.event_type.length > 120) return false;
+  return entries.every(([key, field]) => key.length > 0 && key.length <= 80
+    && (typeof field === 'string' ? field.length <= MAX_BODY_BYTES
       : typeof field === 'number' ? Number.isFinite(field)
       : typeof field === 'boolean' || field === null));
 }
 
+function validEnvelope(value: unknown) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const envelope = value as Record<string, unknown>;
+  const keys = Object.keys(envelope);
+  return keys.length === 2
+    && keys.includes('site_id')
+    && keys.includes('events')
+    && envelope.site_id === SITE_ID
+    && Array.isArray(envelope.events)
+    && envelope.events.length > 0
+    && envelope.events.length <= MAX_BATCH_EVENTS
+    && envelope.events.every(validEvent);
+}
+
+function response(body: { status: string }, status: number) {
+  return Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
+}
+
 export async function POST(request: Request) {
-  if (!allowedOrigin(request.headers.get('origin'))) {
-    return Response.json({ status: 'error' }, { status: 403 });
-  }
-  if (!/^application\/json(?:\s*;|$)/i.test(request.headers.get('content-type') || '')) {
-    return Response.json({ status: 'error' }, { status: 415 });
-  }
+  if (!allowedOrigin(request.headers.get('origin'))) return response({ status: 'error' }, 403);
+  if (!/^application\/json(?:\s*;|$)/i.test(request.headers.get('content-type') || '')) return response({ status: 'error' }, 415);
+
   const declared = request.headers.get('content-length');
   if (declared) {
     const size = Number(declared);
-    if (!Number.isSafeInteger(size) || size < 0) return Response.json({ status: 'error' }, { status: 400 });
-    if (size > MAX_BODY_BYTES) return Response.json({ status: 'error' }, { status: 413 });
+    if (!Number.isSafeInteger(size) || size < 0) return response({ status: 'error' }, 400);
+    if (size > MAX_BODY_BYTES) return response({ status: 'error' }, 413);
   }
-  if (limited(clientKey(request))) return Response.json({ status: 'error' }, { status: 429 });
+  if (limited(clientKey(request))) return response({ status: 'error' }, 429);
 
-  const bytes = await boundedBody(request);
-  if (!bytes) return Response.json({ status: 'error' }, { status: 413 });
-  let event: unknown;
-  try { event = JSON.parse(new TextDecoder().decode(bytes)); } catch { return Response.json({ status: 'error' }, { status: 400 }); }
-  if (!validEvent(event)) return Response.json({ status: 'error' }, { status: 400 });
+  const { bytes, oversized } = await boundedBody(request);
+  if (!bytes) return response({ status: 'error' }, oversized ? 413 : 400);
+  let envelope: unknown;
+  try { envelope = JSON.parse(new TextDecoder().decode(bytes)); } catch { return response({ status: 'error' }, 400); }
+  if (!validEnvelope(envelope)) return response({ status: 'error' }, 400);
 
   try {
     const clientIp = clientKey(request);
@@ -106,7 +125,7 @@ export async function POST(request: Request) {
         'X-Forwarded-For': clientIp,
         'X-ACR-Client-IP': clientIp,
       },
-      body: JSON.stringify(event),
+      body: bytes,
       cache: 'no-store',
       signal: AbortSignal.timeout(5_000),
     });
@@ -115,6 +134,6 @@ export async function POST(request: Request) {
       headers: { 'Content-Type': upstream.headers.get('content-type') || 'application/json', 'Cache-Control': 'no-store' },
     });
   } catch {
-    return Response.json({ status: 'error' }, { status: 502 });
+    return response({ status: 'error' }, 502);
   }
 }

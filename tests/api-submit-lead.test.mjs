@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -212,20 +212,35 @@ test('Mattermost fallback returns a reliable boolean and escapes markdown fields
   assert.doesNotMatch(webhookPayload.text, /secret-webhook/);
 });
 
-test('tracking proxy enforces origin, JSON media type, schema, byte limit, rate limit, and timeout-safe upstream behavior', () => {
+test('tracking proxy preserves the deployed ACR batch contract and rejects unsafe requests', () => {
   const result = runTypeScriptModule(`
     let upstreamCalls = 0;
-    globalThis.fetch = async () => { upstreamCalls += 1; return new Response('{"status":"ok"}', { status: 202, headers: { 'content-type': 'application/json' } }); };
+    let forwarded = '';
+    globalThis.fetch = async (_url, init) => { upstreamCalls += 1; forwarded = new TextDecoder().decode(init.body); return new Response('{"status":"ok"}', { status: 202, headers: { 'content-type': 'application/json' } }); };
     const { POST } = await import(process.env.TRACKING_URL);
     const make = (body, headers = {}) => new Request('https://hireoffshoreteams.com/ingest/track', { method: 'POST', body, headers: { origin: 'https://hireoffshoreteams.com', 'content-type': 'application/json', 'x-real-ip': headers.ip || '203.0.113.10', ...headers } });
-    const valid = await POST(make(JSON.stringify({ event: 'page_view', path: '/contact-us', value: 1 })));
-    const hostile = await POST(make('{}', { origin: 'https://hireoffshoreteams.com.evil.invalid', ip: '203.0.113.11' }));
-    const media = await POST(make('{}', { 'content-type': 'text/plain', ip: '203.0.113.12' }));
-    const schema = await POST(make(JSON.stringify({ nested: { unsafe: true } }), { ip: '203.0.113.13' }));
-    const oversized = await POST(make(JSON.stringify({ event: 'x'.repeat(66000) }), { ip: '203.0.113.14' }));
+    const payload = { site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', page_path: '/contact-us', event_metadata: JSON.stringify({ tracker_version: '0.4.19' }) }] };
+    const encoded = JSON.stringify(payload);
+    const valid = await POST(make(encoded));
+    const preserved = forwarded === encoded;
+    const wrongSite = await POST(make(JSON.stringify({ ...payload, site_id: 'other-site' }), { ip: '203.0.113.11' }));
+    const hostile = await POST(make(encoded, { origin: 'https://hireoffshoreteams.com.evil.invalid', ip: '203.0.113.12' }));
+    const media = await POST(make(encoded, { 'content-type': 'text/plain', ip: '203.0.113.13' }));
+    const schema = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', nested: { unsafe: true } }] }), { ip: '203.0.113.14' }));
+    const backlog = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: Array.from({ length: 200 }, (_, i) => ({ event_type: 'pageview', event_value: String(i) })) }), { ip: '203.0.113.15' }));
+    const tooMany = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: Array.from({ length: 201 }, () => ({ event_type: 'pageview' })) }), { ip: '203.0.113.16' }));
+    const oversized = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', event_metadata: 'x'.repeat(66000) }] }), { ip: '203.0.113.17' }));
     const rate = [];
-    for (let i = 0; i < 31; i += 1) rate.push((await POST(make('{}', { ip: '203.0.113.15' }))).status);
-    console.log(JSON.stringify({ valid: valid.status, hostile: hostile.status, media: media.status, schema: schema.status, oversized: oversized.status, lastRate: rate.at(-1), upstreamCalls }));
+    for (let i = 0; i < 31; i += 1) rate.push((await POST(make(JSON.stringify(payload), { ip: '203.0.113.18' }))).status);
+    console.log(JSON.stringify({ valid: valid.status, preserved, wrongSite: wrongSite.status, hostile: hostile.status, media: media.status, schema: schema.status, backlog: backlog.status, tooMany: tooMany.status, oversized: oversized.status, lastRate: rate.at(-1), upstreamCalls }));
   `, { TRACKING_URL: trackingUrl });
-  assert.deepEqual(result, { valid: 202, hostile: 403, media: 415, schema: 400, oversized: 413, lastRate: 429, upstreamCalls: 31 });
+  assert.deepEqual(result, { valid: 202, preserved: true, wrongSite: 400, hostile: 403, media: 415, schema: 400, backlog: 202, tooMany: 400, oversized: 413, lastRate: 429, upstreamCalls: 32 });
+});
+
+test('lead form avoids native submit capture and tracks only after confirmed delivery', () => {
+  const source = readFileSync(join(root, 'components/LeadForm.tsx'), 'utf8');
+  assert.match(source, /<button type="button"/);
+  assert.match(source, /onKeyDown=\{handleEnter\}/);
+  assert.doesNotMatch(source, /onSubmit=/);
+  assert.ok(source.indexOf('!result.delivered') < source.indexOf('acrTracker?.trackLead'));
 });
