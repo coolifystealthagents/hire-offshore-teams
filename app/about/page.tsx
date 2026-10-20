@@ -20,7 +20,7 @@ export default function AboutPage() {
     <section className="content-wrap">
       <div className="prose">
         <figure className="article-hero-image">
-          <img src="/about-operating-network.svg" alt="Five remote collaborators connected through documented handoffs and review checkpoints" width="1600" height="900" style={{ objectFit: 'contain' }} />
+          <img src="/about-operating-network.svg" alt="Four remote collaborators connected through documented handoffs and review checkpoints" width="1600" height="900" style={{ objectFit: 'contain' }} />
           <figcaption>Original editorial illustration by Hire Offshore Teams: people, handoffs, and review points form one operating network.</figcaption>
         </figure>
 

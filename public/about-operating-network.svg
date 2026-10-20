@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">Distributed team operating network</title>
-  <desc id="desc">Five remote collaborators connected by documented handoffs, review checkpoints, and shared operating signals.</desc>
+  <desc id="desc">Four remote collaborators connected by documented handoffs, review checkpoints, and shared operating signals.</desc>
   <rect width="1600" height="900" fill="#eef9f7"/>
   <path d="M0 690H1600V900H0z" fill="#d8eeea"/>
   <path d="M205 238L520 154 807 302 1110 150 1392 260M205 238L388 520 807 302 1210 520 1392 260M388 520L244 725M1210 520L1364 725M807 302V694" fill="none" stroke="#0b6570" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
