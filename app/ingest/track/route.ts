@@ -68,6 +68,10 @@ async function boundedBody(request: Request) {
   return { bytes, oversized: false };
 }
 
+function utf8Bytes(value: string) {
+  return new TextEncoder().encode(value).byteLength;
+}
+
 function validEvent(value: unknown): value is Record<string, unknown> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
   const event = value as Record<string, unknown>;
@@ -75,7 +79,7 @@ function validEvent(value: unknown): value is Record<string, unknown> {
   if (entries.length === 0 || entries.length > 40) return false;
   if (typeof event.event_type !== 'string' || event.event_type.length === 0 || event.event_type.length > 120) return false;
   return entries.every(([key, field]) => key.length > 0 && key.length <= 80
-    && (typeof field === 'string' ? field.length <= MAX_EVENT_FIELD_BYTES
+    && (typeof field === 'string' ? utf8Bytes(field) <= MAX_EVENT_FIELD_BYTES
       : typeof field === 'number' ? Number.isFinite(field)
       : typeof field === 'boolean' || field === null));
 }
