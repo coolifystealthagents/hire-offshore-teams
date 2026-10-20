@@ -2,8 +2,10 @@ import { isIP } from 'node:net';
 
 const TRACKING_API = 'https://acrtracking.stealthagents.us/api/track';
 const SITE_ID = 'hire-offshore-teams';
-const MAX_BODY_BYTES = 64 * 1024;
-const MAX_BATCH_EVENTS = 200;
+const MAX_BODY_BYTES = 256 * 1024;
+const MAX_EVENT_FIELD_BYTES = 64 * 1024;
+// Tracker 0.4.19 can drain 200 persisted events, then add page-view and funnel events.
+const MAX_BATCH_EVENTS = 202;
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX = 30;
 const allowedOrigins = new Set(['https://hireoffshoreteams.com', 'https://www.hireoffshoreteams.com']);
@@ -73,7 +75,7 @@ function validEvent(value: unknown): value is Record<string, unknown> {
   if (entries.length === 0 || entries.length > 40) return false;
   if (typeof event.event_type !== 'string' || event.event_type.length === 0 || event.event_type.length > 120) return false;
   return entries.every(([key, field]) => key.length > 0 && key.length <= 80
-    && (typeof field === 'string' ? field.length <= MAX_BODY_BYTES
+    && (typeof field === 'string' ? field.length <= MAX_EVENT_FIELD_BYTES
       : typeof field === 'number' ? Number.isFinite(field)
       : typeof field === 'boolean' || field === null));
 }

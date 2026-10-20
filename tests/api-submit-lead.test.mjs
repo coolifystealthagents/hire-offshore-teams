@@ -227,14 +227,37 @@ test('tracking proxy preserves the deployed ACR batch contract and rejects unsaf
     const hostile = await POST(make(encoded, { origin: 'https://hireoffshoreteams.com.evil.invalid', ip: '203.0.113.12' }));
     const media = await POST(make(encoded, { 'content-type': 'text/plain', ip: '203.0.113.13' }));
     const schema = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', nested: { unsafe: true } }] }), { ip: '203.0.113.14' }));
-    const backlog = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: Array.from({ length: 200 }, (_, i) => ({ event_type: 'pageview', event_value: String(i) })) }), { ip: '203.0.113.15' }));
-    const tooMany = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: Array.from({ length: 201 }, () => ({ event_type: 'pageview' })) }), { ip: '203.0.113.16' }));
-    const oversized = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', event_metadata: 'x'.repeat(66000) }] }), { ip: '203.0.113.17' }));
+    const realisticEvent = (i) => ({
+      client_event_id: 'evt-' + String(i).padStart(6, '0'), event_type: i === 201 ? 'funnel_step' : 'pageview',
+      timestamp: '2026-10-20T12:19:00.000Z', session_id: 'session-1234567890', user_id: '', anonymous_id: 'anon-1234567890',
+      page_url: 'https://hireoffshoreteams.com/contact-us?utm_source=operations&utm_campaign=distributed-team-consultation',
+      page_path: '/contact-us', page_title: 'Hire Offshore Teams | Connected Distributed Operations', referrer: 'https://www.google.com/',
+      utm_source: 'operations', utm_medium: 'organic', utm_campaign: 'distributed-team-consultation', utm_term: 'offshore operations team', utm_content: 'contact-page',
+      screen_width: 1440, screen_height: 900, scroll_depth: 75, time_on_page: 12500, event_value: i === 201 ? 'step_2' : '',
+      event_metadata: JSON.stringify({ tracker_version: '0.4.19', funnel_step: i === 201 ? 2 : null, route_context: 'x'.repeat(450) })
+    });
+    const recoveryEncoded = JSON.stringify({ site_id: 'hire-offshore-teams', events: Array.from({ length: 202 }, (_, i) => realisticEvent(i)) });
+    const recovery = await POST(make(recoveryEncoded, { ip: '203.0.113.15' }));
+    const tooMany = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: Array.from({ length: 203 }, (_, i) => realisticEvent(i)) }), { ip: '203.0.113.16' }));
+    const oversizedField = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', event_metadata: 'x'.repeat(66000) }] }), { ip: '203.0.113.17' }));
+    const oversized = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', event_metadata: 'x'.repeat(263000) }] }), { ip: '203.0.113.19' }));
     const rate = [];
     for (let i = 0; i < 31; i += 1) rate.push((await POST(make(JSON.stringify(payload), { ip: '203.0.113.18' }))).status);
-    console.log(JSON.stringify({ valid: valid.status, preserved, wrongSite: wrongSite.status, hostile: hostile.status, media: media.status, schema: schema.status, backlog: backlog.status, tooMany: tooMany.status, oversized: oversized.status, lastRate: rate.at(-1), upstreamCalls }));
+    console.log(JSON.stringify({ valid: valid.status, preserved, wrongSite: wrongSite.status, hostile: hostile.status, media: media.status, schema: schema.status, recovery: recovery.status, recoveryBytes: new TextEncoder().encode(recoveryEncoded).byteLength, tooMany: tooMany.status, oversizedField: oversizedField.status, oversized: oversized.status, lastRate: rate.at(-1), upstreamCalls }));
   `, { TRACKING_URL: trackingUrl });
-  assert.deepEqual(result, { valid: 202, preserved: true, wrongSite: 400, hostile: 403, media: 415, schema: 400, backlog: 202, tooMany: 400, oversized: 413, lastRate: 429, upstreamCalls: 32 });
+  assert.equal(result.valid, 202);
+  assert.equal(result.preserved, true);
+  assert.equal(result.wrongSite, 400);
+  assert.equal(result.hostile, 403);
+  assert.equal(result.media, 415);
+  assert.equal(result.schema, 400);
+  assert.equal(result.recovery, 202);
+  assert.ok(result.recoveryBytes > 64 * 1024 && result.recoveryBytes <= 256 * 1024, `expected realistic recovery envelope between 64 and 256 KiB; received ${result.recoveryBytes}`);
+  assert.equal(result.tooMany, 400);
+  assert.equal(result.oversizedField, 400);
+  assert.equal(result.oversized, 413);
+  assert.equal(result.lastRate, 429);
+  assert.equal(result.upstreamCalls, 32);
 });
 
 test('lead form avoids native submit capture and tracks only after confirmed delivery', () => {
