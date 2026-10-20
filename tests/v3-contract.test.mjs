@@ -73,3 +73,11 @@ test('commercial components contain no decorative zero-padded labels', () => {
   const commercial = source('components/Marketing.tsx', 'app/contact-us/page.tsx', 'app/services/page.tsx', 'app/services/[slug]/page.tsx');
   assert.doesNotMatch(commercial, />\s*0[1-9]\s*</);
 });
+
+test('responsive grids and large mobile headings cannot expand the root canvas', () => {
+  const styles = read('app/globals.css');
+  assert.match(styles, /\.article-grid,\.scenario-grid\{[^}]*repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.content-grid\{[^}]*repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(styles, /\.services-hero>\*,\.service-hero>\*\{min-width:0\}/);
+  assert.match(styles, /@media\(max-width:620px\)[\s\S]*h1,h2,h3\{overflow-wrap:anywhere\}/);
+});
