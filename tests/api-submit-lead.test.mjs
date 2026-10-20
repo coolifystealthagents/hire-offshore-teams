@@ -49,8 +49,9 @@ export async function resolve(specifier, context, nextResolve) {
   }
   if (specifier.includes('lead-fallback-mattermost')) {
     return { url: 'data:text/javascript,' + encodeURIComponent(\`
-      export async function sendLeadFallbackToMattermost() {
+      export async function sendLeadFallbackToMattermost(payload) {
         globalThis.__deliveryEvents.push('fallback');
+        globalThis.__fallbackPayload = payload;
         return globalThis.__fallbackResult;
       }
     \`), shortCircuit: true };
@@ -73,7 +74,7 @@ test('endpoint rejects invalid requests without delivery and confirms primary or
     let ip = 0;
     function validForm() {
       const form = new FormData();
-      form.set('source', 'contact-page');
+      form.set('source', 'contact-page-consultation');
       form.set('first_name', 'Ada');
       form.set('last_name', 'Lovelace');
       form.set('email', 'ada@analytical.example');
@@ -82,6 +83,9 @@ test('endpoint rejects invalid requests without delivery and confirms primary or
       form.set('positions_to_fill', '2 to 3');
       form.set('referral_source', 'Search engine');
       form.set('phone_country', '+44');
+      form.set('phone', '020 1234 5678');
+      form.set('company_website', 'https://analytical.example');
+      form.set('_page_url', 'https://hireoffshoreteams.com/contact-us');
       return form;
     }
     async function submit(form, headers = {}) {
@@ -102,6 +106,7 @@ test('endpoint rejects invalid requests without delivery and confirms primary or
     globalThis.__fallbackResult = true;
     const fallback = await submit(validForm());
     const afterFallback = [...globalThis.__deliveryEvents];
+    const fallbackPayload = globalThis.__fallbackPayload;
 
     globalThis.__deliveryEvents.length = 0;
     const personalForm = validForm();
@@ -149,13 +154,17 @@ test('endpoint rejects invalid requests without delivery and confirms primary or
       rateResults.push((await POST(request)).status);
     }
 
-    console.log(JSON.stringify({ primary, afterPrimary, fallback, afterFallback, personal, unknown, duplicate, honeypot, invalidDeliveryEvents, badOrigin, wrongType, oversizedResult, declaredOversized, noSink, rateResults }));
+    console.log(JSON.stringify({ primary, afterPrimary, fallback, afterFallback, fallbackPayload, personal, unknown, duplicate, honeypot, invalidDeliveryEvents, badOrigin, wrongType, oversizedResult, declaredOversized, noSink, rateResults }));
   `, { ROUTE_URL: routeUrl }, routeLoader);
 
   assert.deepEqual(result.primary.body, { ok: true, delivered: true });
   assert.deepEqual(result.afterPrimary, ['primary']);
   assert.deepEqual(result.fallback.body, { ok: true, delivered: true });
   assert.deepEqual(result.afterFallback, ['primary', 'primary', 'fallback']);
+  assert.equal(result.fallbackPayload.phoneCountry, '+44');
+  assert.equal(result.fallbackPayload.phone, '020 1234 5678');
+  assert.equal(result.fallbackPayload.companyWebsite, 'https://analytical.example');
+  assert.equal(result.fallbackPayload.source, 'contact-page-consultation');
   assert.equal(result.personal.status, 400);
   assert.equal(result.unknown.status, 400);
   assert.equal(result.duplicate.status, 400);
@@ -180,7 +189,8 @@ test('Mattermost fallback returns a reliable boolean and escapes markdown fields
     const { sendLeadFallbackToMattermost } = await import(process.env.FALLBACK_URL);
     const delivered = await sendLeadFallbackToMattermost({
       name: 'Ada | *Lead* @channel', email: 'ada@business.example', phone: '+44 123',
-      business: 'Engine \\ Works', message: 'First | line\\nSecond * line',
+      phoneCountry: '+44', business: 'Engine \\ Works', companyWebsite: 'https://engine.example',
+      source: 'contact-page-consultation', message: 'First | line\\nSecond * line',
       pageUrl: 'https://hireoffshoreteams.com/contact-us'
     });
     globalThis.fetch = async () => new Response('', { status: 500 });
@@ -195,6 +205,9 @@ test('Mattermost fallback returns a reliable boolean and escapes markdown fields
   const webhookPayload = JSON.parse(result.sentBody);
   assert.match(webhookPayload.text, /Ada \\| \\\*Lead\\\*/);
   assert.match(webhookPayload.text, /> First \\| line/);
+  assert.match(webhookPayload.text, /Country code \| \+44/);
+  assert.match(webhookPayload.text, /Company website \| https:\/\/engine.example/);
+  assert.match(webhookPayload.text, /Source \| contact-page-consultation/);
   assert.doesNotMatch(webhookPayload.text, /@channel/);
   assert.doesNotMatch(webhookPayload.text, /secret-webhook/);
 });

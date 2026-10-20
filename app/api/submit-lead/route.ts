@@ -176,7 +176,7 @@ function isBusinessEmail(email: string): boolean {
 
 function validateFields(fields: LeadFields): string | null {
   const source = fields.source || '';
-  const full = source === 'contact-page';
+  const full = source === 'contact-page-consultation';
   const email = (fields.email || '').toLowerCase();
 
   if (!isBusinessEmail(email)) return 'Please use your business email address.';
@@ -264,11 +264,14 @@ export async function POST(request: Request) {
     name: [fields.first_name, fields.last_name].filter(Boolean).join(' ') || fields.name || '',
     email: payload.email,
     phone: fields.phone || '',
+    phoneCountry: fields.phone_country || '',
     business: fields.company || '',
+    companyWebsite: fields.company_website || '',
     message: fields.message || '',
     companySize: fields.company_size || '',
     positions: fields.positions_to_fill || '',
     referral: fields.referral_source || '',
+    source: fields.source || '',
     pageUrl: fields._page_url || request.headers.get('referer') || '',
     userAgent: request.headers.get('user-agent') || '',
   });

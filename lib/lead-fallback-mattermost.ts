@@ -6,11 +6,14 @@ export interface FallbackLeadPayload {
   name: string;
   email: string;
   phone: string;
+  phoneCountry?: string;
   business?: string;
+  companyWebsite?: string;
   message?: string;
   companySize?: string;
   positions?: string;
   referral?: string;
+  source?: string;
   pageUrl: string;
   userAgent?: string;
 }
@@ -34,10 +37,13 @@ export async function sendLeadFallbackToMattermost(lead: FallbackLeadPayload): P
       `| Name | ${escapeMd(lead.name) || '_(empty)_'} |`,
       `| Email | ${escapeMd(lead.email) || '_(empty)_'} |`,
       `| Phone | ${escapeMd(lead.phone) || '_(empty)_'} |`,
+      `| Country code | ${escapeMd(lead.phoneCountry) || '-'} |`,
       `| Business | ${escapeMd(lead.business) || '-'} |`,
+      `| Company website | ${escapeMd(lead.companyWebsite) || '-'} |`,
       `| Company size | ${escapeMd(lead.companySize) || '-'} |`,
       `| Positions | ${escapeMd(lead.positions) || '-'} |`,
       `| Referral | ${escapeMd(lead.referral) || '-'} |`,
+      `| Source | ${escapeMd(lead.source) || '-'} |`,
       `| Page | ${escapeMd(lead.pageUrl) || '-'} |`,
       `| Time | ${new Date().toISOString()} |`,
       '',
