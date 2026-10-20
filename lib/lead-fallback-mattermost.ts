@@ -1,6 +1,5 @@
 'use server';
 
-const ACR_HEALTH_URL = 'https://acrtracking.stealthagents.us/api/health';
 const SITE_ID = 'hire-offshore-teams';
 
 export interface FallbackLeadPayload {
@@ -16,46 +15,20 @@ export interface FallbackLeadPayload {
   userAgent?: string;
 }
 
-async function isACRHealthy(): Promise<boolean> {
-  if (process.env.ACR_FALLBACK_FORCE_DOWN === '1') return false;
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 2_000);
-  try {
-    const response = await fetch(ACR_HEALTH_URL, { signal: controller.signal, cache: 'no-store' });
-    if (!response.ok) return false;
-    const health = await response.json();
-    return health?.status === 'ok' && health?.clickhouse === 'connected';
-  } catch {
-    return false;
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
-export async function sendLeadFallbackToMattermost(lead: FallbackLeadPayload): Promise<void> {
+export async function sendLeadFallbackToMattermost(lead: FallbackLeadPayload): Promise<boolean> {
   const fallbackWebhook = process.env.SITE_MATTERMOST_FALLBACK_WEBHOOK_URL;
   if (!fallbackWebhook) {
-    console.warn('[lead-fallback] SITE_MATTERMOST_FALLBACK_WEBHOOK_URL is missing');
-    return;
+    console.warn('[lead-fallback] Mattermost fallback is not configured');
+    return false;
   }
   try {
-    if (await isACRHealthy()) {
-      console.info('[lead-fallback] ACR healthy; site-direct skipped');
-      return;
-    }
-    console.warn('[lead-fallback] ACR probe failed; waiting 15s before re-probe');
-    await new Promise((resolve) => setTimeout(resolve, 15_000));
-    if (await isACRHealthy()) {
-      console.info('[lead-fallback] ACR recovered; site-direct skipped');
-      return;
-    }
     if (looksLikeGarbagePiiLead(lead)) {
       console.warn('[lead-fallback] garbage_pii_lead_submit; site-direct dropped');
-      return;
+      return false;
     }
     const lines = [
-      `**[SITE-DIRECT:${SITE_ID}] New lead — ${escapeMd(lead.name || lead.email || lead.phone || 'unknown')}**`,
-      `_Submitted by the site's independent fallback because ACR failed two health probes_`,
+      `**[SITE-DIRECT:${SITE_ID}] New lead - ${escapeMd(lead.name || lead.email || lead.phone || 'unknown')}**`,
+      `_Submitted by the site's independent fallback because primary delivery failed_`,
       '', '| Field | Value |', '|---|---|',
       `| Site | ${escapeMd(SITE_ID)} |`,
       `| Name | ${escapeMd(lead.name) || '_(empty)_'} |`,
@@ -80,12 +53,18 @@ export async function sendLeadFallbackToMattermost(lead: FallbackLeadPayload): P
         signal: controller.signal,
         cache: 'no-store',
       });
-      if (!response.ok) console.error('[lead-fallback] Mattermost returned', response.status);
+      if (!response.ok) {
+        console.error('[lead-fallback] Mattermost rejected fallback delivery');
+        return false;
+      }
+      return true;
     } finally {
       clearTimeout(timeout);
     }
-  } catch (error) {
-    console.error('[lead-fallback] fallback failed', error);
+  } catch {
+    // Deliberately omit the error object because fetch errors can contain the secret webhook URL.
+    console.error('[lead-fallback] fallback delivery failed');
+    return false;
   }
 }
 

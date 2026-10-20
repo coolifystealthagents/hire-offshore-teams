@@ -1,1 +1,83 @@
-import type{Metadata}from'next';import Image from'next/image';import Link from'next/link';import{notFound}from'next/navigation';import{blogPosts,blogBySlug}from'@/lib/content';import{site}from'@/lib/site';export function generateStaticParams(){return blogPosts.map(({slug})=>({slug}))}export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const{slug}=await params,p=blogBySlug(slug);return p?{title:p.title,description:p.description,alternates:{canonical:`/blog/${p.slug}`}}:{}}export default async function Page({params}:{params:Promise<{slug:string}>}){const{slug}=await params,p=blogBySlug(slug);if(!p)notFound();const same=blogPosts.filter(x=>x.slug!==p.slug&&x.category===p.category).slice(0,3),related=same.length===3?same:blogPosts.filter(x=>x.slug!==p.slug).slice(0,3);return <main><header className="page-hero"><p className="eyebrow">Home / Blog / {p.category}</p><h1>{p.title}</h1><p>{p.description}</p><p className="meta">{site.name} Editorial Team · Published {p.publishedAt} · {p.readTime}</p></header><section className="content-wrap article-layout"><article className="prose">{p.thumbnail&&<Image src={p.thumbnail} alt={p.title} width={1200} height={630} priority/>}<nav className="toc"><strong>On this page</strong>{p.sections.map(s=><a key={s.heading} href={`#${s.heading.toLowerCase().replace(/[^a-z0-9]+/g,'-')}`}>{s.heading}</a>)}</nav>{p.sections.map((s,i)=><section key={s.heading} id={s.heading.toLowerCase().replace(/[^a-z0-9]+/g,'-')}><h2>{s.heading}</h2>{s.paragraphs.map(x=><p key={x}>{x}</p>)}{i===2&&<p>Use the <Link href={p.internalService}>specialist team role</Link> to define scope and evidence.</p>}{i===4&&<p><a href={p.source.url}>{p.source.label}</a> provides public guidance for testing the workflow.</p>}</section>)}<h2>Common questions answered</h2>{p.faq.map(x=><div key={x.q}><h3>{x.q}</h3><p>{x.a}</p></div>)}<Link className="button primary" href="/contact-us">Book a free consultation</Link></article><aside className="sidebar"><p className="eyebrow">A practical next step</p><h3>Turn one distributed workflow into a clear role brief.</h3><Link className="button" href="/contact-us">Schedule a free call</Link></aside></section><section className="section"><h2>Related articles</h2><div className="article-grid">{related.map(x=><Link className="article-card" href={`/blog/${x.slug}`} key={x.slug}><h3>{x.title}</h3><p>{x.description}</p></Link>)}</div></section></main>}
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { ArticleSidebar } from '@/components/ArticleSidebar';
+import { blogPosts, blogBySlug } from '@/lib/content';
+import { editorialImage, headingId, serviceLinksFor, type TocItem } from '@/lib/editorial';
+import { site } from '@/lib/site';
+import '../../editorial.css';
+
+export function generateStaticParams() {
+  return blogPosts.map(({ slug }) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = blogBySlug(slug);
+  return post ? { title: post.title, description: post.description, alternates: { canonical: `/blog/${post.slug}` } } : {};
+}
+
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = blogBySlug(slug);
+  if (!post) notFound();
+
+  const categoryMatches = blogPosts.filter((item) => item.slug !== post.slug && item.category === post.category);
+  const related = [...categoryMatches, ...blogPosts.filter((item) => item.slug !== post.slug && item.category !== post.category)].slice(0, 3);
+  const services = serviceLinksFor(`${post.slug} ${post.title} ${post.category}`, post.internalService);
+  const sectionItems: TocItem[] = post.sections.map((section) => ({ id: headingId(section.heading), label: section.heading, level: 2 }));
+  const faqId = 'common-questions-answered';
+  const toc: TocItem[] = [
+    ...sectionItems,
+    { id: faqId, label: 'Common questions answered', level: 2 },
+    ...post.faq.map((item) => ({ id: `question-${headingId(item.q)}`, label: item.q, level: 3 as const })),
+    { id: 'put-guidance-into-practice', label: 'Put the guidance into practice', level: 2 },
+  ];
+  const heroImage = editorialImage(post.slug, post.title, post.thumbnail);
+
+  return <main>
+    <header className="page-hero editorial-hero">
+      <nav className="editorial-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog">Blog</Link><span aria-hidden="true">/</span><span>{post.category}</span></nav>
+      <h1>{post.title}</h1>
+      <p className="editorial-dek">{post.description}</p>
+      <p className="meta">{site.name} Editorial Team · Published <time dateTime={post.publishedAt}>{post.publishedAt}</time> · {post.readTime}</p>
+    </header>
+    <section className="content-wrap article-layout">
+      <ArticleSidebar
+        toc={toc}
+        facts={[
+          { label: 'Topic', value: post.category },
+          { label: 'Reading time', value: post.readTime },
+          { label: 'Publisher', value: `${site.name} Editorial Team` },
+        ]}
+        related={related.map((item) => ({ href: `/blog/${item.slug}`, label: item.title }))}
+        services={services.map((service) => ({ href: `/services/${service.slug}`, label: service.name }))}
+        sources={[{ href: post.source.url, label: post.source.label }]}
+      />
+      <article className="editorial-article">
+        <figure className="article-hero-image">
+          <Image src={heroImage} alt={`Editorial illustration for ${post.title}`} width={1200} height={630} sizes="(max-width: 900px) 90vw, 760px" priority />
+        </figure>
+        {post.sections.map((section, sectionIndex) => <section className="article-section" key={section.heading} aria-labelledby={headingId(section.heading)}>
+          <h2 id={headingId(section.heading)}>{section.heading}</h2>
+          {section.paragraphs.map((paragraph, paragraphIndex) => <p key={`${section.heading}-${paragraphIndex}`}>{paragraph}</p>)}
+          {sectionIndex === 2 ? <p className="context-link">See how a <Link href={post.internalService}>specialist offshore team</Link> can support a controlled scope and evidence trail.</p> : null}
+          {sectionIndex === 4 ? <p className="context-link"><a href={post.source.url}>{post.source.label}</a> provides public guidance relevant to testing this workflow.</p> : null}
+        </section>)}
+        <section className="article-section article-faq" aria-labelledby={faqId}>
+          <h2 id={faqId}>Common questions answered</h2>
+          {post.faq.map((item) => <section className="faq-item" key={item.q} aria-labelledby={`question-${headingId(item.q)}`}>
+            <h3 id={`question-${headingId(item.q)}`}>{item.q}</h3>
+            <p>{item.a}</p>
+          </section>)}
+        </section>
+        <div className="article-end-cta">
+          <h2 id="put-guidance-into-practice">Put the guidance into practice</h2>
+          <p>Define the inputs, ownership, review points, and escalation boundaries before adding volume.</p>
+          <Link className="button primary" href="/contact-us">Book a free consultation</Link>
+        </div>
+      </article>
+    </section>
+  </main>;
+}
