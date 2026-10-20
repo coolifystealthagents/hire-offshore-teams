@@ -117,7 +117,12 @@ export async function POST(request: Request) {
   const { bytes, oversized } = await boundedBody(request);
   if (!bytes) return response({ status: 'error' }, oversized ? 413 : 400);
   let envelope: unknown;
-  try { envelope = JSON.parse(new TextDecoder().decode(bytes)); } catch { return response({ status: 'error' }, 400); }
+  try {
+    const decoded = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+    envelope = JSON.parse(decoded);
+  } catch {
+    return response({ status: 'error' }, 400);
+  }
   if (!validEnvelope(envelope)) return response({ status: 'error' }, 400);
 
   try {

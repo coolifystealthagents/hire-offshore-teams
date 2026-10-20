@@ -241,10 +241,13 @@ test('tracking proxy preserves the deployed ACR batch contract and rejects unsaf
     const tooMany = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: Array.from({ length: 203 }, (_, i) => realisticEvent(i)) }), { ip: '203.0.113.16' }));
     const oversizedField = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', event_metadata: 'x'.repeat(66000) }] }), { ip: '203.0.113.17' }));
     const oversizedUtf8Field = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', event_metadata: '€'.repeat(22000) }] }), { ip: '203.0.113.20' }));
+    const malformedUtf8 = new TextEncoder().encode(encoded);
+    malformedUtf8[malformedUtf8.indexOf('p'.charCodeAt(0))] = 0xff;
+    const malformed = await POST(make(malformedUtf8, { ip: '203.0.113.21' }));
     const oversized = await POST(make(JSON.stringify({ site_id: 'hire-offshore-teams', events: [{ event_type: 'pageview', event_metadata: 'x'.repeat(263000) }] }), { ip: '203.0.113.19' }));
     const rate = [];
     for (let i = 0; i < 31; i += 1) rate.push((await POST(make(JSON.stringify(payload), { ip: '203.0.113.18' }))).status);
-    console.log(JSON.stringify({ valid: valid.status, preserved, wrongSite: wrongSite.status, hostile: hostile.status, media: media.status, schema: schema.status, recovery: recovery.status, recoveryBytes: new TextEncoder().encode(recoveryEncoded).byteLength, tooMany: tooMany.status, oversizedField: oversizedField.status, oversizedUtf8Field: oversizedUtf8Field.status, oversized: oversized.status, lastRate: rate.at(-1), upstreamCalls }));
+    console.log(JSON.stringify({ valid: valid.status, preserved, wrongSite: wrongSite.status, hostile: hostile.status, media: media.status, schema: schema.status, recovery: recovery.status, recoveryBytes: new TextEncoder().encode(recoveryEncoded).byteLength, tooMany: tooMany.status, oversizedField: oversizedField.status, oversizedUtf8Field: oversizedUtf8Field.status, malformed: malformed.status, oversized: oversized.status, lastRate: rate.at(-1), upstreamCalls }));
   `, { TRACKING_URL: trackingUrl });
   assert.equal(result.valid, 202);
   assert.equal(result.preserved, true);
@@ -257,6 +260,7 @@ test('tracking proxy preserves the deployed ACR batch contract and rejects unsaf
   assert.equal(result.tooMany, 400);
   assert.equal(result.oversizedField, 400);
   assert.equal(result.oversizedUtf8Field, 400);
+  assert.equal(result.malformed, 400);
   assert.equal(result.oversized, 413);
   assert.equal(result.lastRate, 429);
   assert.equal(result.upstreamCalls, 32);
