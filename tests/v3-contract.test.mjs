@@ -67,6 +67,8 @@ test('SEO, canonical redirects, security policy, logo identity, and design regis
   for (const header of ['Strict-Transport-Security', 'Content-Security-Policy', 'X-Content-Type-Options', 'Referrer-Policy', 'Permissions-Policy']) assert.match(config, new RegExp(header));
   assert.match(config, /cf-visitor/i);
   assert.match(config, /x-forwarded-proto/i);
+  assert.match(config, /script-src[^"\n]*https:\/\/static\.cloudflareinsights\.com/);
+  assert.match(config, /connect-src[^"\n]*https:\/\/cloudflareinsights\.com/);
   assert.ok(existsSync(join(root, 'app/icon.svg')));
   const registry = JSON.parse(read('design-registry.json'));
   assert.equal(registry.domain, 'hireoffshoreteams.com');
