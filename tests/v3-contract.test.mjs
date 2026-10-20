@@ -23,8 +23,12 @@ test('contact conversion contract uses approved reviews and parent assets', () =
   const reviews = JSON.parse(read('app/review-provenance.json'));
   assert.ok(reviews.length >= 10);
   assert.equal(new Set(reviews.map((review) => review.id)).size, reviews.length);
-  assert.match(contact, /StealthAgents reviews/);
-  assert.match(contact, /★★★★★/);
+  assert.match(contact, /Client feedback summaries/);
+  assert.match(contact, /Condensed from feedback published by StealthAgents; no rating is asserted/);
+  assert.match(contact, /aria-pressed=\{paused\}/);
+  assert.match(contact, /Pause reviews/);
+  assert.match(contact, /is-paused/);
+  assert.doesNotMatch(contact, /★★★★★|5 out of 5|Verified first-party source/);
   assert.match(contact, /Official team, Bacolod/);
   assert.match(contact, /stealth-agents-team\.webp/);
   assert.match(contact, /stealth-agents-logo-black\.png/);
