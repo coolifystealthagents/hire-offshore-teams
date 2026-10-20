@@ -130,7 +130,7 @@ export function researchSections(title: string, _finding: string, sections?: Con
     },
     {
       heading: 'Evidence boundary',
-      paragraphs: [`The public sources frame controls relevant to ${role.queue}; they do not prove performance for a specific company. Local policy, contracts, system evidence, and qualified review determine whether this protocol is appropriate.`],
+      paragraphs: [`For ${title.toLowerCase()}, the public sources frame controls relevant to ${role.queue}; they do not prove performance for a specific company. Local policy, contracts, system evidence, and qualified review determine whether this protocol is appropriate.`],
     },
   ];
 }

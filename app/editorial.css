@@ -4,7 +4,8 @@
 }
 
 .editorial-hero h1 {
-  max-width: 16ch;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   font-size: clamp(2.7rem, 6vw, 6.3rem);
   text-wrap: balance;
 }
