@@ -66,14 +66,23 @@ test('endpoint rejects invalid requests without delivery and confirms primary or
     globalThis.__deliveryEvents = [];
     globalThis.__fallbackResult = false;
     let primaryResult = true;
-    globalThis.fetch = async () => {
+    let acrResult = true;
+    globalThis.__acrEnvelope = null;
+    globalThis.fetch = async (url, init) => {
+      if (String(url) === 'https://acrtracking.stealthagents.us/api/track') {
+        globalThis.__deliveryEvents.push('acr');
+        globalThis.__acrEnvelope = JSON.parse(init.body);
+        return new Response(acrResult ? '{"status":"ok"}' : '', { status: acrResult ? 202 : 503 });
+      }
       globalThis.__deliveryEvents.push('primary');
       return new Response(primaryResult ? null : '', { status: primaryResult ? 204 : 503 });
     };
     const { POST } = await import(process.env.ROUTE_URL);
     let ip = 0;
+    let formId = 0;
     function validForm() {
       const form = new FormData();
+      form.set('_submission_id', '00000000-0000-4000-8000-' + String(++formId).padStart(12, '0'));
       form.set('source', 'contact-page-consultation');
       form.set('first_name', 'Ada');
       form.set('last_name', 'Lovelace');
@@ -103,9 +112,31 @@ test('endpoint rejects invalid requests without delivery and confirms primary or
     const afterPrimary = [...globalThis.__deliveryEvents];
 
     primaryResult = false;
+    globalThis.__deliveryEvents.length = 0;
+    const overrideToAcr = await submit(validForm());
+    const overrideToAcrEvents = [...globalThis.__deliveryEvents];
+
+    delete process.env.ACR_LEAD_ENDPOINT;
+    globalThis.__deliveryEvents.length = 0;
+    const establishedAcr = await submit(validForm());
+    const establishedEvents = [...globalThis.__deliveryEvents];
+    const acrEnvelope = globalThis.__acrEnvelope;
+
+    const replayForm = validForm();
+    globalThis.__deliveryEvents.length = 0;
+    const replayFirst = await submit(replayForm);
+    const replaySecond = await submit(replayForm);
+    const replayEvents = [...globalThis.__deliveryEvents];
+    const conflictingReplay = validForm();
+    conflictingReplay.set('_submission_id', replayForm.get('_submission_id'));
+    conflictingReplay.set('company', 'Different company');
+    const replayConflict = await submit(conflictingReplay);
+
+    acrResult = false;
     globalThis.__fallbackResult = true;
+    globalThis.__deliveryEvents.length = 0;
     const fallback = await submit(validForm());
-    const afterFallback = [...globalThis.__deliveryEvents];
+    const fallbackEvents = [...globalThis.__deliveryEvents];
     const fallbackPayload = globalThis.__fallbackPayload;
 
     globalThis.__deliveryEvents.length = 0;
@@ -154,13 +185,33 @@ test('endpoint rejects invalid requests without delivery and confirms primary or
       rateResults.push((await POST(request)).status);
     }
 
-    console.log(JSON.stringify({ primary, afterPrimary, fallback, afterFallback, fallbackPayload, personal, unknown, duplicate, honeypot, invalidDeliveryEvents, badOrigin, wrongType, oversizedResult, declaredOversized, noSink, rateResults }));
+    console.log(JSON.stringify({ primary, afterPrimary, overrideToAcr, overrideToAcrEvents, establishedAcr, establishedEvents, acrEnvelope, replayFirst, replaySecond, replayEvents, replayConflict, fallback, fallbackEvents, fallbackPayload, personal, unknown, duplicate, honeypot, invalidDeliveryEvents, badOrigin, wrongType, oversizedResult, declaredOversized, noSink, rateResults }));
   `, { ROUTE_URL: routeUrl }, routeLoader);
 
   assert.deepEqual(result.primary.body, { ok: true, delivered: true });
   assert.deepEqual(result.afterPrimary, ['primary']);
+  assert.deepEqual(result.overrideToAcr.body, { ok: true, delivered: true });
+  assert.deepEqual(result.overrideToAcrEvents, ['primary', 'acr']);
+  assert.deepEqual(result.establishedAcr.body, { ok: true, delivered: true });
+  assert.deepEqual(result.establishedEvents, ['acr']);
+  assert.equal(result.acrEnvelope.site_id, 'hire-offshore-teams');
+  assert.equal(result.acrEnvelope.events.length, 1);
+  assert.equal(result.acrEnvelope.events[0].event_type, 'lead_submit');
+  assert.equal(result.acrEnvelope.events[0].event_value, 'contact-page-consultation');
+  const acrMetadata = JSON.parse(result.acrEnvelope.events[0].event_metadata);
+  assert.equal(acrMetadata.tracker_version, '0.4.19');
+  assert.equal(acrMetadata.lead_name, 'Ada Lovelace');
+  assert.equal(acrMetadata.lead_email, 'ada@analytical.example');
+  assert.equal(acrMetadata.company, 'Analytical Engines');
+  assert.equal(acrMetadata.phone_country, '+44');
+  assert.equal(acrMetadata._page_url, 'https://hireoffshoreteams.com/contact-us');
+  assert.equal(acrMetadata.lead_form_id, '');
+  assert.deepEqual(result.replayFirst.body, { ok: true, delivered: true });
+  assert.deepEqual(result.replaySecond.body, { ok: true, delivered: true });
+  assert.deepEqual(result.replayEvents, ['acr']);
+  assert.equal(result.replayConflict.status, 409);
   assert.deepEqual(result.fallback.body, { ok: true, delivered: true });
-  assert.deepEqual(result.afterFallback, ['primary', 'primary', 'fallback']);
+  assert.deepEqual(result.fallbackEvents, ['acr', 'fallback']);
   assert.equal(result.fallbackPayload.phoneCountry, '+44');
   assert.equal(result.fallbackPayload.phone, '020 1234 5678');
   assert.equal(result.fallbackPayload.companyWebsite, 'https://analytical.example');
@@ -266,10 +317,11 @@ test('tracking proxy preserves the deployed ACR batch contract and rejects unsaf
   assert.equal(result.upstreamCalls, 32);
 });
 
-test('lead form avoids native submit capture and tracks only after confirmed delivery', () => {
+test('lead form avoids native submit capture and leaves lead delivery to the server', () => {
   const source = readFileSync(join(root, 'components/LeadForm.tsx'), 'utf8');
   assert.match(source, /<button type="button"/);
   assert.match(source, /onKeyDown=\{handleEnter\}/);
   assert.doesNotMatch(source, /onSubmit=/);
-  assert.ok(source.indexOf('!result.delivered') < source.indexOf('acrTracker?.trackLead'));
+  assert.doesNotMatch(source, /acrTracker\?\.trackLead/);
+  assert.ok(source.indexOf('!result.delivered') < source.indexOf("router.push('/thank-you')"));
 });

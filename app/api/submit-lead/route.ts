@@ -9,6 +9,10 @@ const MAX_RATE_LIMIT_KEYS = 5_000;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1_000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 const DELIVERY_TIMEOUT_MS = 5_000;
+const DELIVERY_CACHE_TTL_MS = 10 * 60 * 1_000;
+const ACR_TRACKING_API = 'https://acrtracking.stealthagents.us/api/track';
+const ACR_SITE_ID = 'hire-offshore-teams';
+const ACR_TRACKER_VERSION = '0.4.19';
 
 const allowedOrigins = new Set([
   'https://hireoffshoreteams.com',
@@ -30,6 +34,7 @@ const allowedFields = new Set([
   'phone',
   'message',
   '_page_url',
+  '_submission_id',
   'website_url',
 ]);
 
@@ -48,6 +53,7 @@ const fieldLimits: Record<string, number> = {
   phone: 40,
   message: 2_000,
   _page_url: 2_048,
+  _submission_id: 64,
   website_url: 200,
 };
 
@@ -63,6 +69,8 @@ const phoneCountries = new Set(['', '+1', '+44', '+61', '+63', 'other']);
 
 type RateEntry = { count: number; expiresAt: number };
 const rateLimit = new Map<string, RateEntry>();
+type DeliveryEntry = { fingerprint: string; expiresAt: number; promise: Promise<boolean> };
+const deliveryCache = new Map<string, DeliveryEntry>();
 
 type LeadFields = Record<string, string>;
 
@@ -193,6 +201,9 @@ function validateFields(fields: LeadFields): string | null {
     return 'Please complete every required field.';
   }
   if (!phoneCountries.has(fields.phone_country || '')) return 'Please check the submitted fields.';
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(fields._submission_id || '')) {
+    return 'Please check the submitted fields.';
+  }
   return null;
 }
 
@@ -212,6 +223,115 @@ async function deliverPrimary(endpoint: string, payload: LeadFields): Promise<bo
     return false;
   } finally {
     clearTimeout(timeout);
+  }
+}
+
+function pageDetails(value: string | undefined) {
+  try {
+    const url = new URL(value || '', 'https://hireoffshoreteams.com/contact-us');
+    if (url.origin !== 'https://hireoffshoreteams.com' && url.origin !== 'https://www.hireoffshoreteams.com') {
+      return { pageUrl: 'https://hireoffshoreteams.com/contact-us', pagePath: '/contact-us' };
+    }
+    return { pageUrl: url.href, pagePath: url.pathname };
+  } catch {
+    return { pageUrl: 'https://hireoffshoreteams.com/contact-us', pagePath: '/contact-us' };
+  }
+}
+
+async function deliverEstablishedAcrLead(request: Request, payload: LeadFields): Promise<boolean> {
+  const name = [payload.first_name, payload.last_name].filter(Boolean).join(' ') || payload.name || '';
+  const { pageUrl, pagePath } = pageDetails(payload._page_url || request.headers.get('referer') || undefined);
+  const metadata: Record<string, string> = {
+    tracker_version: ACR_TRACKER_VERSION,
+    lead_name: name,
+    lead_email: payload.email,
+    lead_phone: payload.phone || '',
+    lead_message: payload.message || '',
+    lead_source: payload.source || '',
+    _page_url: payload._page_url || '',
+    lead_form_id: '',
+  };
+  for (const field of ['first_name', 'last_name', 'company', 'company_website', 'company_size', 'positions_to_fill', 'referral_source', 'phone_country']) {
+    metadata[field] = payload[field] || '';
+  }
+  const event = {
+    client_event_id: payload._submission_id,
+    event_type: 'lead_submit',
+    timestamp: new Date().toISOString(),
+    session_id: '',
+    user_id: '',
+    anonymous_id: '',
+    page_url: pageUrl,
+    page_path: pagePath,
+    page_title: 'Hire Offshore Teams consultation request',
+    referrer: request.headers.get('referer') || '',
+    utm_source: '',
+    utm_medium: '',
+    utm_campaign: '',
+    utm_term: '',
+    utm_content: '',
+    screen_width: 0,
+    screen_height: 0,
+    scroll_depth: 0,
+    time_on_page: 0,
+    event_value: payload.source || '',
+    event_metadata: JSON.stringify(metadata),
+  };
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), DELIVERY_TIMEOUT_MS);
+  try {
+    const clientIp = requestKey(request);
+    const headers: Record<string, string> = {
+      'content-type': 'application/json',
+      'user-agent': request.headers.get('user-agent') || '',
+      'accept-language': request.headers.get('accept-language') || '',
+    };
+    if (clientIp !== 'unknown-client') {
+      headers['x-forwarded-for'] = clientIp;
+      headers['x-acr-client-ip'] = clientIp;
+    }
+    const response = await fetch(ACR_TRACKING_API, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ site_id: ACR_SITE_ID, events: [event] }),
+      signal: controller.signal,
+      cache: 'no-store',
+    });
+    return response.ok;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function deliverAcceptedLead(request: Request, payload: LeadFields): Promise<boolean> {
+  const endpoint = process.env.ACR_LEAD_ENDPOINT;
+  if (endpoint && await deliverPrimary(endpoint, payload)) return true;
+  if (await deliverEstablishedAcrLead(request, payload)) return true;
+  return sendLeadFallbackToMattermost({
+    name: [payload.first_name, payload.last_name].filter(Boolean).join(' ') || payload.name || '',
+    email: payload.email,
+    phone: payload.phone || '',
+    phoneCountry: payload.phone_country || '',
+    business: payload.company || '',
+    companyWebsite: payload.company_website || '',
+    message: payload.message || '',
+    companySize: payload.company_size || '',
+    positions: payload.positions_to_fill || '',
+    referral: payload.referral_source || '',
+    source: payload.source || '',
+    pageUrl: payload._page_url || request.headers.get('referer') || '',
+    userAgent: request.headers.get('user-agent') || '',
+  });
+}
+
+function pruneDeliveryCache(now: number) {
+  for (const [key, entry] of deliveryCache) if (entry.expiresAt <= now) deliveryCache.delete(key);
+  while (deliveryCache.size >= MAX_RATE_LIMIT_KEYS) {
+    const oldestKey = deliveryCache.keys().next().value as string | undefined;
+    if (!oldestKey) break;
+    deliveryCache.delete(oldestKey);
   }
 }
 
@@ -256,27 +376,26 @@ export async function POST(request: Request) {
   const payload: LeadFields = { ...fields, email: fields.email.toLowerCase() };
   delete payload.website_url;
 
-  const endpoint = process.env.ACR_LEAD_ENDPOINT;
-  if (endpoint && await deliverPrimary(endpoint, payload)) {
-    return json({ ok: true, delivered: true });
+  const submissionId = payload._submission_id;
+  const fingerprint = JSON.stringify(payload);
+  const now = Date.now();
+  pruneDeliveryCache(now);
+  const existing = deliveryCache.get(submissionId);
+  if (existing) {
+    if (existing.fingerprint !== fingerprint) {
+      return json({ ok: false, delivered: false, message: 'Submission identifier was already used.' }, 409);
+    }
+    const delivered = await existing.promise;
+    return delivered
+      ? json({ ok: true, delivered: true })
+      : json({ ok: false, delivered: false, message: 'We could not send your request.' }, 502);
   }
 
-  const delivered = await sendLeadFallbackToMattermost({
-    name: [fields.first_name, fields.last_name].filter(Boolean).join(' ') || fields.name || '',
-    email: payload.email,
-    phone: fields.phone || '',
-    phoneCountry: fields.phone_country || '',
-    business: fields.company || '',
-    companyWebsite: fields.company_website || '',
-    message: fields.message || '',
-    companySize: fields.company_size || '',
-    positions: fields.positions_to_fill || '',
-    referral: fields.referral_source || '',
-    source: fields.source || '',
-    pageUrl: fields._page_url || request.headers.get('referer') || '',
-    userAgent: request.headers.get('user-agent') || '',
-  });
-
-  if (delivered) return json({ ok: true, delivered: true });
-  return json({ ok: false, delivered: false, message: 'We could not send your request.' }, 502);
+  const promise = deliverAcceptedLead(request, payload);
+  deliveryCache.set(submissionId, { fingerprint, expiresAt: now + DELIVERY_CACHE_TTL_MS, promise });
+  const delivered = await promise;
+  if (!delivered && deliveryCache.get(submissionId)?.promise === promise) deliveryCache.delete(submissionId);
+  return delivered
+    ? json({ ok: true, delivered: true })
+    : json({ ok: false, delivered: false, message: 'We could not send your request.' }, 502);
 }

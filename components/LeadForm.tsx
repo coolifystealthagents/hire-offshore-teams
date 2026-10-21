@@ -1,11 +1,12 @@
 'use client';
-import { KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const personalDomains = new Set(['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','aol.com','proton.me','protonmail.com']);
 
 export function LeadForm({ source = 'contact-page-consultation' }: { source?: string }) {
   const router = useRouter();
+  const submissionId = useRef('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -22,6 +23,8 @@ export function LeadForm({ source = 'contact-page-consultation' }: { source?: st
     }
     data.set('source', source);
     data.set('_page_url', location.href);
+    if (!submissionId.current) submissionId.current = crypto.randomUUID();
+    data.set('_submission_id', submissionId.current);
     try {
       const response = await fetch('/api/submit-lead', { method: 'POST', body: data });
       const result = await response.json();
@@ -35,12 +38,6 @@ export function LeadForm({ source = 'contact-page-consultation' }: { source?: st
         setBusy(false);
         return;
       }
-      const payload: Record<string, FormDataEntryValue> = {
-        ...Object.fromEntries(data.entries()),
-        name: [data.get('first_name'), data.get('last_name')].map((value) => String(value || '').trim()).filter(Boolean).join(' '),
-      };
-      delete payload.website_url;
-      try { window.acrTracker?.trackLead({ ...payload, source }); } catch { /* Delivery is already confirmed. */ }
       router.push('/thank-you');
     } catch {
       setError('We could not send your request. Please try again.');
