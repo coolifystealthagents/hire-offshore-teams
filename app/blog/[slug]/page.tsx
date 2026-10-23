@@ -7,6 +7,8 @@ import { blogPosts, blogBySlug } from '@/lib/content';
 import { editorialImage, headingId, serviceLinksFor, type TocItem } from '@/lib/editorial';
 import { site } from '@/lib/site';
 import '../../editorial.css';
+import TocSync from '@/components/TocSync';
+const displayPublishedDate = (value: string) => new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${value}T00:00:00Z`));
 
 export function generateStaticParams() {
   return blogPosts.map(({ slug }) => ({ slug }));
@@ -45,13 +47,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const heroImage = editorialImage(post.slug, post.title, post.thumbnail);
   const articleSchema = { '@context': 'https://schema.org', '@type': 'Article', headline: post.title, description: post.description, datePublished: post.publishedAt, author: { '@type': 'Organization', name: `${site.name} Editorial Team` }, publisher: { '@type': 'Organization', name: site.name }, mainEntityOfPage: `https://${site.domain}/blog/${post.slug}`, image: `https://${site.domain}${heroImage}` };
 
-  return <main id="main-content" tabIndex={-1}>
+  return <main id="main-content" tabIndex={-1}><TocSync />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c') }} />
     <header className="page-hero editorial-hero">
       <nav className="editorial-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog">Blog</Link><span aria-hidden="true">/</span><span>{post.category}</span></nav>
       <h1>{post.title}</h1>
       <p className="editorial-dek">{post.description}</p>
-      <p className="meta">{site.name} Editorial Team · Published <time dateTime={post.publishedAt}>{post.publishedAt}</time> · {post.readTime}</p>
+      <p className="meta">{site.name} Editorial Team · Published <time dateTime={post.publishedAt}>{displayPublishedDate(post.publishedAt)}</time> · {post.readTime}</p>
     </header>
     <section className="content-wrap article-layout">
       <ArticleSidebar

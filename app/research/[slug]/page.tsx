@@ -7,6 +7,8 @@ import { researchPosts, researchBySlug } from '@/lib/content';
 import { editorialImage, headingId, researchSections, serviceLinksFor, type TocItem } from '@/lib/editorial';
 import { site } from '@/lib/site';
 import '../../editorial.css';
+import TocSync from '@/components/TocSync';
+const displayPublishedDate = (value: string) => new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${value}T00:00:00Z`));
 
 export function generateStaticParams() {
   return researchPosts.map(({ slug }) => ({ slug }));
@@ -44,13 +46,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const heroImage = editorialImage(post.slug, post.title, post.thumbnail);
   const articleSchema = { '@context': 'https://schema.org', '@type': 'Article', headline: post.title, description: post.summary, datePublished: post.publishedAt, author: { '@type': 'Organization', name: `${site.name} Research Desk` }, publisher: { '@type': 'Organization', name: site.name }, mainEntityOfPage: `https://${site.domain}/research/${post.slug}`, image: `https://${site.domain}${heroImage}` };
 
-  return <main id="main-content" tabIndex={-1}>
+  return <main id="main-content" tabIndex={-1}><TocSync />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c') }} />
     <header className="page-hero editorial-hero">
       <nav className="editorial-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/research">Research</Link><span aria-hidden="true">/</span><span>{post.cluster}</span></nav>
       <h1>{post.title}</h1>
       <p className="editorial-dek">{post.summary}</p>
-      <p className="meta">{site.name} Research Desk · Published <time dateTime={post.publishedAt}>{post.publishedAt}</time></p>
+      <p className="meta">{site.name} Research Desk · Published <time dateTime={post.publishedAt}>{displayPublishedDate(post.publishedAt)}</time></p>
     </header>
     <section className="content-wrap article-layout">
       <ArticleSidebar

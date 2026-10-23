@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Offshore Access Offboarding Review</title><desc id="desc">HIRE OFFSHORE TEAMS / RESEARCH artwork with the exact article title.</desc>
+<defs><pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0V80" fill="none" stroke="#f0fbf8" stroke-width="2" opacity=".18"/></pattern></defs>
+<rect width="1200" height="630" fill="#456a38"/>
+<rect width="1200" height="630" fill="url(#grid)"/>
+<circle cx="1030" cy="150" r="110" fill="#f0fbf8" opacity=".18"/>
+<circle cx="1080" cy="440" r="160" fill="#f0fbf8" opacity=".1"/>
+<rect x="62" y="48" width="446" height="54" rx="6" fill="#f0fbf8"/>
+<text x="84" y="83" class="brand">HIRE OFFSHORE TEAMS / RESEARCH</text>
+<text x="72" y="240" class="title">Offshore Access Offboarding</text><text x="72" y="302" class="title">Review</text>
+<line x1="72" y1="526" x2="1120" y2="526" stroke="#f0fbf8" stroke-width="5"/>
+<text x="72" y="573" class="footer">EVIDENCE · OWNERSHIP · REVIEW</text>
+<style>.brand{fill:#f8f4ec;font:700 21px 'Trebuchet MS',Arial,sans-serif;letter-spacing:1.4px}.title{fill:#f8f4ec;font:700 46px Rockwell,Georgia,serif}.footer{fill:#f0fbf8;font:700 20px 'Trebuchet MS',Arial,sans-serif;letter-spacing:1.2px}</style>
+</svg>
