@@ -6,6 +6,8 @@ import { october13BlogPosts } from './october13BlogPosts';
 import { october13ResearchPosts } from './october13ResearchPosts';
 import { legacyResearchFinding } from './editorial';
 import { october22BlogBatch, october22ResearchBatch } from './october22Batch';
+import { october25BlogBatch } from './october25Blog';
+import { october25ResearchBatch } from './october25Research';
 
 const existingBlogPosts: BlogPost[] = [
   {
@@ -722,9 +724,9 @@ const existingResearchPosts: ResearchPost[] = [
   }
 ];
 
-export const blogPosts: BlogPost[] = [...october22BlogBatch, ...october13BlogPosts, ...october12BlogPosts, ...existingBlogPosts];
+export const blogPosts: BlogPost[] = [...october25BlogBatch, ...october22BlogBatch, ...october13BlogPosts, ...october12BlogPosts, ...existingBlogPosts];
 export const researchPosts: ResearchPost[] = [
-  ...october22ResearchBatch,
+  ...october25ResearchBatch, ...october22ResearchBatch,
   ...october13ResearchPosts,
   ...october12ResearchPosts,
   ...existingResearchPosts.map((post) => ({
