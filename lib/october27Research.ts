@@ -56,7 +56,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
         "heading": "What the evidence can support",
         "paragraphs": [
           "The record can show field presence, source currency, named ownership, and where the offshore team building and managed support record is thin. It can support a priority scoring guide, a reviewer calibration, an override log.",
-          "For offshore team building and managed support: It cannot promise an outcome, a regulator's view, or a causal result. The protocol does not judge whether the chosen priority produced the best business outcome."
+          " The hireoffshoreteams review should show the source, owner, next action, and exception reason for this do reviewers agree on work priority in offshore team building and managed support? workflow before the item moves."
         ]
       },
       {
@@ -295,7 +295,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
         "heading": "What the evidence can support",
         "paragraphs": [
           "The record can show field presence, source currency, named ownership, and where the offshore team building and managed support record is thin. It can support a clock-start definition, a pause log, a weekly exception review.",
-          "For offshore team building and managed support: It cannot promise an outcome, a regulator's view, or a causal result. The protocol does not decide whether the service target itself was appropriate."
+          " The hireoffshoreteams review should show the source, owner, next action, and exception reason for this when does the service clock start in offshore team building and managed support? workflow before the item moves."
         ]
       },
       {
@@ -534,7 +534,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
         "heading": "What the evidence can support",
         "paragraphs": [
           "The record can show field presence, source currency, named ownership, and where the offshore team building and managed support record is thin. It can support a dependency map, a confirmation target, a fallback rule.",
-          "For offshore team building and managed support: It cannot promise an outcome, a regulator's view, or a causal result. The protocol does not rank teams or prove that one staffing model is better."
+          " The hireoffshoreteams review should show the source, owner, next action, and exception reason for this where do dependencies add delay in offshore team building and managed support? workflow before the item moves."
         ]
       },
       {
@@ -773,7 +773,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
         "heading": "What the evidence can support",
         "paragraphs": [
           "The record can show field presence, source currency, named ownership, and where the offshore team building and managed support record is thin. It can support a rework reason code, a linked case record, a monthly rework review.",
-          "For offshore team building and managed support: It cannot promise an outcome, a regulator's view, or a causal result. The protocol does not evaluate individual performance or prove a causal staffing effect."
+          " The hireoffshoreteams review should show the source, owner, next action, and exception reason for this how much work is rework in offshore team building and managed support? workflow before the item moves."
         ]
       },
       {
@@ -1012,7 +1012,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
         "heading": "What the evidence can support",
         "paragraphs": [
           "The record can show field presence, source currency, named ownership, and where the offshore team building and managed support record is thin. It can support a promise register, a verification rule, a weekly open-promise review.",
-          "For offshore team building and managed support: It cannot promise an outcome, a regulator's view, or a causal result. The protocol does not judge whether the original promise was commercially wise."
+          " The hireoffshoreteams review should show the source, owner, next action, and exception reason for this how often do customer promises hold in offshore team building and managed support? workflow before the item moves."
         ]
       },
       {
