@@ -7,7 +7,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
     "summary": "A protocol testing whether independent reviewers assign the same priority band to the same offshore team building and managed support item.",
     "cluster": "Team enablement",
     "publishedAt": "2026-10-27",
-    "finding": "Do two reviewers put the same item in the same priority band using the written scoring rule?",
+    "finding": "A protocol testing whether independent reviewers assign the same priority band to the same offshore team building and managed support item. The hireoffshoreteams review should show the source, owner, next action, and exception reason for this do reviewers agree on work priority in offshore team building and managed support? workflow before the item moves.",
     "thumbnail": "/article-thumbnails/october-27/priority-agreement-study.svg",
     "sections": [
       {
@@ -246,7 +246,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
     "summary": "A protocol measuring the gap between the defined clock event and the timestamp recorded in offshore team building and managed support.",
     "cluster": "Team enablement",
     "publishedAt": "2026-10-27",
-    "finding": "How often does the recorded clock start match the defined triggering event?",
+    "finding": "A protocol measuring the gap between the defined clock event and the timestamp recorded in offshore team building and managed support. The hireoffshoreteams review should show the source, owner, next action, and exception reason for this when does the service clock start in offshore team building and managed support? workflow before the item moves.",
     "thumbnail": "/article-thumbnails/october-27/service-clock-start-study.svg",
     "sections": [
       {
@@ -485,7 +485,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
     "summary": "A protocol separating upstream wait, owner wait, and rework in offshore team building and managed support dependency chains.",
     "cluster": "Team enablement",
     "publishedAt": "2026-10-27",
-    "finding": "How much delay comes from an upstream input, an internal owner, or a rework loop?",
+    "finding": "A protocol separating upstream wait, owner wait, and rework in offshore team building and managed support dependency chains. The hireoffshoreteams review should show the source, owner, next action, and exception reason for this where do dependencies add delay in offshore team building and managed support? workflow before the item moves.",
     "thumbnail": "/article-thumbnails/october-27/dependency-delay-study.svg",
     "sections": [
       {
@@ -724,7 +724,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
     "summary": "A protocol measuring repeat effort caused by missing evidence, wrong scope, or a failed check in offshore team building and managed support.",
     "cluster": "Team enablement",
     "publishedAt": "2026-10-27",
-    "finding": "What share of handled items is rework, and which reason codes explain it?",
+    "finding": "A protocol measuring repeat effort caused by missing evidence, wrong scope, or a failed check in offshore team building and managed support. The hireoffshoreteams review should show the source, owner, next action, and exception reason for this how much work is rework in offshore team building and managed support? workflow before the item moves.",
     "thumbnail": "/article-thumbnails/october-27/rework-share-study.svg",
     "sections": [
       {
@@ -963,7 +963,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
     "summary": "A protocol comparing the promise date, the verified completion, and the reason for any gap in offshore team building and managed support.",
     "cluster": "Team enablement",
     "publishedAt": "2026-10-27",
-    "finding": "What share of recorded customer promises were verified by the promised date?",
+    "finding": "A protocol comparing the promise date, the verified completion, and the reason for any gap in offshore team building and managed support. The hireoffshoreteams review should show the source, owner, next action, and exception reason for this how often do customer promises hold in offshore team building and managed support? workflow before the item moves.",
     "thumbnail": "/article-thumbnails/october-27/promise-accuracy-study.svg",
     "sections": [
       {
