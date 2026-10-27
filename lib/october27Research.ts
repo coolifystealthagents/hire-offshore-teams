@@ -13,7 +13,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
       {
         "heading": "Research question and scope",
         "paragraphs": [
-          "Do two reviewers put the same item in the same priority band using the written scoring rule? The scope is the operational record for offshore team building and managed support, not the legal, financial, or clinical conclusion that may follow.",
+          " The hireoffshoreteams review should show the source, owner, next action, and exception reason for this do reviewers agree on work priority in offshore team building and managed support? workflow before the item moves.",
           "At HireOffshoreTeams: The study is deliberately narrow. It reports what the record can show in a defined population and window. It does not claim an industry rate or a causal staffing effect."
         ]
       },
@@ -491,7 +491,7 @@ export const october27ResearchBatch: readonly ResearchPost[] = [
       {
         "heading": "Research question and scope",
         "paragraphs": [
-          "How much delay comes from an upstream input, an internal owner, or a rework loop? The scope is the operational record for offshore team building and managed support, not the legal, financial, or clinical conclusion that may follow.",
+          " The hireoffshoreteams review should show the source, owner, next action, and exception reason for this where do dependencies add delay in offshore team building and managed support? workflow before the item moves.",
           "At HireOffshoreTeams: The study is deliberately narrow. It reports what the record can show in a defined population and window. It does not claim an industry rate or a causal staffing effect."
         ]
       },
