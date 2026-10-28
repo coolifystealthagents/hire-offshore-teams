@@ -8,8 +8,10 @@ import { legacyResearchFinding } from './editorial';
 import { october22BlogBatch, october22ResearchBatch } from './october22Batch';
 import { october26BlogBatch } from './october26Blog';
 import { october27BlogBatch } from './october27Blog';
+import { october28BlogBatch } from './october28Blog';
 import { october26ResearchBatch } from './october26Research';
 import { october27ResearchBatch } from './october27Research';
+import { october28ResearchBatch } from './october28Research';
 import { october25BlogBatch } from './october25Blog';
 import { october25ResearchBatch } from './october25Research';
 
@@ -728,9 +730,9 @@ const existingResearchPosts: ResearchPost[] = [
   }
 ];
 
-export const blogPosts: BlogPost[] = [...october27BlogBatch, ...october26BlogBatch, ...october25BlogBatch, ...october22BlogBatch, ...october13BlogPosts, ...october12BlogPosts, ...existingBlogPosts];
+export const blogPosts: BlogPost[] = [...october28BlogBatch, ...october27BlogBatch, ...october26BlogBatch, ...october25BlogBatch, ...october22BlogBatch, ...october13BlogPosts, ...october12BlogPosts, ...existingBlogPosts];
 export const researchPosts: ResearchPost[] = [
-  ...october27ResearchBatch, ...october26ResearchBatch, ...october25ResearchBatch, ...october22ResearchBatch,
+  ...october28ResearchBatch, ...october27ResearchBatch, ...october26ResearchBatch, ...october25ResearchBatch, ...october22ResearchBatch,
   ...october13ResearchPosts,
   ...october12ResearchPosts,
   ...existingResearchPosts.map((post) => ({
