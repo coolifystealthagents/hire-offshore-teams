@@ -6,7 +6,8 @@
 .editorial-hero h1 {
   max-width: 100%;
   overflow-wrap: anywhere;
-  font-size: clamp(2.7rem, 6vw, 6.3rem);
+  font-size: clamp(2.55rem, 5vw, 4.8rem);
+  line-height: 1.05;
   text-wrap: balance;
 }
 
@@ -66,8 +67,9 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1200 / 630;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: center;
 }
 
 .article-section {
@@ -76,8 +78,8 @@
 
 .editorial-article h2 {
   margin: 0 0 1.25rem;
-  font-size: clamp(2rem, 3.5vw, 3.25rem);
-  line-height: 1.1;
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.15;
   text-wrap: balance;
 }
 
@@ -314,7 +316,7 @@
 
 @media (max-width: 600px) {
   .editorial-hero h1 {
-    font-size: clamp(2.45rem, 13vw, 3.4rem);
+    font-size: clamp(2.3rem, 11vw, 3.2rem);
   }
 
   .article-layout {
@@ -336,6 +338,6 @@
   }
 
   .editorial-article h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }

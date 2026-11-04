@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   applicationName: site.name,
   authors: [{ name: `${site.name} Editorial Team` }],
   creator: site.name,
-  openGraph: { type: 'website', siteName: site.name, title: 'Hire Offshore Teams | Connected Distributed Operations', description: site.heroBody, url: '/', images: [{ url: '/hero.png', width: 1536, height: 1024, alt: site.heroAlt }] },
-  twitter: { card: 'summary_large_image', title: 'Hire Offshore Teams | Connected Distributed Operations', description: site.heroBody, images: ['/hero.png'] },
+  openGraph: { type: 'website', siteName: site.name, title: 'Hire Offshore Teams | Connected Distributed Operations', description: site.heroBody, url: '/', images: [{ url: '/images/home-hero-team.jpg', width: 1536, height: 1024, alt: 'Offshore operations specialists coordinating a distributed workflow' }] },
+  twitter: { card: 'summary_large_image', title: 'Hire Offshore Teams | Connected Distributed Operations', description: site.heroBody, images: ['/images/home-hero-team.jpg'] },
   alternates: { canonical: '/' },
   robots: { index: true, follow: true }
 };

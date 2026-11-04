@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { site } from '@/lib/site';
 import { ArrowIcon } from '@/components/Icons';
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return <main id="main-content" tabIndex={-1} className="services-index">
-    <header className="services-hero"><div><p className="eyebrow">Offshore team services</p><h1>Build capacity around the work, not a generic job title.</h1><p>Six focused team models connect recurring queues to a defined role, accepted output, named reviewer, and human decision path.</p><Link className="button primary" href="/contact-us">Map the right team</Link></div><div className="service-system" aria-label="Service operating model"><span>Queue</span><i /><span>Role</span><i /><span>Review</span><i /><span>Decision</span><p>Every team model follows the same accountable operating logic while its scope and controls stay specific to the function.</p></div></header>
+    <header className="services-hero"><div><p className="eyebrow">Offshore team services</p><h1>Build capacity around the work, not a generic job title.</h1><p>Six focused team models connect recurring queues to a defined role, accepted output, named reviewer, and human decision path.</p><Link className="button primary" href="/contact-us">Map the right team</Link></div><figure className="services-hero-image"><Image src="/images/services-hero-workshop.jpg" alt="Operations leaders mapping service queues, review points, and exception paths" width={1536} height={1024} sizes="(max-width: 980px) 90vw, 43vw" priority /><figcaption><strong>Queue → Role → Review → Decision</strong><span>Every service uses accountable operating logic while its scope and controls stay specific to the function.</span></figcaption></figure></header>
 
     <section className="service-directory"><div className="section-heading"><p className="eyebrow">The complete service system</p><h2>Find the queue your leaders need to release.</h2><p>Open any service to review the audience, required inputs, exact scope, workflow, outputs, boundaries, quality controls, common scenarios, and questions.</p></div><div className="directory-list">{site.services.map((service) => <Link href={`/services/${service.slug}`} key={service.slug}><div><h3>{service.name}</h3><p>{service.short}</p></div><span>Review complete scope <ArrowIcon /></span></Link>)}</div></section>
 
