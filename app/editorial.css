@@ -341,3 +341,12 @@
     font-size: 1.8rem;
   }
 }
+
+/* 2026-11-05 batch: compact two-column article and continuous prose */
+.article-layout{grid-template-columns:minmax(0,760px) 280px;gap:32px}
+.article-sidebar{max-height:calc(100dvh - 8rem)}
+.article-section{margin-top:2.2rem}
+.editorial-article h2{margin:1.8em 0 .65em}
+.editorial-article p{margin:0 0 1.15em;line-height:1.72}
+.article-hero-image{margin-bottom:2rem}
+@media (max-width:960px){.article-layout{grid-template-columns:minmax(0,760px);gap:2rem}}
