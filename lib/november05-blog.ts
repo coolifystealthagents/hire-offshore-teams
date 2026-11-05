@@ -93,8 +93,7 @@ export const november05BlogPosts: readonly BlogPost[] = [
     "source": {
       "label": "Internal Revenue Service",
       "url": "https://www.irs.gov/"
-    },
-    "image": "/thumbnails/november-05/map-the-offshore-operations-team-decision-to-one-accountable-owner-for-the-november-review.webp"
+    }
   },
   {
     "slug": "write-the-offshore-customer-support-team-intake-note-that-survives-a-later-review-for-the-november-review",
@@ -188,8 +187,7 @@ export const november05BlogPosts: readonly BlogPost[] = [
     "source": {
       "label": "IRS Form W-9 guidance",
       "url": "https://www.irs.gov/forms-pubs/about-form-w-9"
-    },
-    "image": "/thumbnails/november-05/write-the-offshore-customer-support-team-intake-note-that-survives-a-later-review-for-the-november-review.webp"
+    }
   },
   {
     "slug": "cut-rework-at-the-offshore-sales-support-team-handoff-with-a-two-field-check-for-the-november-review",
@@ -283,8 +281,7 @@ export const november05BlogPosts: readonly BlogPost[] = [
     "source": {
       "label": "U.S. Government Accountability Office",
       "url": "https://www.gao.gov/"
-    },
-    "image": "/thumbnails/november-05/cut-rework-at-the-offshore-sales-support-team-handoff-with-a-two-field-check-for-the-november-review.webp"
+    }
   },
   {
     "slug": "resolve-a-conflicting-offshore-finance-administration-team-record-without-erasing-history-for-the-november-review",
@@ -378,8 +375,7 @@ export const november05BlogPosts: readonly BlogPost[] = [
     "source": {
       "label": "AICPA and CIMA",
       "url": "https://www.aicpa-cima.com/"
-    },
-    "image": "/thumbnails/november-05/resolve-a-conflicting-offshore-finance-administration-team-record-without-erasing-history-for-the-november-review.webp"
+    }
   },
   {
     "slug": "sample-offshore-executive-support-team-quality-weekly-not-only-volume-for-the-november-review",
@@ -473,8 +469,7 @@ export const november05BlogPosts: readonly BlogPost[] = [
     "source": {
       "label": "NIST Cybersecurity Framework",
       "url": "https://www.nist.gov/cyberframework"
-    },
-    "image": "/thumbnails/november-05/sample-offshore-executive-support-team-quality-weekly-not-only-volume-for-the-november-review.webp"
+    }
   },
   {
     "slug": "build-an-exception-code-list-the-offshore-back-office-team-team-will-use-for-the-november-review",
@@ -568,8 +563,7 @@ export const november05BlogPosts: readonly BlogPost[] = [
     "source": {
       "label": "U.S. Small Business Administration",
       "url": "https://www.sba.gov/"
-    },
-    "image": "/thumbnails/november-05/build-an-exception-code-list-the-offshore-back-office-team-team-will-use-for-the-november-review.webp"
+    }
   },
   {
     "slug": "keep-offshore-operations-team-queue-evidence-durable-when-the-systems-change-for-the-november-review",
@@ -663,8 +657,7 @@ export const november05BlogPosts: readonly BlogPost[] = [
     "source": {
       "label": "Internal Revenue Service",
       "url": "https://www.irs.gov/"
-    },
-    "image": "/thumbnails/november-05/keep-offshore-operations-team-queue-evidence-durable-when-the-systems-change-for-the-november-review.webp"
+    }
   },
   {
     "slug": "prepare-offshore-customer-support-team-queue-work-for-month-end-without-a-scramble-for-the-november-review",
@@ -758,7 +751,6 @@ export const november05BlogPosts: readonly BlogPost[] = [
     "source": {
       "label": "IRS Form W-9 guidance",
       "url": "https://www.irs.gov/forms-pubs/about-form-w-9"
-    },
-    "image": "/thumbnails/november-05/prepare-offshore-customer-support-team-queue-work-for-month-end-without-a-scramble-for-the-november-review.webp"
+    }
   }
 ];

@@ -108,8 +108,7 @@ export const november05ResearchPosts: readonly ResearchPost[] = [
         "label": "U.S. Small Business Administration",
         "url": "https://www.sba.gov/"
       }
-    ],
-    "image": "/thumbnails/november-05/how-complete-is-the-evidence-in-the-offshore-operations-team-record-for-the-november-review.webp"
+    ]
   },
   {
     "slug": "where-does-delay-accumulate-in-the-offshore-customer-support-team-handoff-for-the-november-review",
@@ -218,8 +217,7 @@ export const november05ResearchPosts: readonly ResearchPost[] = [
         "label": "U.S. Small Business Administration",
         "url": "https://www.sba.gov/"
       }
-    ],
-    "image": "/thumbnails/november-05/where-does-delay-accumulate-in-the-offshore-customer-support-team-handoff-for-the-november-review.webp"
+    ]
   },
   {
     "slug": "how-old-are-the-exceptions-in-the-offshore-sales-support-team-queue-for-the-november-review",
@@ -328,8 +326,7 @@ export const november05ResearchPosts: readonly ResearchPost[] = [
         "label": "U.S. Small Business Administration",
         "url": "https://www.sba.gov/"
       }
-    ],
-    "image": "/thumbnails/november-05/how-old-are-the-exceptions-in-the-offshore-sales-support-team-queue-for-the-november-review.webp"
+    ]
   },
   {
     "slug": "what-happens-to-offshore-finance-administration-team-coverage-when-the-owner-is-away-for-the-november-review",
@@ -438,8 +435,7 @@ export const november05ResearchPosts: readonly ResearchPost[] = [
         "label": "U.S. Small Business Administration",
         "url": "https://www.sba.gov/"
       }
-    ],
-    "image": "/thumbnails/november-05/what-happens-to-offshore-finance-administration-team-coverage-when-the-owner-is-away-for-the-november-review.webp"
+    ]
   },
   {
     "slug": "can-the-offshore-executive-support-team-report-be-reproduced-from-its-sources-for-the-november-review",
@@ -548,8 +544,7 @@ export const november05ResearchPosts: readonly ResearchPost[] = [
         "label": "U.S. Small Business Administration",
         "url": "https://www.sba.gov/"
       }
-    ],
-    "image": "/thumbnails/november-05/can-the-offshore-executive-support-team-report-be-reproduced-from-its-sources-for-the-november-review.webp"
+    ]
   },
   {
     "slug": "do-exceptions-in-the-offshore-back-office-team-queue-clear-within-one-business-day-for-the-november-review",
@@ -658,8 +653,7 @@ export const november05ResearchPosts: readonly ResearchPost[] = [
         "label": "U.S. Small Business Administration",
         "url": "https://www.sba.gov/"
       }
-    ],
-    "image": "/thumbnails/november-05/do-exceptions-in-the-offshore-back-office-team-queue-clear-within-one-business-day-for-the-november-review.webp"
+    ]
   },
   {
     "slug": "how-stable-is-offshore-operations-team-queue-coverage-when-one-specialist-is-away-for-the-november-review",
@@ -768,7 +762,6 @@ export const november05ResearchPosts: readonly ResearchPost[] = [
         "label": "U.S. Small Business Administration",
         "url": "https://www.sba.gov/"
       }
-    ],
-    "image": "/thumbnails/november-05/how-stable-is-offshore-operations-team-queue-coverage-when-one-specialist-is-away-for-the-november-review.webp"
+    ]
   }
 ];
