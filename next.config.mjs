@@ -5,11 +5,11 @@ const csp = [
   "frame-ancestors 'self'",
   "form-action 'self'",
   "object-src 'none'",
-  " https://databull.stealthagents.us 'self' 'unsafe-inline' https://acrtracking.stealthagents.us https://static.cloudflareinsights.com",
+  "script-src https://databull.stealthagents.us 'self' 'unsafe-inline' https://acrtracking.stealthagents.us https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
   "font-src 'self' data:",
-  " https://databull.stealthagents.us 'self' https://acrtracking.stealthagents.us https://cloudflareinsights.com",
+  "connect-src https://databull.stealthagents.us 'self' https://acrtracking.stealthagents.us https://cloudflareinsights.com",
   "frame-src https://go.oncehub.com https://*.oncehub.com",
   "upgrade-insecure-requests"
 ].join('; ');
