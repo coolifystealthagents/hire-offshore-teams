@@ -13,57 +13,57 @@ export const november08ResearchPosts: readonly ResearchPost[] = [
       {
         "heading": "Question and scope",
         "paragraphs": [
-          "This is a proposed research protocol, not a report of completed findings. It asks how often an offshore handoff misses the next action or the owner. The result would describe the handoff record, not the team's effort. A control that depends on memory is not yet a control.",
-          "The protocol does not measure whether the next shift made a good decision. It measures whether the record supplied the facts needed to act. Update the template when the same question appears twice. Keep the original note beside the corrected version."
+          "This is a proposed research protocol, not a report of completed findings. It asks how often an offshore handoff misses the next action or the owner. The result would describe the handoff record, not the team's effort. A control that depends on memory is not yet a control. The access review should name the role and the permission level. The review should leave one owner and one date.",
+          "The protocol does not measure whether the next shift made a good decision. It measures whether the record supplied the facts needed to act. Update the template when the same question appears twice. Keep the original note beside the corrected version. The client owner should see the trade-off before the scope changes."
         ]
       },
       {
         "heading": "Population and unit of analysis",
         "paragraphs": [
-          "Define the population as handoffs created during a stated window. The unit is one handoff, with the open tasks, the owners, and the next actions recorded. Handoffs without a written record should be counted separately. Keep the boundary visible in the place where the work is assigned.",
-          "Link the handoff to the tasks so the same work is not counted twice across shifts. A short note with four fields is easier to use than a long narrative. Separate what was observed from what was assumed. Record the exception and the person who approved it."
+          "Define the population as handoffs created during a stated window. The unit is one handoff, with the open tasks, the owners, and the next actions recorded. Handoffs without a written record should be counted separately. Keep the boundary visible in the place where the work is assigned. The offshore team should record the local time for both locations. The client owner should see the trade-off before the scope changes.",
+          "Link the handoff to the tasks so the same work is not counted twice across shifts. A short note with four fields is easier to use than a long narrative. Separate what was observed from what was assumed. Record the exception and the person who approved it. The status vocabulary should be short enough to remember."
         ]
       },
       {
         "heading": "Definitions and measures",
         "paragraphs": [
-          "Define completeness as the presence of the task, the source, the next action, and the owner. Define usability as whether the next shift can start without asking a question. Keep the evidence with the record rather than in a separate log. If the source is unclear, route the question instead of guessing.",
-          "Report completeness and usability separately. A complete note can still be ambiguous. Name the owner in the same line as the action. Record the exception and the person who approved it."
+          "Define completeness as the presence of the task, the source, the next action, and the owner. Define usability as whether the next shift can start without asking a question. Keep the evidence with the record rather than in a separate log. If the source is unclear, route the question instead of guessing. The offshore team should record the local time for both locations. The team lead should review the missed handoffs weekly.",
+          "Report completeness and usability separately. A complete note can still be ambiguous. Name the owner in the same line as the action. Record the exception and the person who approved it. The capacity plan should use productive hours, not scheduled hours. The quality sample should link the finding to the source update."
         ]
       },
       {
         "heading": "Evidence standard",
         "paragraphs": [
-          "Link each field to the handoff or the task record. A field added in a later message should record the date and sender. Name the owner in the same line as the action. Separate what was observed from what was assumed.",
-          "Keep the original handoff and the correction. A later review should see what the next shift was told. A control that depends on memory is not yet a control. A short note with four fields is easier to use than a long narrative."
+          "Link each field to the handoff or the task record. A field added in a later message should record the date and sender. Name the owner in the same line as the action. Separate what was observed from what was assumed. The onboarding plan should end with a written readiness decision. The access review should name the role and the permission level.",
+          "Keep the original handoff and the correction. A later review should see what the next shift was told. A control that depends on memory is not yet a control. A short note with four fields is easier to use than a long narrative. The status vocabulary should be short enough to remember. The capacity plan should use productive hours, not scheduled hours."
         ]
       },
       {
         "heading": "Sampling and collection",
         "paragraphs": [
-          "Use a census of the window if the volume is manageable. If sampling is necessary, stratify by shift and task type. Select the sample before reviewing usability. A short note with four fields is easier to use than a long narrative.",
-          "Pilot the classification on a few handoffs and compare the reviewers. Clarify what counts as a next action. Keep the evidence with the record rather than in a separate log. Write the deadline as a date and a local time."
+          "Use a census of the window if the volume is manageable. If sampling is necessary, stratify by shift and task type. Select the sample before reviewing usability. A short note with four fields is easier to use than a long narrative. The quality sample should link the finding to the source update. The capacity plan should use productive hours, not scheduled hours.",
+          "Pilot the classification on a few handoffs and compare the reviewers. Clarify what counts as a next action. Keep the evidence with the record rather than in a separate log. Write the deadline as a date and a local time. The review should leave one owner and one date. The status vocabulary should be short enough to remember."
         ]
       },
       {
         "heading": "Analysis and reporting",
         "paragraphs": [
-          "Report completeness and usability by shift and task type. Show the handoffs that required a follow-up question. That question rate is a practical measure of the handoff's cost. Keep the boundary visible in the place where the work is assigned.",
-          "Present the results as a description of the record, not a judgment about the team. Name the missing fields and the template change. Record the exception and the person who approved it. Update the template when the same question appears twice."
+          "Report completeness and usability by shift and task type. Show the handoffs that required a follow-up question. That question rate is a practical measure of the handoff's cost. Keep the boundary visible in the place where the work is assigned. The change note should keep the original brief visible. The shift report should show the export time and the system.",
+          "Present the results as a description of the record, not a judgment about the team. Name the missing fields and the template change. Record the exception and the person who approved it. Update the template when the same question appears twice. The team lead should review the missed handoffs weekly. The status vocabulary should be short enough to remember."
         ]
       },
       {
         "heading": "Limits and sources of error",
         "paragraphs": [
-          "The handoff may be complete but hard to interpret. The next shift's experience can affect the judgment. State both limitations. A control that depends on memory is not yet a control.",
-          "The study may miss handoffs given verbally. Use a second source to estimate the gap. Record the exception and the person who approved it. Name the owner in the same line as the action."
+          "The handoff may be complete but hard to interpret. The next shift's experience can affect the judgment. State both limitations. A control that depends on memory is not yet a control. The review should leave one owner and one date. The access review should name the role and the permission level.",
+          "The study may miss handoffs given verbally. Use a second source to estimate the gap. Record the exception and the person who approved it. Name the owner in the same line as the action. The capacity plan should use productive hours, not scheduled hours. The team lead should review the missed handoffs weekly."
         ]
       },
       {
         "heading": "Review cadence",
         "paragraphs": [
-          "Repeat the review after a template change or a shift change. Compare the same fields and the same usability definition. Record the exception and the person who approved it. Review the first few notes together before the process expands.",
-          "Assign the follow-up to the team lead and set a date. The protocol should produce a specific decision about the handoff template. Use the same format for every handover so the next reader can scan it. Write the deadline as a date and a local time."
+          "Repeat the review after a template change or a shift change. Compare the same fields and the same usability definition. Record the exception and the person who approved it. Review the first few notes together before the process expands. The shift report should show the export time and the system. The onboarding plan should end with a written readiness decision.",
+          "Assign the follow-up to the team lead and set a date. The protocol should produce a specific decision about the handoff template. Use the same format for every handover so the next reader can scan it. Write the deadline as a date and a local time. The shift report should show the export time and the system. The change note should keep the original brief visible."
         ]
       }
     ],
@@ -94,57 +94,57 @@ export const november08ResearchPosts: readonly ResearchPost[] = [
       {
         "heading": "Question and scope",
         "paragraphs": [
-          "This is a proposed research protocol, not a report of completed findings. It asks how complete the offshore onboarding record is at thirty days. The result would describe the record, not the teammate's ability. Keep the evidence with the record rather than in a separate log.",
-          "The protocol does not measure whether the teammate will succeed. It measures whether the record shows what was covered and what was decided. If the source is unclear, route the question instead of guessing. Record the date and the source so the next reviewer can repeat the check."
+          "This is a proposed research protocol, not a report of completed findings. It asks how complete the offshore onboarding record is at thirty days. The result would describe the record, not the teammate's ability. Keep the evidence with the record rather than in a separate log. The review should leave one owner and one date.",
+          "The protocol does not measure whether the teammate will succeed. It measures whether the record shows what was covered and what was decided. If the source is unclear, route the question instead of guessing. Record the date and the source so the next reviewer can repeat the check. The shift report should show the export time and the system. The status vocabulary should be short enough to remember."
         ]
       },
       {
         "heading": "Population and unit of analysis",
         "paragraphs": [
-          "Define the population as offshore onboarding plans completed during a stated window. The unit is one plan, with the access, tasks, reviews, and readiness decision recorded. Review the first few notes together before the process expands. Keep the evidence with the record rather than in a separate log.",
-          "Link the plan to the teammate's role so the same plan is not counted twice. Review the first few notes together before the process expands. Write the deadline as a date and a local time. Test the rule on one real handoff before applying it to both shifts."
+          "Define the population as offshore onboarding plans completed during a stated window. The unit is one plan, with the access, tasks, reviews, and readiness decision recorded. Review the first few notes together before the process expands. Keep the evidence with the record rather than in a separate log. The quality sample should link the finding to the source update. The review should leave one owner and one date.",
+          "Link the plan to the teammate's role so the same plan is not counted twice. Review the first few notes together before the process expands. Write the deadline as a date and a local time. Test the rule on one real handoff before applying it to both shifts. The onboarding plan should end with a written readiness decision. The shift report should show the export time and the system."
         ]
       },
       {
         "heading": "Definitions and measures",
         "paragraphs": [
-          "Define completeness as the presence of the required fields. Define readiness evidence as a reviewed task output that meets the standard. Separate what was observed from what was assumed. Ask whether a new reviewer could act on the record without a conversation.",
-          "Report completeness and readiness evidence separately. A complete plan can still lack a readiness decision. Review the first few notes together before the process expands. Write the deadline as a date and a local time."
+          "Define completeness as the presence of the required fields. Define readiness evidence as a reviewed task output that meets the standard. Separate what was observed from what was assumed. Ask whether a new reviewer could act on the record without a conversation. The offshore team should record the local time for both locations. The client owner should see the trade-off before the scope changes.",
+          "Report completeness and readiness evidence separately. A complete plan can still lack a readiness decision. Review the first few notes together before the process expands. Write the deadline as a date and a local time. The team lead should review the missed handoffs weekly. The capacity plan should use productive hours, not scheduled hours."
         ]
       },
       {
         "heading": "Evidence standard",
         "paragraphs": [
-          "Link each milestone to the output and the review note. A note that says completed training is not evidence of the ability to do the work. A short note with four fields is easier to use than a long narrative. Test the rule on one real handoff before applying it to both shifts.",
-          "Keep the original plan and the change note. A later correction should show what was added. Separate what was observed from what was assumed. Name the owner in the same line as the action."
+          "Link each milestone to the output and the review note. A note that says completed training is not evidence of the ability to do the work. A short note with four fields is easier to use than a long narrative. Test the rule on one real handoff before applying it to both shifts. The client owner should see the trade-off before the scope changes. The access review should name the role and the permission level.",
+          "Keep the original plan and the change note. A later correction should show what was added. Separate what was observed from what was assumed. Name the owner in the same line as the action. The capacity plan should use productive hours, not scheduled hours. The quality sample should link the finding to the source update."
         ]
       },
       {
         "heading": "Sampling and collection",
         "paragraphs": [
-          "Use a census of the plans if the volume is manageable. If sampling is necessary, stratify by role and client. Select the sample before reviewing readiness. Keep the original note beside the corrected version.",
-          "Pilot the classification on a few plans and compare the reviewers. Clarify what counts as a reviewed output. Keep the boundary visible in the place where the work is assigned. Keep the evidence with the record rather than in a separate log."
+          "Use a census of the plans if the volume is manageable. If sampling is necessary, stratify by role and client. Select the sample before reviewing readiness. Keep the original note beside the corrected version. The access review should name the role and the permission level. The client owner should see the trade-off before the scope changes.",
+          "Pilot the classification on a few plans and compare the reviewers. Clarify what counts as a reviewed output. Keep the boundary visible in the place where the work is assigned. Keep the evidence with the record rather than in a separate log. The team lead should review the missed handoffs weekly. The change note should keep the original brief visible."
         ]
       },
       {
         "heading": "Analysis and reporting",
         "paragraphs": [
-          "Report completeness and readiness evidence by role. Show the plans that ended without a readiness decision. Test the rule on one real handoff before applying it to both shifts. Use the same format for every handover so the next reader can scan it.",
-          "Present the results as a description of the record, not a judgment about the teammate. Name the missing fields and the plan change. A short note with four fields is easier to use than a long narrative. Keep the boundary visible in the place where the work is assigned."
+          "Report completeness and readiness evidence by role. Show the plans that ended without a readiness decision. Test the rule on one real handoff before applying it to both shifts. Use the same format for every handover so the next reader can scan it. The capacity plan should use productive hours, not scheduled hours. The access review should name the role and the permission level.",
+          "Present the results as a description of the record, not a judgment about the teammate. Name the missing fields and the plan change. A short note with four fields is easier to use than a long narrative. Keep the boundary visible in the place where the work is assigned. The quality sample should link the finding to the source update. The review should leave one owner and one date."
         ]
       },
       {
         "heading": "Limits and sources of error",
         "paragraphs": [
-          "The record may be complete but the review may have been informal. State the evidence used. Keep the boundary visible in the place where the work is assigned. If the source is unclear, route the question instead of guessing.",
-          "The thirty-day window may be too short for some roles. Report the role and the window. Update the template when the same question appears twice. Record the date and the source so the next reviewer can repeat the check."
+          "The record may be complete but the review may have been informal. State the evidence used. Keep the boundary visible in the place where the work is assigned. If the source is unclear, route the question instead of guessing. The access review should name the role and the permission level. The offshore team should record the local time for both locations.",
+          "The thirty-day window may be too short for some roles. Report the role and the window. Update the template when the same question appears twice. Record the date and the source so the next reviewer can repeat the check. The review should leave one owner and one date. The status vocabulary should be short enough to remember."
         ]
       },
       {
         "heading": "Review cadence",
         "paragraphs": [
-          "Repeat the review after a plan change or at the same interval each quarter. Compare the same roles and the same readiness standard. Test the rule on one real handoff before applying it to both shifts. Ask whether a new reviewer could act on the record without a conversation.",
-          "Assign the follow-up to the onboarding owner and set a date. The protocol should produce a specific decision about the readiness evidence. Ask whether a new reviewer could act on the record without a conversation. Name the owner in the same line as the action."
+          "Repeat the review after a plan change or at the same interval each quarter. Compare the same roles and the same readiness standard. Test the rule on one real handoff before applying it to both shifts. Ask whether a new reviewer could act on the record without a conversation. The capacity plan should use productive hours, not scheduled hours. The client owner should see the trade-off before the scope changes.",
+          "Assign the follow-up to the onboarding owner and set a date. The protocol should produce a specific decision about the readiness evidence. Ask whether a new reviewer could act on the record without a conversation. Name the owner in the same line as the action. The status vocabulary should be short enough to remember. The review should leave one owner and one date."
         ]
       }
     ],
@@ -175,57 +175,57 @@ export const november08ResearchPosts: readonly ResearchPost[] = [
       {
         "heading": "Question and scope",
         "paragraphs": [
-          "This is a proposed research protocol, not a report of completed findings. It asks what share of client scope changes are recorded and approved before work starts. The result would describe the control, not the client's intent. Record the exception and the person who approved it.",
-          "The protocol does not measure whether the change was a good idea. It measures whether the team had an approved record before acting. Review the first few notes together before the process expands. Ask whether a new reviewer could act on the record without a conversation."
+          "This is a proposed research protocol, not a report of completed findings. It asks what share of client scope changes are recorded and approved before work starts. The result would describe the control, not the client's intent. Record the exception and the person who approved it. The offshore team should record the local time for both locations. The shift report should show the export time and the system.",
+          "The protocol does not measure whether the change was a good idea. It measures whether the team had an approved record before acting. Review the first few notes together before the process expands. Ask whether a new reviewer could act on the record without a conversation. The shift report should show the export time and the system. The review should leave one owner and one date."
         ]
       },
       {
         "heading": "Population and unit of analysis",
         "paragraphs": [
-          "Define the population as scope changes during a stated window. The unit is one change, with the request, the impact, the approval, and the start date recorded. Test the rule on one real handoff before applying it to both shifts. Keep the evidence with the record rather than in a separate log.",
-          "Link the change to the original brief so the same change is not counted twice. Name the owner in the same line as the action. Write the deadline as a date and a local time. Test the rule on one real handoff before applying it to both shifts."
+          "Define the population as scope changes during a stated window. The unit is one change, with the request, the impact, the approval, and the start date recorded. Test the rule on one real handoff before applying it to both shifts. Keep the evidence with the record rather than in a separate log. A handoff that cannot be confirmed is not yet complete. The change note should keep the original brief visible.",
+          "Link the change to the original brief so the same change is not counted twice. Name the owner in the same line as the action. Write the deadline as a date and a local time. Test the rule on one real handoff before applying it to both shifts. The offshore team should record the local time for both locations. The shift report should show the export time and the system."
         ]
       },
       {
         "heading": "Definitions and measures",
         "paragraphs": [
-          "Define pre-work approval as an approval dated before the first task on the new scope. Define completeness as the presence of the request, impact, and approval. Separate what was observed from what was assumed. Record the exception and the person who approved it.",
-          "Report the pre-work approval rate and the completeness rate separately. A short note with four fields is easier to use than a long narrative. Update the template when the same question appears twice. Record the exception and the person who approved it."
+          "Define pre-work approval as an approval dated before the first task on the new scope. Define completeness as the presence of the request, impact, and approval. Separate what was observed from what was assumed. Record the exception and the person who approved it. The shift report should show the export time and the system. The team lead should review the missed handoffs weekly.",
+          "Report the pre-work approval rate and the completeness rate separately. A short note with four fields is easier to use than a long narrative. Update the template when the same question appears twice. Record the exception and the person who approved it. The change note should keep the original brief visible. The review should leave one owner and one date."
         ]
       },
       {
         "heading": "Evidence standard",
         "paragraphs": [
-          "Link each change to the request, the approval, and the task record. A note that says client asked is not an approval. Use the same format for every handover so the next reader can scan it. Keep the boundary visible in the place where the work is assigned.",
-          "Use the task timestamp to establish when the work started. A later approval should be marked as late. Separate what was observed from what was assumed. Test the rule on one real handoff before applying it to both shifts."
+          "Link each change to the request, the approval, and the task record. A note that says client asked is not an approval. Use the same format for every handover so the next reader can scan it. Keep the boundary visible in the place where the work is assigned. The review should leave one owner and one date. The quality sample should link the finding to the source update.",
+          "Use the task timestamp to establish when the work started. A later approval should be marked as late. Separate what was observed from what was assumed. Test the rule on one real handoff before applying it to both shifts. The onboarding plan should end with a written readiness decision. The offshore team should record the local time for both locations."
         ]
       },
       {
         "heading": "Sampling and collection",
         "paragraphs": [
-          "Use a census of the changes if the volume is manageable. If sampling is necessary, stratify by client and change type. Record the exception and the person who approved it. Write the deadline as a date and a local time.",
-          "Pilot the classification on a few changes and compare the reviewers. Clarify what counts as the first task. Update the template when the same question appears twice. Separate what was observed from what was assumed."
+          "Use a census of the changes if the volume is manageable. If sampling is necessary, stratify by client and change type. Record the exception and the person who approved it. Write the deadline as a date and a local time. The review should leave one owner and one date. The team lead should review the missed handoffs weekly.",
+          "Pilot the classification on a few changes and compare the reviewers. Clarify what counts as the first task. Update the template when the same question appears twice. Separate what was observed from what was assumed. The capacity plan should use productive hours, not scheduled hours."
         ]
       },
       {
         "heading": "Analysis and reporting",
         "paragraphs": [
-          "Report the pre-work approval rate by client and change type. Show the changes that were approved after the work started. Ask whether a new reviewer could act on the record without a conversation. Record the exception and the person who approved it.",
-          "Present the results as a description of the control, not a judgment about the client. Name the step that should be strengthened. Review the first few notes together before the process expands. Separate what was observed from what was assumed."
+          "Report the pre-work approval rate by client and change type. Show the changes that were approved after the work started. Ask whether a new reviewer could act on the record without a conversation. Record the exception and the person who approved it. The quality sample should link the finding to the source update.",
+          "Present the results as a description of the control, not a judgment about the client. Name the step that should be strengthened. Review the first few notes together before the process expands. Separate what was observed from what was assumed. The team lead should review the missed handoffs weekly. The review should leave one owner and one date."
         ]
       },
       {
         "heading": "Limits and sources of error",
         "paragraphs": [
-          "The start date may be unclear if the work was exploratory. State the rule used. Test the rule on one real handoff before applying it to both shifts. Keep the evidence with the record rather than in a separate log.",
-          "The approval may have been verbal and recorded later. Mark it as late evidence. Use the same format for every handover so the next reader can scan it. A control that depends on memory is not yet a control."
+          "The start date may be unclear if the work was exploratory. State the rule used. Test the rule on one real handoff before applying it to both shifts. Keep the evidence with the record rather than in a separate log. The team lead should review the missed handoffs weekly. The shift report should show the export time and the system.",
+          "The approval may have been verbal and recorded later. Mark it as late evidence. Use the same format for every handover so the next reader can scan it. A control that depends on memory is not yet a control. The quality sample should link the finding to the source update. The onboarding plan should end with a written readiness decision."
         ]
       },
       {
         "heading": "Review cadence",
         "paragraphs": [
-          "Repeat the review after a process change or at the same interval each quarter. Compare the same change types. Separate what was observed from what was assumed. A control that depends on memory is not yet a control.",
-          "Assign the follow-up to the account owner and set a date. The protocol should produce a specific decision about the approval step. Update the template when the same question appears twice. A short note with four fields is easier to use than a long narrative."
+          "Repeat the review after a process change or at the same interval each quarter. Compare the same change types. Separate what was observed from what was assumed. A control that depends on memory is not yet a control. The capacity plan should use productive hours, not scheduled hours. A handoff that cannot be confirmed is not yet complete.",
+          "Assign the follow-up to the account owner and set a date. The protocol should produce a specific decision about the approval step. Update the template when the same question appears twice. A short note with four fields is easier to use than a long narrative. The team lead should review the missed handoffs weekly. The change note should keep the original brief visible."
         ]
       }
     ],
@@ -256,57 +256,57 @@ export const november08ResearchPosts: readonly ResearchPost[] = [
       {
         "heading": "Question and scope",
         "paragraphs": [
-          "This is a proposed research protocol, not a report of completed findings. It asks how consistently offshore shifts record volume, handling time, and available hours. The result would describe the reports, not the team's productivity. Update the template when the same question appears twice.",
-          "The protocol does not measure whether the staffing level was correct. It measures whether the inputs to the decision mean the same thing. Keep the evidence with the record rather than in a separate log. Keep the original note beside the corrected version."
+          "This is a proposed research protocol, not a report of completed findings. It asks how consistently offshore shifts record volume, handling time, and available hours. The result would describe the reports, not the team's productivity. Update the template when the same question appears twice. The status vocabulary should be short enough to remember. The capacity plan should use productive hours, not scheduled hours.",
+          "The protocol does not measure whether the staffing level was correct. It measures whether the inputs to the decision mean the same thing. Keep the evidence with the record rather than in a separate log. Keep the original note beside the corrected version. The status vocabulary should be short enough to remember. The quality sample should link the finding to the source update."
         ]
       },
       {
         "heading": "Population and unit of analysis",
         "paragraphs": [
-          "Define the population as shift reports during a stated window across two or more shifts. The unit is one shift report, with the volume, handling time, and available hours recorded. A control that depends on memory is not yet a control. Test the rule on one real handoff before applying it to both shifts.",
-          "Link the report to the queue so the same work is not counted twice. If the source is unclear, route the question instead of guessing. Record the date and the source so the next reviewer can repeat the check. Use the same format for every handover so the next reader can scan it."
+          "Define the population as shift reports during a stated window across two or more shifts. The unit is one shift report, with the volume, handling time, and available hours recorded. A control that depends on memory is not yet a control. Test the rule on one real handoff before applying it to both shifts. A handoff that cannot be confirmed is not yet complete. The offshore team should record the local time for both locations.",
+          "Link the report to the queue so the same work is not counted twice. If the source is unclear, route the question instead of guessing. Record the date and the source so the next reviewer can repeat the check. Use the same format for every handover so the next reader can scan it. The quality sample should link the finding to the source update. A handoff that cannot be confirmed is not yet complete."
         ]
       },
       {
         "heading": "Definitions and measures",
         "paragraphs": [
-          "Define volume as the tasks received in the interval. Define handling time as the time from acceptance to completion, including rework. Define available hours as productive time, not scheduled time. A short note with four fields is easier to use than a long narrative.",
-          "Report the definitions and the rates by shift. A high available-hours figure with a different definition may not be comparable. Record the date and the source so the next reviewer can repeat the check. A control that depends on memory is not yet a control."
+          "Define volume as the tasks received in the interval. Define handling time as the time from acceptance to completion, including rework. Define available hours as productive time, not scheduled time. A short note with four fields is easier to use than a long narrative. The access review should name the role and the permission level. The review should leave one owner and one date.",
+          "Report the definitions and the rates by shift. A high available-hours figure with a different definition may not be comparable. Record the date and the source so the next reviewer can repeat the check. A control that depends on memory is not yet a control. The onboarding plan should end with a written readiness decision."
         ]
       },
       {
         "heading": "Evidence standard",
         "paragraphs": [
-          "Use the queue export and the time record. A manual summary without a source is weak evidence. Record the exception and the person who approved it. A control that depends on memory is not yet a control.",
-          "Record the export time and the system. A report that was edited after the shift should be marked as edited. A control that depends on memory is not yet a control. Test the rule on one real handoff before applying it to both shifts."
+          "Use the queue export and the time record. A manual summary without a source is weak evidence. Record the exception and the person who approved it. A control that depends on memory is not yet a control. The review should leave one owner and one date. The shift report should show the export time and the system.",
+          "Record the export time and the system. A report that was edited after the shift should be marked as edited. A control that depends on memory is not yet a control. Test the rule on one real handoff before applying it to both shifts. The team lead should review the missed handoffs weekly. The status vocabulary should be short enough to remember."
         ]
       },
       {
         "heading": "Sampling and collection",
         "paragraphs": [
-          "Use a census of the shift reports. If sampling is necessary, stratify by shift and day of week. A short note with four fields is easier to use than a long narrative. Record the exception and the person who approved it.",
-          "Pilot the review on a few reports and compare the reviewers. Clarify how a task carried across shifts is treated. Ask whether a new reviewer could act on the record without a conversation. Keep the evidence with the record rather than in a separate log."
+          "Use a census of the shift reports. If sampling is necessary, stratify by shift and day of week. A short note with four fields is easier to use than a long narrative. Record the exception and the person who approved it. The client owner should see the trade-off before the scope changes. The offshore team should record the local time for both locations.",
+          "Pilot the review on a few reports and compare the reviewers. Clarify how a task carried across shifts is treated. Ask whether a new reviewer could act on the record without a conversation. Keep the evidence with the record rather than in a separate log. The client owner should see the trade-off before the scope changes. The capacity plan should use productive hours, not scheduled hours."
         ]
       },
       {
         "heading": "Analysis and reporting",
         "paragraphs": [
-          "Report the definitions and the rates by shift. Show the reports where the definitions differ. A total that hides the difference is not a comparison. Write the deadline as a date and a local time.",
-          "Present the results as a description of the reporting practice, not a ranking of shifts. Name the definition that should be standardized. Use the same format for every handover so the next reader can scan it. A control that depends on memory is not yet a control."
+          "Report the definitions and the rates by shift. Show the reports where the definitions differ. A total that hides the difference is not a comparison. Write the deadline as a date and a local time. The client owner should see the trade-off before the scope changes. The review should leave one owner and one date.",
+          "Present the results as a description of the reporting practice, not a ranking of shifts. Name the definition that should be standardized. Use the same format for every handover so the next reader can scan it. A control that depends on memory is not yet a control. The capacity plan should use productive hours, not scheduled hours. The status vocabulary should be short enough to remember."
         ]
       },
       {
         "heading": "Limits and sources of error",
         "paragraphs": [
-          "The time record may be rounded or reconstructed. The queue export may not capture work done outside the system. A short note with four fields is easier to use than a long narrative. Record the exception and the person who approved it.",
-          "The shifts may have different task mixes. Report the mix and avoid comparing unlike periods. Use the same format for every handover so the next reader can scan it. Keep the original note beside the corrected version."
+          "The time record may be rounded or reconstructed. The queue export may not capture work done outside the system. A short note with four fields is easier to use than a long narrative. Record the exception and the person who approved it. The quality sample should link the finding to the source update. The shift report should show the export time and the system.",
+          "The shifts may have different task mixes. Report the mix and avoid comparing unlike periods. Use the same format for every handover so the next reader can scan it. Keep the original note beside the corrected version. The shift report should show the export time and the system. The access review should name the role and the permission level."
         ]
       },
       {
         "heading": "Review cadence",
         "paragraphs": [
-          "Repeat the review after a definition change or at the same interval each quarter. Compare the same shifts and the same intervals. Use the same format for every handover so the next reader can scan it. Test the rule on one real handoff before applying it to both shifts.",
-          "Assign the follow-up to the capacity owner and set a date. The protocol should produce a specific decision about the definitions. A short note with four fields is easier to use than a long narrative. Keep the boundary visible in the place where the work is assigned."
+          "Repeat the review after a definition change or at the same interval each quarter. Compare the same shifts and the same intervals. Use the same format for every handover so the next reader can scan it. Test the rule on one real handoff before applying it to both shifts. The onboarding plan should end with a written readiness decision. The quality sample should link the finding to the source update.",
+          "Assign the follow-up to the capacity owner and set a date. The protocol should produce a specific decision about the definitions. A short note with four fields is easier to use than a long narrative. Keep the boundary visible in the place where the work is assigned. The shift report should show the export time and the system. The offshore team should record the local time for both locations."
         ]
       }
     ],
@@ -337,57 +337,57 @@ export const november08ResearchPosts: readonly ResearchPost[] = [
       {
         "heading": "Question and scope",
         "paragraphs": [
-          "This is a proposed research protocol, not a report of completed findings. It asks how long offshore access remains after the assignment ends. The result would describe the access record, not the teammate's intent. Separate what was observed from what was assumed.",
-          "The protocol does not measure whether the access was used. It measures whether the permission was removed when the work ended. Keep the original note beside the corrected version. Keep the evidence with the record rather than in a separate log."
+          "This is a proposed research protocol, not a report of completed findings. It asks how long offshore access remains after the assignment ends. The result would describe the access record, not the teammate's intent. Separate what was observed from what was assumed. A handoff that cannot be confirmed is not yet complete.",
+          "The protocol does not measure whether the access was used. It measures whether the permission was removed when the work ended. Keep the original note beside the corrected version. Keep the evidence with the record rather than in a separate log. The access review should name the role and the permission level. A handoff that cannot be confirmed is not yet complete."
         ]
       },
       {
         "heading": "Population and unit of analysis",
         "paragraphs": [
-          "Define the population as offshore assignments that ended during a stated window. The unit is one assignment, with the access granted and the removal date recorded. Review the first few notes together before the process expands. Record the date and the source so the next reviewer can repeat the check.",
-          "Link the assignment to the access record so the same permission is not counted twice. Keep the boundary visible in the place where the work is assigned. Keep the evidence with the record rather than in a separate log. Update the template when the same question appears twice."
+          "Define the population as offshore assignments that ended during a stated window. The unit is one assignment, with the access granted and the removal date recorded. Review the first few notes together before the process expands. Record the date and the source so the next reviewer can repeat the check. The quality sample should link the finding to the source update. The client owner should see the trade-off before the scope changes.",
+          "Link the assignment to the access record so the same permission is not counted twice. Keep the boundary visible in the place where the work is assigned. Keep the evidence with the record rather than in a separate log. Update the template when the same question appears twice. The access review should name the role and the permission level. The status vocabulary should be short enough to remember."
         ]
       },
       {
         "heading": "Definitions and measures",
         "paragraphs": [
-          "Define the access gap as the working time between the assignment end and the removal. Define coverage as the share of assignments with a recorded removal date. Review the first few notes together before the process expands. Name the owner in the same line as the action.",
-          "Report the gap distribution and the share of assignments with no removal record. Record the date and the source so the next reviewer can repeat the check. Separate what was observed from what was assumed. Ask whether a new reviewer could act on the record without a conversation."
+          "Define the access gap as the working time between the assignment end and the removal. Define coverage as the share of assignments with a recorded removal date. Review the first few notes together before the process expands. Name the owner in the same line as the action. The onboarding plan should end with a written readiness decision.",
+          "Report the gap distribution and the share of assignments with no removal record. Record the date and the source so the next reviewer can repeat the check. Separate what was observed from what was assumed. Ask whether a new reviewer could act on the record without a conversation. The status vocabulary should be short enough to remember. The client owner should see the trade-off before the scope changes."
         ]
       },
       {
         "heading": "Evidence standard",
         "paragraphs": [
-          "Use the system access log and the assignment record. A verbal confirmation is not sufficient. Separate what was observed from what was assumed. Use the same format for every handover so the next reader can scan it.",
-          "Mark reconstructed removal dates as estimates. Record the date and the source so the next reviewer can repeat the check. Use the same format for every handover so the next reader can scan it. If the source is unclear, route the question instead of guessing."
+          "Use the system access log and the assignment record. A verbal confirmation is not sufficient. Separate what was observed from what was assumed. Use the same format for every handover so the next reader can scan it. The quality sample should link the finding to the source update. The status vocabulary should be short enough to remember.",
+          "Mark reconstructed removal dates as estimates. Record the date and the source so the next reviewer can repeat the check. Use the same format for every handover so the next reader can scan it. If the source is unclear, route the question instead of guessing. The team lead should review the missed handoffs weekly. The access review should name the role and the permission level."
         ]
       },
       {
         "heading": "Sampling and collection",
         "paragraphs": [
-          "Use a census of the assignments if the number is manageable. If sampling is necessary, stratify by system and role. A control that depends on memory is not yet a control. Review the first few notes together before the process expands.",
-          "Pilot the collection on a few assignments and compare the reviewers. Clarify how a shared account is treated. Keep the boundary visible in the place where the work is assigned. Use the same format for every handover so the next reader can scan it."
+          "Use a census of the assignments if the number is manageable. If sampling is necessary, stratify by system and role. A control that depends on memory is not yet a control. Review the first few notes together before the process expands. The quality sample should link the finding to the source update. The change note should keep the original brief visible.",
+          "Pilot the collection on a few assignments and compare the reviewers. Clarify how a shared account is treated. Keep the boundary visible in the place where the work is assigned. Use the same format for every handover so the next reader can scan it. The client owner should see the trade-off before the scope changes. The status vocabulary should be short enough to remember."
         ]
       },
       {
         "heading": "Analysis and reporting",
         "paragraphs": [
-          "Report the gap by system and role. Show the assignments with no removal record. Write the deadline as a date and a local time. A short note with four fields is easier to use than a long narrative.",
-          "Present the results as a description of the access record, not a judgment about the teammate. Separate what was observed from what was assumed. Record the date and the source so the next reviewer can repeat the check. A short note with four fields is easier to use than a long narrative."
+          "Report the gap by system and role. Show the assignments with no removal record. Write the deadline as a date and a local time. A short note with four fields is easier to use than a long narrative. The review should leave one owner and one date. The quality sample should link the finding to the source update.",
+          "Present the results as a description of the access record, not a judgment about the teammate. Separate what was observed from what was assumed. Record the date and the source so the next reviewer can repeat the check. A short note with four fields is easier to use than a long narrative. The onboarding plan should end with a written readiness decision. The team lead should review the missed handoffs weekly."
         ]
       },
       {
         "heading": "Limits and sources of error",
         "paragraphs": [
-          "The access log may not capture permissions granted outside the main system. The assignment end date may be ambiguous. Write the deadline as a date and a local time. A control that depends on memory is not yet a control.",
-          "The person who granted access may also record the removal. Use a second reviewer where possible. Write the deadline as a date and a local time. Keep the original note beside the corrected version."
+          "The access log may not capture permissions granted outside the main system. The assignment end date may be ambiguous. Write the deadline as a date and a local time. A control that depends on memory is not yet a control. The offshore team should record the local time for both locations. The access review should name the role and the permission level.",
+          "The person who granted access may also record the removal. Use a second reviewer where possible. Write the deadline as a date and a local time. Keep the original note beside the corrected version. The review should leave one owner and one date. The client owner should see the trade-off before the scope changes."
         ]
       },
       {
         "heading": "Review cadence",
         "paragraphs": [
-          "Repeat the review after an access-process change or at the same interval each quarter. Compare the same systems and the same gap definition. Review the first few notes together before the process expands. Separate what was observed from what was assumed.",
-          "Assign the follow-up to the security owner and set a date. The protocol should produce a specific decision about the removal trigger. Record the date and the source so the next reviewer can repeat the check. Separate what was observed from what was assumed."
+          "Repeat the review after an access-process change or at the same interval each quarter. Compare the same systems and the same gap definition. Review the first few notes together before the process expands. Separate what was observed from what was assumed. The onboarding plan should end with a written readiness decision. The client owner should see the trade-off before the scope changes.",
+          "Assign the follow-up to the security owner and set a date. The protocol should produce a specific decision about the removal trigger. Record the date and the source so the next reviewer can repeat the check. Separate what was observed from what was assumed. The team lead should review the missed handoffs weekly. The client owner should see the trade-off before the scope changes."
         ]
       }
     ],
@@ -418,57 +418,57 @@ export const november08ResearchPosts: readonly ResearchPost[] = [
       {
         "heading": "Question and scope",
         "paragraphs": [
-          "This is a proposed research protocol, not a report of completed findings. It asks whether an offshore quality sample can be reproduced from its sources. The result would describe the sample record. Separate what was observed from what was assumed.",
-          "The protocol does not measure whether the writer improved. It measures whether the record explains the finding and the action. A control that depends on memory is not yet a control. Review the first few notes together before the process expands."
+          "This is a proposed research protocol, not a report of completed findings. It asks whether an offshore quality sample can be reproduced from its sources. The result would describe the sample record. Separate what was observed from what was assumed. The review should leave one owner and one date. The status vocabulary should be short enough to remember.",
+          "The protocol does not measure whether the writer improved. It measures whether the record explains the finding and the action. A control that depends on memory is not yet a control. Review the first few notes together before the process expands. The shift report should show the export time and the system."
         ]
       },
       {
         "heading": "Population and unit of analysis",
         "paragraphs": [
-          "Define the population as quality samples completed during a stated window. The unit is one sample item, with the update, the criterion, the finding, and the action recorded. Ask whether a new reviewer could act on the record without a conversation. Keep the boundary visible in the place where the work is assigned.",
-          "Link the item to the update so the same work is not counted twice. A control that depends on memory is not yet a control. Keep the original note beside the corrected version. Update the template when the same question appears twice."
+          "Define the population as quality samples completed during a stated window. The unit is one sample item, with the update, the criterion, the finding, and the action recorded. Ask whether a new reviewer could act on the record without a conversation. Keep the boundary visible in the place where the work is assigned. The team lead should review the missed handoffs weekly. The offshore team should record the local time for both locations.",
+          "Link the item to the update so the same work is not counted twice. A control that depends on memory is not yet a control. Keep the original note beside the corrected version. Update the template when the same question appears twice. The quality sample should link the finding to the source update."
         ]
       },
       {
         "heading": "Definitions and measures",
         "paragraphs": [
-          "Define reproducibility as the ability of a new reviewer to state the finding and the fix using only the sample record. Define completeness as the presence of the criterion, evidence, and action. Write the deadline as a date and a local time. Ask whether a new reviewer could act on the record without a conversation.",
-          "Report reproducibility and completeness separately. A complete score can still be unexplained. Record the exception and the person who approved it. Update the template when the same question appears twice."
+          "Define reproducibility as the ability of a new reviewer to state the finding and the fix using only the sample record. Define completeness as the presence of the criterion, evidence, and action. Write the deadline as a date and a local time. Ask whether a new reviewer could act on the record without a conversation. The team lead should review the missed handoffs weekly. The review should leave one owner and one date.",
+          "Report reproducibility and completeness separately. A complete score can still be unexplained. Record the exception and the person who approved it. Update the template when the same question appears twice. The status vocabulary should be short enough to remember. The offshore team should record the local time for both locations."
         ]
       },
       {
         "heading": "Evidence standard",
         "paragraphs": [
-          "Use the update, the source, and the reviewer note. A score without the evidence is not reproducible. Record the exception and the person who approved it. Use the same format for every handover so the next reader can scan it.",
-          "Keep the original sample and the correction. A later review should see what the reviewer saw. Keep the boundary visible in the place where the work is assigned. Review the first few notes together before the process expands."
+          "Use the update, the source, and the reviewer note. A score without the evidence is not reproducible. Record the exception and the person who approved it. Use the same format for every handover so the next reader can scan it. The client owner should see the trade-off before the scope changes. A handoff that cannot be confirmed is not yet complete.",
+          "Keep the original sample and the correction. A later review should see what the reviewer saw. Keep the boundary visible in the place where the work is assigned. Review the first few notes together before the process expands. A handoff that cannot be confirmed is not yet complete. The change note should keep the original brief visible."
         ]
       },
       {
         "heading": "Sampling and collection",
         "paragraphs": [
-          "Use a census of the sample items if the volume is manageable. If sampling is necessary, stratify by writer and criterion. Keep the evidence with the record rather than in a separate log. Review the first few notes together before the process expands.",
-          "Pilot the reconstruction on a few items and compare the reviewers. Clarify what counts as an action. Record the date and the source so the next reviewer can repeat the check. Write the deadline as a date and a local time."
+          "Use a census of the sample items if the volume is manageable. If sampling is necessary, stratify by writer and criterion. Keep the evidence with the record rather than in a separate log. Review the first few notes together before the process expands. The shift report should show the export time and the system. The capacity plan should use productive hours, not scheduled hours.",
+          "Pilot the reconstruction on a few items and compare the reviewers. Clarify what counts as an action. Record the date and the source so the next reviewer can repeat the check. Write the deadline as a date and a local time. The change note should keep the original brief visible. The team lead should review the missed handoffs weekly."
         ]
       },
       {
         "heading": "Analysis and reporting",
         "paragraphs": [
-          "Report reproducibility and completeness by criterion. Show the items that could not be reconstructed. Name the owner in the same line as the action. Separate what was observed from what was assumed.",
-          "Present the results as a description of the record, not a judgment about the writer. Name the missing evidence and the template change. Test the rule on one real handoff before applying it to both shifts. If the source is unclear, route the question instead of guessing."
+          "Report reproducibility and completeness by criterion. Show the items that could not be reconstructed. Name the owner in the same line as the action. Separate what was observed from what was assumed. The review should leave one owner and one date. The access review should name the role and the permission level.",
+          "Present the results as a description of the record, not a judgment about the writer. Name the missing evidence and the template change. Test the rule on one real handoff before applying it to both shifts. If the source is unclear, route the question instead of guessing. A handoff that cannot be confirmed is not yet complete. The access review should name the role and the permission level."
         ]
       },
       {
         "heading": "Limits and sources of error",
         "paragraphs": [
-          "The reviewer's familiarity with the client can inflate reproducibility. Use a new reviewer where possible. Keep the boundary visible in the place where the work is assigned. A short note with four fields is easier to use than a long narrative.",
-          "The sample may be selected after the error was found. State the selection rule. A control that depends on memory is not yet a control. Separate what was observed from what was assumed."
+          "The reviewer's familiarity with the client can inflate reproducibility. Use a new reviewer where possible. Keep the boundary visible in the place where the work is assigned. A short note with four fields is easier to use than a long narrative. The client owner should see the trade-off before the scope changes. The status vocabulary should be short enough to remember.",
+          "The sample may be selected after the error was found. State the selection rule. A control that depends on memory is not yet a control. Separate what was observed from what was assumed. The client owner should see the trade-off before the scope changes. The team lead should review the missed handoffs weekly."
         ]
       },
       {
         "heading": "Review cadence",
         "paragraphs": [
-          "Repeat the review after a checklist change or at the same interval each quarter. Compare the same criteria and the same method. Write the deadline as a date and a local time. Use the same format for every handover so the next reader can scan it.",
-          "Assign the follow-up to the quality owner and set a date. The protocol should produce a specific decision about the sample record. A short note with four fields is easier to use than a long narrative. Test the rule on one real handoff before applying it to both shifts."
+          "Repeat the review after a checklist change or at the same interval each quarter. Compare the same criteria and the same method. Write the deadline as a date and a local time. Use the same format for every handover so the next reader can scan it. The status vocabulary should be short enough to remember. The offshore team should record the local time for both locations.",
+          "Assign the follow-up to the quality owner and set a date. The protocol should produce a specific decision about the sample record. A short note with four fields is easier to use than a long narrative. Test the rule on one real handoff before applying it to both shifts. A handoff that cannot be confirmed is not yet complete. The shift report should show the export time and the system."
         ]
       }
     ],
@@ -499,57 +499,57 @@ export const november08ResearchPosts: readonly ResearchPost[] = [
       {
         "heading": "Question and scope",
         "paragraphs": [
-          "This is a proposed research protocol, not a report of completed findings. It asks where delay accumulates in a two-shift handoff. The result would separate the handoff wait, the decision wait, and the rework. Use the same format for every handover so the next reader can scan it.",
-          "The protocol does not measure the quality of the decision. It measures the time spent waiting at each stage. Write the deadline as a date and a local time. Ask whether a new reviewer could act on the record without a conversation."
+          "This is a proposed research protocol, not a report of completed findings. It asks where delay accumulates in a two-shift handoff. The result would separate the handoff wait, the decision wait, and the rework. Use the same format for every handover so the next reader can scan it. The change note should keep the original brief visible. The access review should name the role and the permission level.",
+          "The protocol does not measure the quality of the decision. It measures the time spent waiting at each stage. Write the deadline as a date and a local time. Ask whether a new reviewer could act on the record without a conversation. The change note should keep the original brief visible. A handoff that cannot be confirmed is not yet complete."
         ]
       },
       {
         "heading": "Population and unit of analysis",
         "paragraphs": [
-          "Define the population as tasks that crossed a shift boundary during a stated window. The unit is one task, with the handoff time, the decision time, and the completion time recorded. If the source is unclear, route the question instead of guessing. Record the exception and the person who approved it.",
-          "Link the task to the handoff so the same work is not counted twice. Separate what was observed from what was assumed. Write the deadline as a date and a local time. Keep the original note beside the corrected version."
+          "Define the population as tasks that crossed a shift boundary during a stated window. The unit is one task, with the handoff time, the decision time, and the completion time recorded. If the source is unclear, route the question instead of guessing. Record the exception and the person who approved it. The capacity plan should use productive hours, not scheduled hours. The client owner should see the trade-off before the scope changes.",
+          "Link the task to the handoff so the same work is not counted twice. Separate what was observed from what was assumed. Write the deadline as a date and a local time. Keep the original note beside the corrected version. A handoff that cannot be confirmed is not yet complete. The offshore team should record the local time for both locations."
         ]
       },
       {
         "heading": "Definitions and measures",
         "paragraphs": [
-          "Define handoff wait as the time between the task being ready and the next shift accepting it. Define decision wait as the time between acceptance and the owner's decision. Write the deadline as a date and a local time. Keep the boundary visible in the place where the work is assigned.",
-          "Report each stage separately. A single total hides which stage is responsible. Keep the original note beside the corrected version. Ask whether a new reviewer could act on the record without a conversation."
+          "Define handoff wait as the time between the task being ready and the next shift accepting it. Define decision wait as the time between acceptance and the owner's decision. Write the deadline as a date and a local time. Keep the boundary visible in the place where the work is assigned. The status vocabulary should be short enough to remember. The quality sample should link the finding to the source update.",
+          "Report each stage separately. A single total hides which stage is responsible. Keep the original note beside the corrected version. Ask whether a new reviewer could act on the record without a conversation. The client owner should see the trade-off before the scope changes. The capacity plan should use productive hours, not scheduled hours."
         ]
       },
       {
         "heading": "Evidence standard",
         "paragraphs": [
-          "Use system timestamps and the handoff note. For a decision made in a meeting, record the meeting date and the note. Name the owner in the same line as the action. Review the first few notes together before the process expands.",
-          "Mark reconstructed times as estimates. Keep the boundary visible in the place where the work is assigned. Review the first few notes together before the process expands. Separate what was observed from what was assumed."
+          "Use system timestamps and the handoff note. For a decision made in a meeting, record the meeting date and the note. Name the owner in the same line as the action. Review the first few notes together before the process expands. The quality sample should link the finding to the source update. The client owner should see the trade-off before the scope changes.",
+          "Mark reconstructed times as estimates. Keep the boundary visible in the place where the work is assigned. Review the first few notes together before the process expands. Separate what was observed from what was assumed. The status vocabulary should be short enough to remember. The quality sample should link the finding to the source update."
         ]
       },
       {
         "heading": "Sampling and collection",
         "paragraphs": [
-          "Use a census of the crossing tasks if the volume is manageable. If sampling is necessary, stratify by task type and shift. If the source is unclear, route the question instead of guessing. Keep the boundary visible in the place where the work is assigned.",
-          "Pilot the collection on a few tasks and compare the reviewers. Clarify how a weekend is treated. Separate what was observed from what was assumed. A short note with four fields is easier to use than a long narrative."
+          "Use a census of the crossing tasks if the volume is manageable. If sampling is necessary, stratify by task type and shift. If the source is unclear, route the question instead of guessing. Keep the boundary visible in the place where the work is assigned. The change note should keep the original brief visible. The review should leave one owner and one date.",
+          "Pilot the collection on a few tasks and compare the reviewers. Clarify how a weekend is treated. Separate what was observed from what was assumed. A short note with four fields is easier to use than a long narrative. The client owner should see the trade-off before the scope changes. The onboarding plan should end with a written readiness decision."
         ]
       },
       {
         "heading": "Analysis and reporting",
         "paragraphs": [
-          "Report the delay distribution for each stage. Show the tasks where the handoff wait was the largest component. If the source is unclear, route the question instead of guessing. Update the template when the same question appears twice.",
-          "Present the results as a description of the process, not a judgment about the shift. Name the stage to fix first. A short note with four fields is easier to use than a long narrative. Record the date and the source so the next reviewer can repeat the check."
+          "Report the delay distribution for each stage. Show the tasks where the handoff wait was the largest component. If the source is unclear, route the question instead of guessing. Update the template when the same question appears twice. The change note should keep the original brief visible. The quality sample should link the finding to the source update.",
+          "Present the results as a description of the process, not a judgment about the shift. Name the stage to fix first. A short note with four fields is easier to use than a long narrative. Record the date and the source so the next reviewer can repeat the check. The review should leave one owner and one date. The change note should keep the original brief visible."
         ]
       },
       {
         "heading": "Limits and sources of error",
         "paragraphs": [
-          "The handoff may have been verbal and recorded later. The decision may have been made before it was documented. Review the first few notes together before the process expands. Keep the boundary visible in the place where the work is assigned.",
-          "State the channels and the period. Keep the boundary visible in the place where the work is assigned. Separate what was observed from what was assumed. Record the exception and the person who approved it."
+          "The handoff may have been verbal and recorded later. The decision may have been made before it was documented. Review the first few notes together before the process expands. Keep the boundary visible in the place where the work is assigned. A handoff that cannot be confirmed is not yet complete. The offshore team should record the local time for both locations.",
+          "State the channels and the period. Keep the boundary visible in the place where the work is assigned. Separate what was observed from what was assumed. Record the exception and the person who approved it. The capacity plan should use productive hours, not scheduled hours. The access review should name the role and the permission level."
         ]
       },
       {
         "heading": "Review cadence",
         "paragraphs": [
-          "Repeat the review after a process change or at the same interval each quarter. Compare the same stages and definitions. Review the first few notes together before the process expands. Keep the original note beside the corrected version.",
-          "Assign the follow-up to the team lead and set a date. The protocol should produce a specific decision about the handoff rule. Use the same format for every handover so the next reader can scan it. Review the first few notes together before the process expands."
+          "Repeat the review after a process change or at the same interval each quarter. Compare the same stages and definitions. Review the first few notes together before the process expands. Keep the original note beside the corrected version. The offshore team should record the local time for both locations. The change note should keep the original brief visible.",
+          "Assign the follow-up to the team lead and set a date. The protocol should produce a specific decision about the handoff rule. Use the same format for every handover so the next reader can scan it. Review the first few notes together before the process expands. The change note should keep the original brief visible. The shift report should show the export time and the system."
         ]
       }
     ],
