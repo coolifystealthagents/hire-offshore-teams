@@ -752,6 +752,7 @@ const existingResearchPosts: ResearchPost[] = [
 
 export const blogPosts: BlogPost[] = [...november10BlogPosts, ...november09BlogPosts, ...november08BlogPosts, ...november07BlogPosts, ...november06BlogPosts, ...november05BlogPosts, ...november04BlogPosts, ...november03BlogPosts, ...november01BlogPosts, ...november02BlogPosts, ...october28BlogBatch, ...october27BlogBatch, ...october26BlogBatch, ...october25BlogBatch, ...october22BlogBatch, ...october13BlogPosts, ...october12BlogPosts, ...existingBlogPosts];
 export const researchPosts: ResearchPost[] = [
+  ...november10ResearchPosts,
   ...november09ResearchPosts,
   ...november08ResearchPosts,
   ...november07ResearchPosts,
