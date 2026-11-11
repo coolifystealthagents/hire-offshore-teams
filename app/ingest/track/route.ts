@@ -103,7 +103,7 @@ function response(body: { status: string }, status: number) {
   return Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 }
 
-export async function POST(request: Request) {
+async function forwardBrowserTracking(request: Request) {
   if (!allowedOrigin(request.headers.get('origin'))) return response({ status: 'error' }, 403);
   if (!/^application\/json(?:\s*;|$)/i.test(request.headers.get('content-type') || '')) return response({ status: 'error' }, 415);
 
@@ -148,4 +148,41 @@ export async function POST(request: Request) {
   } catch {
     return response({ status: 'error' }, 502);
   }
+}
+
+// This site delivers accepted leads server-side. The browser SDK's automatic
+// capture must not create a second ACR notification for the same form.
+async function filterAcrBrowserLeadDuplicates(request: Request): Promise<Request | Response> {
+  const reader = request.clone().body?.getReader();
+  if (!reader) return request;
+  const chunks: Uint8Array[] = [];
+  let bytes = 0;
+  try {
+    while (true) {
+      const next = await reader.read();
+      if (next.done) break;
+      bytes += next.value.length;
+      if (bytes > 256000) { void reader.cancel().catch(() => undefined); return request; }
+      chunks.push(next.value);
+    }
+    const raw = new Uint8Array(bytes); let offset = 0;
+    for (const chunk of chunks) { raw.set(chunk, offset); offset += chunk.length; }
+    const payload = JSON.parse(new TextDecoder().decode(raw));
+    if (!payload || !Array.isArray(payload.events)) return request;
+    const events = payload.events.filter((event: unknown) => !event || typeof event !== 'object' || (event as {event_type?: unknown}).event_type !== 'lead_submit');
+    if (events.length === payload.events.length) return request;
+    if (!events.length) return Response.json({status: 'ok', accepted: 0}, {status: 202, headers: {'Cache-Control': 'no-store'}});
+    const body = JSON.stringify({...payload, events});
+    const headers = new Headers(request.headers);
+    // Keep original body limits meaningful in the existing route validator.
+    headers.set('content-length', String(bytes));
+    const RequestConstructor = request.constructor as typeof Request;
+    return new RequestConstructor(request, {body, headers});
+  } catch { return request; }
+}
+
+export async function POST(request: Parameters<typeof forwardBrowserTracking>[0]) {
+  const filtered = await filterAcrBrowserLeadDuplicates(request);
+  if (filtered instanceof Response) return filtered;
+  return forwardBrowserTracking(filtered as Parameters<typeof forwardBrowserTracking>[0]);
 }
