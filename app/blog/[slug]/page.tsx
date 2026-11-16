@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArticleSidebar } from '@/components/ArticleSidebar';
 import { blogPosts, blogBySlug } from '@/lib/content';
+import { getBlogCategoryOptions } from '@/lib/blog-categories';
 import { editorialImage, headingId, serviceLinksFor, type TocItem } from '@/lib/editorial';
 import { site } from '@/lib/site';
 import '../../editorial.css';
@@ -33,6 +34,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   if (!post) notFound();
 
   const categoryMatches = blogPosts.filter((item) => item.slug !== post.slug && item.category === post.category);
+  const categoryHref = getBlogCategoryOptions(blogPosts).find((category) => category.name === post.category)?.href ?? '/blog';
   const related = [...categoryMatches, ...blogPosts.filter((item) => item.slug !== post.slug && item.category !== post.category)].slice(0, 3);
   const services = serviceLinksFor(`${post.slug} ${post.title} ${post.category}`, post.internalService);
   const sectionItems: TocItem[] = post.sections.map((section) => ({ id: headingId(section.heading), label: section.heading, level: 2 }));
@@ -49,7 +51,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   return <main id="main-content" tabIndex={-1}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c') }} />
     <header className="page-hero editorial-hero">
-      <nav className="editorial-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog">Blog</Link><span aria-hidden="true">/</span><span>{post.category}</span></nav>
+      <nav className="editorial-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog">Blog</Link><span aria-hidden="true">/</span><Link href={categoryHref}>{post.category}</Link></nav>
       <h1>{post.title}</h1>
       <p className="editorial-dek">{post.description}</p>
       <p className="meta">{site.name} Editorial Team · Published <time dateTime={post.publishedAt}>{displayPublishedDate(post.publishedAt)}</time> · {post.readTime}</p>
