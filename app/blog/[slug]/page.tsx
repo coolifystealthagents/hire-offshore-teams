@@ -52,9 +52,16 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c') }} />
     <header className="page-hero editorial-hero">
       <nav className="editorial-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog">Blog</Link><span aria-hidden="true">/</span><Link href={categoryHref}>{post.category}</Link></nav>
-      <h1>{post.title}</h1>
-      <p className="editorial-dek">{post.description}</p>
-      <p className="meta">{site.name} Editorial Team · Published <time dateTime={post.publishedAt}>{displayPublishedDate(post.publishedAt)}</time> · {post.readTime}</p>
+      <div className="editorial-hero-grid">
+        <div className="editorial-hero-copy">
+          <h1>{post.title}</h1>
+          <p className="editorial-dek">{post.description}</p>
+          <p className="meta">{site.name} Editorial Team · Published <time dateTime={post.publishedAt}>{displayPublishedDate(post.publishedAt)}</time> · {post.readTime}</p>
+        </div>
+        <figure className="article-hero-image editorial-hero-image">
+          <Image src={heroImage} alt={`Editorial illustration for ${post.title}`} width={1200} height={630} sizes="(max-width: 960px) 90vw, 42vw" priority />
+        </figure>
+      </div>
     </header>
     <section className="content-wrap article-layout">
       <ArticleSidebar
@@ -69,9 +76,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         sources={[{ href: post.source.url, label: post.source.label }]}
       />
       <article className="editorial-article">
-        <figure className="article-hero-image">
-          <Image src={heroImage} alt={`Editorial illustration for ${post.title}`} width={1200} height={630} sizes="(max-width: 900px) 90vw, 760px" priority />
-        </figure>
         {post.sections.map((section, sectionIndex) => <section className="article-section" key={section.heading} aria-labelledby={headingId(section.heading)}>
           <h2 id={headingId(section.heading)}>{section.heading}</h2>
           {section.paragraphs.map((paragraph, paragraphIndex) => <p key={`${section.heading}-${paragraphIndex}`}>{paragraph}</p>)}
