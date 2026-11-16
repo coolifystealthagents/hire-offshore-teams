@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
+import { EditorialCard, EditorialIndex } from '@/components/EditorialIndex';
 import { researchPosts } from '@/lib/content';
 
 const title = 'Research';
@@ -16,11 +15,30 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <main id="main-content" tabIndex={-1} className="research-index">
-    <header className="page-hero index-hero">
-      <div><p className="eyebrow">Research library</p><h1>Evidence for distributed team decisions.</h1><p>Transparent protocols for testing handoffs, ownership, and operating controls.</p></div>
-      <Image className="index-hero-image" src={hero} alt={heroAlt} width={1672} height={941} sizes="(max-width: 980px) 90vw, 42vw" priority />
-    </header>
-    <section className="content-wrap content-grid">{researchPosts.map((post) => <Link className="content-card" href={`/research/${post.slug}`} key={post.slug}>{post.thumbnail && <Image src={post.thumbnail} alt="" width={1200} height={630} />}<span className="pill">{post.cluster}</span><h2>{post.title}</h2><p>{post.summary}</p><p className="meta">Published {post.publishedAt}</p><span className="text-link">Review the brief</span></Link>)}</section>
+  const clusters = new Set(researchPosts.map((post) => post.cluster));
+  return <main id="main-content" tabIndex={-1} className="research-index editorial-index">
+    <EditorialIndex
+      eyebrow="Research library"
+      title="Evidence for distributed team decisions."
+      description="Transparent protocols for testing handoffs, ownership, and operating controls."
+      hero={{ src: hero, alt: heroAlt, width: 1672, height: 941 }}
+      contextEyebrow="Use the evidence library"
+      contextTitle="Move from a broad question to a testable operating choice."
+      contextBody="Each brief names its public sources, states a key finding, and connects the evidence to workflow design. Open a brief for its protocol, source list, related reading, and relevant service context."
+      countLabel={`${researchPosts.length} briefs across ${clusters.size} research areas`}
+    >
+      {researchPosts.map((post) => <EditorialCard
+        key={post.slug}
+        variant="research"
+        href={`/research/${post.slug}`}
+        image={post.thumbnail}
+        imageAlt={`Research illustration for ${post.title}`}
+        tag={post.cluster}
+        title={post.title}
+        summary={post.summary}
+        publishedAt={post.publishedAt}
+        destination="Review the brief"
+      />)}
+    </EditorialIndex>
   </main>;
 }

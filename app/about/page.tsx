@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <main id="main-content" tabIndex={-1}>
+  return <main id="main-content" tabIndex={-1} className="narrative-page">
     <header className="page-hero">
       <p className="eyebrow">About {site.name}</p>
       <h1>Better delegation starts with a better operating role.</h1>

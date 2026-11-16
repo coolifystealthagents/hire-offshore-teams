@@ -5,7 +5,13 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { site } from '@/lib/site';
 
-const nav = [{ href: '/', label: 'Home' }, { href: '/services', label: 'Services' }, { href: '/contact-us', label: 'Contact Us' }];
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/research', label: 'Research' },
+  { href: '/contact-us', label: 'Contact Us' },
+];
 
 export function Header() {
   const pathname = usePathname();
@@ -39,5 +45,5 @@ export function Header() {
 }
 
 export function Footer() {
-  return <footer><div><Link className="brand inverse" href="/"><Image src="/logo.svg" alt="" width={44} height={44} /><span>{site.name}</span></Link><p>Distributed specialists connected through visible ownership, documented handoffs, and accountable review.</p><div className="powered footer-powered"><Image src="/brand/stealth-agents-logo-black.png" alt="StealthAgents" width={100} height={29} /><span>Powered by StealthAgents</span></div></div><div className="footer-links">{nav.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}<Link href="/about">About</Link><Link href="/blog">Blog</Link><Link href="/research">Research</Link><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></div><p className="copyright">© {new Date().getFullYear()} {site.name}</p></footer>;
+  return <footer><div><Link className="brand inverse" href="/"><Image src="/logo.svg" alt="" width={44} height={44} /><span>{site.name}</span></Link><p>Distributed specialists connected through visible ownership, documented handoffs, and accountable review.</p><div className="powered footer-powered"><Image src="/brand/stealth-agents-logo-black.png" alt="StealthAgents" width={100} height={29} /><span>Powered by StealthAgents</span></div></div><div className="footer-links">{nav.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}<Link href="/about">About</Link><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></div><p className="copyright">© {new Date().getFullYear()} {site.name}</p></footer>;
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 import { BlogCategoryNav } from '@/components/BlogCategoryNav';
+import { EditorialCard, EditorialIndex } from '@/components/EditorialIndex';
 import { blogPosts } from '@/lib/content';
 import { getBlogCategoryOptions, selectBlogCategory } from '@/lib/blog-categories';
 
@@ -22,15 +21,32 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
   const categorySlug = Array.isArray(requestedCategory) ? requestedCategory[0] : requestedCategory;
   const categories = getBlogCategoryOptions(blogPosts);
   const selection = selectBlogCategory(blogPosts, categorySlug);
+  const activeCategory = categories.find((category) => category.slug === selection.activeSlug)?.name ?? 'All topics';
 
-  return <main id="main-content" tabIndex={-1} className="blog-index">
-    <header className="page-hero index-hero">
-      <div><p className="eyebrow">Distributed operations field notes</p><h1>Clear roles. Reliable bridges.</h1><p>Guides for building offshore teams with visible ownership, evidence, and escalation.</p></div>
-      <Image className="index-hero-image" src={hero} alt={heroAlt} width={1672} height={941} sizes="(max-width: 980px) 90vw, 42vw" priority />
-    </header>
-    <section className="content-wrap">
-      <BlogCategoryNav categories={categories} activeSlug={selection.activeSlug} />
-      <div className="article-grid">{selection.posts.map((post) => <Link className="article-card" href={`/blog/${post.slug}`} key={post.slug}>{post.thumbnail && <Image src={post.thumbnail} alt="" width={1200} height={630} />}<span className="pill">{post.category}</span><h2>{post.title}</h2><p>{post.description}</p><p className="meta">Published {post.publishedAt}</p><span className="text-link">Read article</span></Link>)}</div>
-    </section>
+  return <main id="main-content" tabIndex={-1} className="blog-index editorial-index">
+    <EditorialIndex
+      eyebrow="Distributed operations field notes"
+      title="Clear roles. Reliable bridges."
+      description="Guides for building offshore teams with visible ownership, evidence, and escalation."
+      hero={{ src: hero, alt: heroAlt, width: 1672, height: 941 }}
+      contextEyebrow="Browse the field notes"
+      contextTitle="Start with the operating question in front of you."
+      contextBody="Each guide turns a recurring distributed-work question into a bounded workflow, review point, or decision path. Category links preserve a shareable destination and lead to the complete matching set."
+      countLabel={`${selection.posts.length} ${selection.posts.length === 1 ? 'guide' : 'guides'} in ${activeCategory}`}
+      toolbar={<BlogCategoryNav categories={categories} activeSlug={selection.activeSlug} />}
+    >
+      {selection.posts.map((post) => <EditorialCard
+        key={post.slug}
+        variant="blog"
+        href={`/blog/${post.slug}`}
+        image={post.thumbnail}
+        imageAlt={`Editorial illustration for ${post.title}`}
+        tag={post.category}
+        title={post.title}
+        summary={post.description}
+        publishedAt={post.publishedAt}
+        destination="Read article"
+      />)}
+    </EditorialIndex>
   </main>;
 }

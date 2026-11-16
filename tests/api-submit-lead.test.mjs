@@ -229,38 +229,21 @@ test('endpoint rejects invalid requests without delivery and confirms primary or
   assert.deepEqual(result.rateResults, [200, 200, 200, 200, 200, 429]);
 });
 
-test('Mattermost fallback returns a reliable boolean and escapes markdown fields', () => {
+test('retired Mattermost fallback remains disabled so ACR alone owns lead notifications', () => {
   const result = runTypeScriptModule(`
     process.env.SITE_MATTERMOST_FALLBACK_WEBHOOK_URL = 'https://secret-webhook.invalid/token';
-    let sentBody = '';
-    globalThis.fetch = async (_url, init) => {
-      sentBody = init.body;
-      return new Response('', { status: 200 });
-    };
+    let fetchCalls = 0;
+    globalThis.fetch = async () => { fetchCalls += 1; return new Response('', { status: 200 }); };
     const { sendLeadFallbackToMattermost } = await import(process.env.FALLBACK_URL);
     const delivered = await sendLeadFallbackToMattermost({
-      name: 'Ada | *Lead* @channel', email: 'ada@business.example', phone: '+44 123',
-      phoneCountry: '+44', business: 'Engine \\ Works', companyWebsite: 'https://engine.example',
-      source: 'contact-page-consultation', message: 'First | line\\nSecond * line',
-      pageUrl: 'https://hireoffshoreteams.com/contact-us'
+      name: 'Ada Lead', email: 'ada@business.example', phone: '+44 123',
+      source: 'contact-page-consultation', pageUrl: 'https://hireoffshoreteams.com/contact-us'
     });
-    globalThis.fetch = async () => new Response('', { status: 500 });
-    const rejected = await sendLeadFallbackToMattermost({
-      name: 'Grace Hopper', email: 'grace@business.example', phone: '', pageUrl: ''
-    });
-    console.log(JSON.stringify({ delivered, rejected, sentBody }));
+    console.log(JSON.stringify({ delivered, fetchCalls }));
   `, { FALLBACK_URL: fallbackUrl });
 
-  assert.equal(result.delivered, true);
-  assert.equal(result.rejected, false);
-  const webhookPayload = JSON.parse(result.sentBody);
-  assert.match(webhookPayload.text, /Ada \\| \\\*Lead\\\*/);
-  assert.match(webhookPayload.text, /> First \\| line/);
-  assert.match(webhookPayload.text, /Country code \| \+44/);
-  assert.match(webhookPayload.text, /Company website \| https:\/\/engine.example/);
-  assert.match(webhookPayload.text, /Source \| contact-page-consultation/);
-  assert.doesNotMatch(webhookPayload.text, /@channel/);
-  assert.doesNotMatch(webhookPayload.text, /secret-webhook/);
+  assert.equal(result.delivered, false);
+  assert.equal(result.fetchCalls, 0);
 });
 
 test('tracking proxy preserves the deployed ACR batch contract and rejects unsafe requests', () => {
