@@ -29,8 +29,8 @@ test('contact conversion contract uses approved reviews and parent assets', () =
   assert.match(contact, /★★★★★/);
   assert.match(contact, /Focus or hover to pause/);
   assert.doesNotMatch(contact, /Pause reviews|Resume reviews|aria-pressed|is-paused|Verified first-party source/);
-  assert.match(contact, /Official team, Bacolod/);
-  assert.match(contact, /stealth-agents-team\.webp/);
+  assert.match(contact, /Official Stealth Agents team, Bacolod/);
+  assert.match(contact, /stealth-agents-team-bacolod\.jpg/);
   assert.match(contact, /stealth-agents-logo-black\.png/);
   assert.doesNotMatch(contact, /oncehub\.com/i);
 });
