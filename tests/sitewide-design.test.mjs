@@ -25,12 +25,16 @@ test('shared semantic tokens own sitewide surfaces, rhythm, shape, and motion', 
   assert.match(styles, /prefers-reduced-motion:reduce/);
 });
 
-test('primary navigation exposes the major site destinations in the shared shell', () => {
+test('primary navigation omits editorial links while the footer keeps them available', () => {
   const chrome = read('components/SiteChrome.tsx');
-  for (const label of ['Home', 'Services', 'Blog', 'Research', 'Contact Us']) assert.match(chrome, new RegExp(`label: '${label}'`));
+  const primary = chrome.match(/const primaryNav = \[([\s\S]*?)\];/)?.[1] ?? '';
+  const footer = chrome.match(/const footerNav = \[([\s\S]*?)\];/)?.[1] ?? '';
+  for (const label of ['Home', 'Services', 'Contact Us']) assert.match(primary, new RegExp(`label: '${label}'`));
+  for (const label of ['Blog', 'Research']) assert.doesNotMatch(primary, new RegExp(`label: '${label}'`));
+  for (const label of ['Blog', 'Research']) assert.match(footer, new RegExp(`label: '${label}'`));
+  assert.match(chrome, /primaryNav\.map/);
+  assert.match(chrome, /footerNav\.map/);
   assert.match(chrome, /aria-current/);
-  assert.equal((chrome.match(/<Link href="\/blog">Blog<\/Link>/g) || []).length, 0);
-  assert.equal((chrome.match(/<Link href="\/research">Research<\/Link>/g) || []).length, 0);
 });
 
 test('blog and research indexes use one shared editorial index and card system', () => {
