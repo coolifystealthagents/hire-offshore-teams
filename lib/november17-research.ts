@@ -7,7 +7,7 @@ export const november17ResearchPosts: ResearchPost[] = [
     "cluster": "Hiring operations",
     "publishedAt": "2026-11-17",
     "finding": "A reproducible count of applicant screening approval coverage records missing a required field, reported with its window and exclusions.",
-    "image": "/thumbnails/november-17/hireoffshoreteams-applicant-screening-approval-coverage.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-applicant-screening-approval-coverage.png",
     "sections": [
       {
         "heading": "Question and decision scope",
@@ -88,7 +88,7 @@ export const november17ResearchPosts: ResearchPost[] = [
     "cluster": "Coverage operations",
     "publishedAt": "2026-11-17",
     "finding": "A reproducible count of time zone overlap plan accuracy records missing a required field, reported with its window and exclusions.",
-    "image": "/thumbnails/november-17/hireoffshoreteams-time-zone-overlap-plan-accuracy.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-time-zone-overlap-plan-accuracy.png",
     "sections": [
       {
         "heading": "Question and decision scope",
@@ -169,7 +169,7 @@ export const november17ResearchPosts: ResearchPost[] = [
     "cluster": "Performance operations",
     "publishedAt": "2026-11-17",
     "finding": "A reproducible count of performance review metric alignment records missing a required field, reported with its window and exclusions.",
-    "image": "/thumbnails/november-17/hireoffshoreteams-performance-review-metric-alignment.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-performance-review-metric-alignment.png",
     "sections": [
       {
         "heading": "Question and decision scope",
@@ -250,7 +250,7 @@ export const november17ResearchPosts: ResearchPost[] = [
     "cluster": "Incident operations",
     "publishedAt": "2026-11-17",
     "finding": "A reproducible count of incident report client notice records missing a required field, reported with its window and exclusions.",
-    "image": "/thumbnails/november-17/hireoffshoreteams-incident-report-client-notice-coverage.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-incident-report-client-notice-coverage.png",
     "sections": [
       {
         "heading": "Question and decision scope",
@@ -331,7 +331,7 @@ export const november17ResearchPosts: ResearchPost[] = [
     "cluster": "Knowledge operations",
     "publishedAt": "2026-11-17",
     "finding": "A reproducible count of knowledge update approval records missing a required field, reported with its window and exclusions.",
-    "image": "/thumbnails/november-17/hireoffshoreteams-knowledge-base-update-approval-coverage.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-knowledge-base-update-approval-coverage.png",
     "sections": [
       {
         "heading": "Question and decision scope",
@@ -412,7 +412,7 @@ export const november17ResearchPosts: ResearchPost[] = [
     "cluster": "Onboarding operations",
     "publishedAt": "2026-11-17",
     "finding": "A reproducible count of onboarding buddy lead time records missing a required field, reported with its window and exclusions.",
-    "image": "/thumbnails/november-17/hireoffshoreteams-onboarding-buddy-assignment-lead-time.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-onboarding-buddy-assignment-lead-time.png",
     "sections": [
       {
         "heading": "Question and decision scope",
@@ -493,7 +493,7 @@ export const november17ResearchPosts: ResearchPost[] = [
     "cluster": "Capacity operations",
     "publishedAt": "2026-11-17",
     "finding": "A reproducible count of seat capacity plan compliance records missing a required field, reported with its window and exclusions.",
-    "image": "/thumbnails/november-17/hireoffshoreteams-seat-capacity-plan-compliance.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-seat-capacity-plan-compliance.png",
     "sections": [
       {
         "heading": "Question and decision scope",

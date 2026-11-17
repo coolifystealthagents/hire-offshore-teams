@@ -7,7 +7,7 @@ export const november17BlogPosts: BlogPost[] = [
     "category": "Hiring control",
     "publishedAt": "2026-11-17",
     "readTime": "9 min read",
-    "image": "/thumbnails/november-17/hireoffshoreteams-reconcile-an-offshore-applicant-screening-record.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-reconcile-an-offshore-applicant-screening-record.png",
     "sections": [
       {
         "heading": "Name the decision and the queue owner",
@@ -98,7 +98,7 @@ export const november17BlogPosts: BlogPost[] = [
     "category": "Coverage control",
     "publishedAt": "2026-11-17",
     "readTime": "9 min read",
-    "image": "/thumbnails/november-17/hireoffshoreteams-control-an-offshore-team-time-zone-overlap-plan.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-control-an-offshore-team-time-zone-overlap-plan.png",
     "sections": [
       {
         "heading": "Name the decision and the queue owner",
@@ -189,7 +189,7 @@ export const november17BlogPosts: BlogPost[] = [
     "category": "Performance control",
     "publishedAt": "2026-11-17",
     "readTime": "9 min read",
-    "image": "/thumbnails/november-17/hireoffshoreteams-audit-an-offshore-team-performance-review-packet.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-audit-an-offshore-team-performance-review-packet.png",
     "sections": [
       {
         "heading": "Name the decision and the queue owner",
@@ -280,7 +280,7 @@ export const november17BlogPosts: BlogPost[] = [
     "category": "Incident control",
     "publishedAt": "2026-11-17",
     "readTime": "9 min read",
-    "image": "/thumbnails/november-17/hireoffshoreteams-verify-an-offshore-team-incident-report.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-verify-an-offshore-team-incident-report.png",
     "sections": [
       {
         "heading": "Name the decision and the queue owner",
@@ -371,7 +371,7 @@ export const november17BlogPosts: BlogPost[] = [
     "category": "Knowledge control",
     "publishedAt": "2026-11-17",
     "readTime": "9 min read",
-    "image": "/thumbnails/november-17/hireoffshoreteams-reconcile-an-offshore-knowledge-base-article-update.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-reconcile-an-offshore-knowledge-base-article-update.png",
     "sections": [
       {
         "heading": "Name the decision and the queue owner",
@@ -462,7 +462,7 @@ export const november17BlogPosts: BlogPost[] = [
     "category": "Onboarding control",
     "publishedAt": "2026-11-17",
     "readTime": "9 min read",
-    "image": "/thumbnails/november-17/hireoffshoreteams-control-an-offshore-onboarding-buddy-assignment.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-control-an-offshore-onboarding-buddy-assignment.png",
     "sections": [
       {
         "heading": "Name the decision and the queue owner",
@@ -553,7 +553,7 @@ export const november17BlogPosts: BlogPost[] = [
     "category": "Capacity control",
     "publishedAt": "2026-11-17",
     "readTime": "9 min read",
-    "image": "/thumbnails/november-17/hireoffshoreteams-audit-an-offshore-team-seat-capacity-plan.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-audit-an-offshore-team-seat-capacity-plan.png",
     "sections": [
       {
         "heading": "Name the decision and the queue owner",
@@ -644,7 +644,7 @@ export const november17BlogPosts: BlogPost[] = [
     "category": "Device control",
     "publishedAt": "2026-11-17",
     "readTime": "9 min read",
-    "image": "/thumbnails/november-17/hireoffshoreteams-verify-a-device-management-enrollment-for-an-offshore-laptop.png",
+    "thumbnail": "/thumbnails/november-17/hireoffshoreteams-verify-a-device-management-enrollment-for-an-offshore-laptop.png",
     "sections": [
       {
         "heading": "Name the decision and the queue owner",
