@@ -768,10 +768,11 @@ const existingResearchPosts: ResearchPost[] = [
   }
 ];
 
-export const blogPosts: BlogPost[] = [...november11BlogPosts, ...november10BlogPosts, ...november09BlogPosts, ...november16BlogPosts, ...november17BlogPosts, ...november22BlogPosts, ...november21BlogPosts, ...november20BlogPosts, ...november19BlogPosts, ...november18BlogPosts, ...november08BlogPosts, ...november07BlogPosts, ...november06BlogPosts, ...november05BlogPosts, ...november04BlogPosts, ...november03BlogPosts, ...november01BlogPosts, ...november02BlogPosts, ...october28BlogBatch, ...october27BlogBatch, ...october26BlogBatch, ...october25BlogBatch, ...october22BlogBatch, ...october13BlogPosts, ...october12BlogPosts, ...existingBlogPosts];
+export const blogPosts: BlogPost[] = [...november23BlogPosts, ...november11BlogPosts, ...november10BlogPosts, ...november09BlogPosts, ...november16BlogPosts, ...november17BlogPosts, ...november22BlogPosts, ...november21BlogPosts, ...november20BlogPosts, ...november19BlogPosts, ...november18BlogPosts, ...november08BlogPosts, ...november07BlogPosts, ...november06BlogPosts, ...november05BlogPosts, ...november04BlogPosts, ...november03BlogPosts, ...november01BlogPosts, ...november02BlogPosts, ...october28BlogBatch, ...october27BlogBatch, ...october26BlogBatch, ...october25BlogBatch, ...october22BlogBatch, ...october13BlogPosts, ...october12BlogPosts, ...existingBlogPosts];
 export const researchPosts: ResearchPost[] = [
   ...november11ResearchPosts,
   ...november10ResearchPosts,
+  ...november23ResearchPosts,
   ...november09ResearchPosts,
   ...november16ResearchPosts, ...november17ResearchPosts, ...november22ResearchPosts, ...november21ResearchPosts, ...november20ResearchPosts, ...november19ResearchPosts, ...november18ResearchPosts, ...november08ResearchPosts,
   ...november07ResearchPosts,
