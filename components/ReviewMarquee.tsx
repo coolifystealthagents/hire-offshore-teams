@@ -21,7 +21,7 @@ export function ReviewMarquee() {
       <a href="https://stealthagents.com/" rel="noreferrer" target="_blank">Published feedback page</a>
     </div>
     <div className="review-window">
-      <div className="review-track" tabIndex={0} aria-label="Automatically moving StealthAgents reviews. Focus or hover to pause."><Cards /><Cards hidden /></div>
+      <div className="review-track" tabIndex={0} aria-label="Automatically moving StealthAgents reviews. Focus to pause."><Cards /><Cards hidden /></div>
     </div>
   </section>;
 }
